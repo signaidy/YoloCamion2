@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+venv/
+.venv/
+env/
+*.egg-info/
+
+# Datos pesados
+datos/videos/*.mp4
+datos/videos/*.mkv
+datos/videos/*.webm
+datos/modelos/*.pt
+datos/modelos/*.onnx
+datos/evidencia/**/*.mp4
+datos/evidencia/**/*.avi
+
+# IDE
+.vscode/
+.idea/
+
+# SO
+Thumbs.db
+desktop.ini

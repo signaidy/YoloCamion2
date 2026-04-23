@@ -1,0 +1,10 @@
+[project]
+name = "conduccion-autonoma-ets2"
+version = "0.1.0"
+description = "Sistema de conduccion autonoma visual para Euro Truck Simulator 2"
+authors = [{name = "Andres Echeverria", email = "hecheverria@unis.edu.gt"}]
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
