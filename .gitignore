@@ -20,6 +20,7 @@ datos/evidencia/**/*.avi
 # IDE
 .vscode/
 .idea/
+.claude/
 
 # SO
 Thumbs.db
