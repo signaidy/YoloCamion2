@@ -161,6 +161,14 @@ def main():
         logger.info("Cargando modelo YOLO...")
         tracker.cargar()
 
+        # Warmup: pre-compila kernels CUDA para que el primer frame real sea rápido
+        # Sin esto, la primera inferencia tarda ~3s y el watchdog dispararía
+        logger.info("Warmup YOLO (compilando kernels CUDA)...")
+        import numpy as _np
+        _frame_dummy = _np.zeros((1080, 1920, 3), dtype=_np.uint8)
+        tracker.rastrear(_frame_dummy)
+        logger.info("Warmup completado — CUDA listo")
+
         fuente.iniciar()
         monitor.iniciar()
 

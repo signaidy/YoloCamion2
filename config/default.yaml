@@ -16,7 +16,7 @@ control:
 
 seguridad:
   tecla_paro: "f12"
-  timeout_watchdog_ms: 500
+  timeout_watchdog_ms: 5000
 
 registro:
   ruta_base: "datos/evidencia"

@@ -12,7 +12,7 @@ from typing import Callable, Optional
 logger = logging.getLogger(__name__)
 
 _TECLA_PARO_DEFAULT = "f12"
-_TIMEOUT_MS_DEFAULT = 500
+_TIMEOUT_MS_DEFAULT = 5000
 
 
 class MonitorSeguridad:
@@ -23,45 +23,90 @@ class MonitorSeguridad:
         timeout_ms: int = _TIMEOUT_MS_DEFAULT,
     ):
         self._en_paro = en_paro
-        self._tecla_paro = tecla_paro
+        self._tecla_paro = tecla_paro.lower()
         self._timeout_s = timeout_ms / 1000.0
         self._activo = False
         self._ultimo_heartbeat = time.monotonic()
-        self._hilo: Optional[threading.Thread] = None
+        self._hilo_watchdog: Optional[threading.Thread] = None
+        self._hilo_tecla: Optional[threading.Thread] = None
         self._paro_activado = False
+        self._listener = None
         atexit.register(self._limpiar)
 
     def iniciar(self) -> None:
         self._activo = True
         self._ultimo_heartbeat = time.monotonic()
-        self._hilo = threading.Thread(target=self._loop, daemon=True, name="monitor-seg")
-        self._hilo.start()
-        logger.info("Monitor de seguridad iniciado (tecla=%s, timeout=%dms)",
-                    self._tecla_paro, int(self._timeout_s * 1000))
+
+        # Hilo watchdog
+        self._hilo_watchdog = threading.Thread(
+            target=self._loop_watchdog, daemon=True, name="monitor-watchdog"
+        )
+        self._hilo_watchdog.start()
+
+        # Hilo de tecla de paro (pynput, no requiere admin)
+        self._hilo_tecla = threading.Thread(
+            target=self._loop_tecla, daemon=True, name="monitor-tecla"
+        )
+        self._hilo_tecla.start()
+
+        logger.info(
+            "Monitor de seguridad iniciado (tecla=%s, timeout=%.1fs)",
+            self._tecla_paro.upper(), self._timeout_s
+        )
 
     def heartbeat(self) -> None:
         self._ultimo_heartbeat = time.monotonic()
 
     def detener(self) -> None:
         self._activo = False
+        if self._listener is not None:
+            try:
+                self._listener.stop()
+            except Exception:
+                pass
 
     def paro_activado(self) -> bool:
         return self._paro_activado
 
-    def _loop(self) -> None:
-        try:
-            import keyboard
-            keyboard.add_hotkey(self._tecla_paro, self._activar_paro)
-        except Exception:
-            logger.warning("No se pudo registrar hotkey '%s' — solo watchdog activo", self._tecla_paro)
+    # ── Hilos internos ────────────────────────────────────────────────────────
 
+    def _loop_watchdog(self) -> None:
         while self._activo:
             elapsed = time.monotonic() - self._ultimo_heartbeat
             if elapsed > self._timeout_s:
-                logger.error("Watchdog: sin heartbeat por %.1fs — activando paro", elapsed)
+                logger.error(
+                    "Watchdog: sin heartbeat por %.1fs (límite %.1fs) — activando paro",
+                    elapsed, self._timeout_s
+                )
                 self._activar_paro()
                 break
-            time.sleep(0.05)
+            time.sleep(0.1)
+
+    def _loop_tecla(self) -> None:
+        try:
+            from pynput import keyboard as kb
+
+            # Construir el conjunto de teclas que disparan el paro
+            tecla_objetivo = self._tecla_paro  # ej. "f12"
+
+            def on_press(key):
+                if not self._activo:
+                    return False  # detiene el listener
+                try:
+                    nombre = key.name if hasattr(key, "name") else str(key)
+                    if nombre.lower() == tecla_objetivo:
+                        logger.warning("Tecla %s presionada — activando paro", tecla_objetivo.upper())
+                        self._activar_paro()
+                        return False
+                except Exception:
+                    pass
+
+            self._listener = kb.Listener(on_press=on_press)
+            self._listener.start()
+            self._listener.join()
+
+        except Exception as e:
+            logger.warning("No se pudo iniciar listener de teclado (%s) — solo watchdog activo", e)
 
     def _activar_paro(self) -> None:
         if not self._paro_activado:
@@ -74,3 +119,8 @@ class MonitorSeguridad:
 
     def _limpiar(self) -> None:
         self._activo = False
+        if self._listener is not None:
+            try:
+                self._listener.stop()
+            except Exception:
+                pass
