@@ -10,9 +10,10 @@ from typing import Optional
 from src.tipos import Accion, EstadoEscena, EstadoSemaforo
 from src.decision.estado import EstadoFSM
 
-_N_FRAMES_OCUPADO = 3   # frames consecutivos para declarar "ocupado"
-_N_FRAMES_LIBRE   = 5   # frames consecutivos para declarar "libre"
+_N_FRAMES_OCUPADO = 4   # frames consecutivos para declarar "ocupado" (mss ~5-10 FPS → ~0.5-0.8s)
+_N_FRAMES_LIBRE   = 10  # frames consecutivos para declarar "libre"  (mss → ~1-2s sin detección)
 _T_ESPERA_ALTO    = 2.0  # segundos de parada completa antes de cruzar
+_T_MIN_SIGUIENDO  = 8.0  # segundos mínimos siguiendo antes de evaluar rebase
 
 
 @dataclass
@@ -166,11 +167,11 @@ class FSMDecision:
                 10, "conflicto lateral durante rebase — abortando"
             )
 
-        # Regla 9 — Siguiendo >3s + espejo izq libre → iniciar rebase (RF-09)
+        # Regla 9 — Siguiendo >_T_MIN_SIGUIENDO s + espejo izq libre → iniciar rebase (RF-09)
         # Evaluado ANTES de R8 para que pueda disparar cuando las condiciones son correctas
         if (self._estado == EstadoFSM.SIGUIENDO_VEHICULO
                 and self._t_siguiendo_desde is not None
-                and (time.monotonic() - self._t_siguiendo_desde) >= 3.0
+                and (time.monotonic() - self._t_siguiendo_desde) >= _T_MIN_SIGUIENDO
                 and self._c_espejo_izq.esta_inactivo()
                 and not escena.espejo_izq_ocupado):
             return ResultadoDecision(

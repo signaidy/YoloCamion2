@@ -140,8 +140,8 @@ def test_regla9_rebase_cuando_condiciones_cumplidas():
     _decidir_n(fsm, _escena(frente_cercano_ocupado=True), _N_FRAMES_OCUPADO)
     assert fsm.estado_actual == EstadoFSM.SIGUIENDO_VEHICULO
 
-    # Simular que ya llevamos >3s siguiendo
-    fsm._t_siguiendo_desde = time.monotonic() - 4.0
+    # Simular que ya llevamos suficiente tiempo siguiendo (> _T_MIN_SIGUIENDO)
+    fsm._t_siguiendo_desde = time.monotonic() - 9.0
     # Espejo izquierdo libre por suficientes frames
     fsm._c_espejo_izq.n_negativos = _N_FRAMES_LIBRE + 1
 

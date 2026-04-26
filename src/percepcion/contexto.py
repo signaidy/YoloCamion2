@@ -110,7 +110,10 @@ class AnalizadorContexto:
 
         n_tracks = len(seguimientos)
         self._historial_tracks.append(n_tracks)
-        confianza = min(1.0, sum(1 for n in self._historial_tracks if n > 0) / max(1, len(self._historial_tracks)))
+        # Confianza = fracción de frames procesados exitosamente por YOLO.
+        # Una carretera vacía (0 detecciones) es válida — no penaliza la confianza.
+        # Solo cae si el pipeline deja de llamar a analizar() (watchdog lo detecta).
+        confianza = min(1.0, len(self._historial_tracks) / self._historial_tracks.maxlen)
 
         return EstadoEscena(
             frente_cercano_ocupado=frente_cercano,
