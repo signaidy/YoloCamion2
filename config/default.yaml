@@ -1,0 +1,23 @@
+fuente:
+  tipo: "video"                   # "video" | "pantalla"
+  ruta_video: "datos/videos/ets2_gameplay.mp4"
+  monitor: 0
+  region: null                    # null = pantalla completa; o [left, top, right, bottom]
+
+modelo:
+  pesos: "datos/modelos/yolo11n.pt"
+  imgsz: 640
+  conf_min: 0.35
+  device: "cuda"
+
+control:
+  tipo: "nulo"                    # "nulo" | "gamepad" | "teclado"
+
+seguridad:
+  tecla_paro: "f12"
+  timeout_watchdog_ms: 500
+
+registro:
+  ruta_base: "datos/evidencia"
+  grabar_video: true
+  fps_objetivo: 30

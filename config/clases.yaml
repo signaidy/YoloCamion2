@@ -1,0 +1,9 @@
+# Mapeo de IDs de COCO a clases propias del proyecto
+# Ref: https://cocodataset.org/#explore
+0:  PEATON        # person
+2:  VEHICULO      # car
+3:  MOTOCICLETA   # motorcycle
+5:  VEHICULO      # bus
+7:  VEHICULO      # truck
+9:  SEMAFORO      # traffic light
+11: SENAL_ALTO    # stop sign

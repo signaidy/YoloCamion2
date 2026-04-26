@@ -1,0 +1,10 @@
+# Regiones de interés para resolución 1920x1080
+# Formato: [x1, y1, x2, y2] en píxeles del frame
+# Calibrar con scripts/calibrar_regiones.py si la cámara del juego cambia
+
+frente_cercano: [480, 540, 1440, 1080]
+frente_lejano:  [480, 270, 1440, 540]
+espejo_izq:     [0,   200, 320,  600]
+espejo_der:     [1600, 200, 1920, 600]
+lateral_izq:    [0,   400, 480,  900]
+lateral_der:    [1440, 400, 1920, 900]
