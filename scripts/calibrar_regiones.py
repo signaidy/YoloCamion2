@@ -1,18 +1,27 @@
 """Calibrador interactivo de Regiones de Interés (ROI) para el Volvo FH16.
 
-Permite dibujar con el mouse los rectángulos de cada zona sobre un frame
-del video de gameplay y guarda el resultado en config/regiones_interes.yaml.
+Permite navegar el video para encontrar un frame en primera persona, y luego
+dibujar con el mouse los rectángulos de cada zona.
 
 Uso:
-  python scripts/calibrar_regiones.py --video datos/videos/ets2_volvo_fh16.mp4
+  python scripts/calibrar_regiones.py --video datos/videos/ets2_volvo_fh16.f299.mp4
   python scripts/calibrar_regiones.py --imagen captura.png
-  python scripts/calibrar_regiones.py --video ... --frame 500   # frame específico
 
-Controles durante la calibración:
+Controles en el NAVEGADOR DE FRAMES:
+  → / D          → avanzar 1 segundo (60 frames)
+  ← / A          → retroceder 1 segundo
+  Page Down      → avanzar 30 segundos
+  Page Up        → retroceder 30 segundos
+  Fin            → ir al final del video
+  Inicio         → ir al principio
+  ENTER / SPACE  → usar este frame para calibrar
+  ESC            → salir
+
+Controles durante la CALIBRACIÓN:
   Clic + arrastrar  → dibuja el rectángulo de la región actual
   ENTER / SPACE     → confirma la región y pasa a la siguiente
-  R                 → rehace la región actual (borra y vuelve a dibujar)
-  S                 → guarda y sale (aunque no estén todas las regiones)
+  R                 → rehace la región actual
+  S                 → guarda y sale
   ESC               → sale sin guardar
 """
 import argparse
@@ -152,6 +161,91 @@ class Calibrador:
         return self._rois
 
 
+def navegar_video(ruta_video: str, frame_inicio: int = 0) -> np.ndarray | None:
+    """Abre una ventana para navegar el video frame a frame hasta encontrar
+    la vista en primera persona correcta. Devuelve el frame seleccionado."""
+    cap = cv2.VideoCapture(ruta_video)
+    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 60.0
+    paso_seg   = max(1, int(fps))        # 1 segundo
+    paso_30s   = max(1, int(fps * 30))   # 30 segundos
+    paso_5min  = max(1, int(fps * 300))  # 5 minutos
+
+    idx = max(0, min(frame_inicio, total - 1))
+    ventana = "Navegador de frames — ENTER para calibrar, ESC para salir"
+
+    cv2.namedWindow(ventana, cv2.WINDOW_NORMAL)
+    cv2.resizeWindow(ventana, 1280, 760)
+
+    frame_actual = None
+
+    while True:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+        ok, frame = cap.read()
+        if not ok:
+            idx = max(0, idx - 1)
+            continue
+
+        frame_actual = frame.copy()
+        canvas = frame.copy()
+
+        # HUD de navegación
+        t_seg = idx / fps
+        t_str = f"{int(t_seg // 60):02d}:{int(t_seg % 60):02d}"
+        overlay = canvas.copy()
+        cv2.rectangle(overlay, (0, 0), (canvas.shape[1], 56), (0, 0, 0), -1)
+        cv2.addWeighted(overlay, 0.6, canvas, 0.4, 0, canvas)
+
+        cv2.putText(canvas,
+                    f"Frame: {idx}/{total}   Tiempo: {t_str}   "
+                    f"(← → = 1s  |  PgUp PgDn = 30s  |  ENTER = usar este frame)",
+                    (10, 22), FONT, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
+        cv2.putText(canvas,
+                    "Busca un frame en PRIMERA PERSONA donde se vean los espejos del Volvo FH16",
+                    (10, 46), FONT, 0.55, (80, 220, 80), 1, cv2.LINE_AA)
+
+        cv2.imshow(ventana, canvas)
+        key = cv2.waitKey(0) & 0xFF
+
+        if key in (13, 32):          # ENTER / SPACE — seleccionar
+            print(f"  Frame seleccionado: {idx} (tiempo {t_str})")
+            break
+        elif key == 27:              # ESC — cancelar
+            frame_actual = None
+            break
+        elif key in (83, 100):       # → o D — +1 segundo
+            idx = min(total - 1, idx + paso_seg)
+        elif key in (81, 97):        # ← o A — -1 segundo
+            idx = max(0, idx - paso_seg)
+        elif key == 118:             # Page Down (código 118 en algunos sistemas) — +30s
+            idx = min(total - 1, idx + paso_30s)
+        elif key == 117:             # Page Up — -30s
+            idx = max(0, idx - paso_30s)
+        elif key == 54:              # 6 — +5 min
+            idx = min(total - 1, idx + paso_5min)
+        elif key == 52:              # 4 — -5 min
+            idx = max(0, idx - paso_5min)
+        elif key == 103:             # G — ir al frame por número
+            pass  # simplificado: ignorar
+
+        # También manejar teclas especiales de OpenCV (flechas = 2228224, etc.)
+        # En Windows las flechas devuelven valores distintos
+        if key == 0:
+            key2 = cv2.waitKey(0) & 0xFF
+            if key2 == 75:   # flecha izq
+                idx = max(0, idx - paso_seg)
+            elif key2 == 77: # flecha der
+                idx = min(total - 1, idx + paso_seg)
+            elif key2 == 73: # Page Up
+                idx = max(0, idx - paso_30s)
+            elif key2 == 81: # Page Down
+                idx = min(total - 1, idx + paso_30s)
+
+    cap.release()
+    cv2.destroyAllWindows()
+    return frame_actual
+
+
 def cargar_frame(ruta_video: str, n_frame: int = 300) -> np.ndarray:
     cap = cv2.VideoCapture(ruta_video)
     total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -198,18 +292,23 @@ def main():
     grupo = parser.add_mutually_exclusive_group(required=True)
     grupo.add_argument("--video", help="Ruta al video de gameplay")
     grupo.add_argument("--imagen", help="Ruta a una imagen/screenshot")
-    parser.add_argument("--frame", type=int, default=300,
-                        help="Número de frame a extraer del video (default: 300)")
+    parser.add_argument("--frame", type=int, default=0,
+                        help="Frame inicial para el navegador (default: 0)")
     parser.add_argument("--salida", default="config/regiones_interes.yaml",
                         help="Ruta del YAML de salida")
     args = parser.parse_args()
 
     # Cargar imagen de referencia
     if args.video:
-        print(f"Extrayendo frame {args.frame} de {args.video}...")
-        imagen = cargar_frame(args.video, args.frame)
+        print(f"\nAbriendo navegador de frames para: {args.video}")
+        print("Usa ← → para moverte 1 segundo, Page Up/Down para 30 segundos.")
+        print("Presiona ENTER cuando veas un frame en primera persona con los espejos visibles.\n")
+        imagen = navegar_video(args.video, args.frame)
+        if imagen is None:
+            print("Calibración cancelada.")
+            sys.exit(0)
         h, w = imagen.shape[:2]
-        print(f"Frame cargado: {w}x{h}")
+        print(f"Frame seleccionado: {w}x{h}")
     else:
         imagen = cv2.imread(args.imagen)
         if imagen is None:

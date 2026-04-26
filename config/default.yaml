@@ -1,6 +1,6 @@
 fuente:
   tipo: "video"                   # "video" | "pantalla"
-  ruta_video: "datos/videos/ets2_volvo_fh16.mp4"
+  ruta_video: "datos/videos/ets2_volvo_fh16.f299.mp4"
   monitor: 0
   region: null                    # null = pantalla completa; o [left, top, right, bottom]
 
