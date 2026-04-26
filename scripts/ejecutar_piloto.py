@@ -24,6 +24,7 @@ from src.control import ControladorGamepad, ControladorNulo, ControladorTeclado
 from src.decision import FSMDecision
 from src.fuente import FuentePantalla, FuenteVideo
 from src.percepcion import AnalizadorContexto, Tracker
+from src.percepcion.contexto import cargar_rois_yaml
 from src.registro import GrabadorVideo, LoggerJSONL, MetricasSesion
 from src.seguridad import MonitorSeguridad
 from src.tipos import Accion, ComandoControl
@@ -103,6 +104,14 @@ def main():
     logger.info("=== Iniciando piloto autónomo ETS2 ===")
     logger.info("Fuente: %s | Control: %s", cfg["fuente"]["tipo"], cfg["control"]["tipo"])
 
+    # Cargar ROI calibradas
+    ruta_rois = Path("config/regiones_interes.yaml")
+    rois = cargar_rois_yaml(ruta_rois) if ruta_rois.exists() else None
+    if rois:
+        logger.info("ROI cargadas desde %s (%d regiones)", ruta_rois, len(rois))
+    else:
+        logger.warning("No se encontró %s — usando ROI por defecto", ruta_rois)
+
     # Construir componentes
     fuente = construir_fuente(cfg)
     tracker = Tracker(
@@ -111,7 +120,7 @@ def main():
         imgsz=cfg["modelo"]["imgsz"],
         device=cfg["modelo"]["device"],
     )
-    contexto = AnalizadorContexto()
+    contexto = AnalizadorContexto(rois=rois)
     fsm = FSMDecision()
     controlador = construir_controlador(cfg)
     metricas = MetricasSesion()

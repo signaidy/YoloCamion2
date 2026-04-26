@@ -1,11 +1,35 @@
 from collections import deque
+from pathlib import Path
 from typing import Optional
 import time
 
 import numpy as np
+import yaml
 
 from src.tipos import Clase, EstadoEscena, EstadoSemaforo, Region, Seguimiento
 from src.percepcion.semaforo import clasificar_semaforo
+
+_NOMBRE_A_REGION = {
+    "frente_cercano": Region.FRENTE_CERCANO,
+    "frente_lejano":  Region.FRENTE_LEJANO,
+    "espejo_izq":     Region.ESPEJO_IZQ,
+    "espejo_der":     Region.ESPEJO_DER,
+    "lateral_izq":    Region.LATERAL_IZQ,
+    "lateral_der":    Region.LATERAL_DER,
+}
+
+
+def cargar_rois_yaml(ruta: str | Path) -> dict[Region, tuple[int, int, int, int]]:
+    """Carga las ROI calibradas desde un archivo YAML."""
+    with open(ruta, encoding="utf-8") as f:
+        datos = yaml.safe_load(f)
+    rois = {}
+    for nombre, coords in datos.items():
+        region = _NOMBRE_A_REGION.get(nombre)
+        if region is not None:
+            rois[region] = tuple(coords)
+    return rois
+
 
 # ROI por defecto para 1920x1080 — ajustables desde regiones_interes.yaml
 _ROI_DEFAULT: dict[Region, tuple[int, int, int, int]] = {
