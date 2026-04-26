@@ -60,9 +60,11 @@ def construir_fuente(cfg: dict):
     if tipo == "video":
         return FuenteVideo(cfg["fuente"]["ruta_video"])
     elif tipo == "pantalla":
+        escalar = cfg["fuente"].get("escalar_a")
         return FuentePantalla(
             monitor=cfg["fuente"].get("monitor", 0),
             region=cfg["fuente"].get("region"),
+            escalar_a=tuple(escalar) if escalar else None,
         )
     raise ValueError(f"Tipo de fuente desconocido: {tipo}")
 
@@ -85,12 +87,25 @@ def accion_a_comando(accion: Accion) -> ComandoControl:
     return ComandoControl(acelerador=acel, freno=freno, volante=vol, timestamp=time.monotonic())
 
 
+def countdown(segundos: int) -> None:
+    """Cuenta regresiva visible en consola para que el usuario cambie al juego."""
+    print("\n" + "="*50)
+    print("  Cambia al juego ETS2 AHORA")
+    print("  El piloto arrancará en:")
+    for i in range(segundos, 0, -1):
+        print(f"    {i}...", flush=True)
+        time.sleep(1)
+    print("  ¡INICIANDO!\n" + "="*50 + "\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Piloto autónomo ETS2")
     parser.add_argument("--config", default="config/default.yaml")
     parser.add_argument("--control", default=None, help="Sobreescribir tipo de control")
     parser.add_argument("--fuente", default=None, help="Sobreescribir tipo de fuente")
     parser.add_argument("--max-frames", type=int, default=0, help="0 = sin límite")
+    parser.add_argument("--delay", type=int, default=0,
+                        help="Segundos de countdown antes de arrancar (útil para cambiar al juego)")
     args = parser.parse_args()
 
     cfg = cargar_config(args.config)
@@ -103,6 +118,9 @@ def main():
 
     logger.info("=== Iniciando piloto autónomo ETS2 ===")
     logger.info("Fuente: %s | Control: %s", cfg["fuente"]["tipo"], cfg["control"]["tipo"])
+
+    if args.delay > 0:
+        countdown(args.delay)
 
     # Cargar ROI calibradas
     ruta_rois = Path("config/regiones_interes.yaml")
