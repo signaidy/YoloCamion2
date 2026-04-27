@@ -8,12 +8,12 @@ from src.control.base import Controlador
 
 logger = logging.getLogger(__name__)
 
-# Con teclado el control es binario (tecla pulsada o no).
-# MANTENER envía acelerador=0.3 — subimos el umbral a 0.55 para que
-# MANTENER NO presione W (el camión cruza por inercia/freno motor).
-# Solo ACELERAR (0.6) y GIRAR (0.2 con volante 0.5) presionan W.
-_UMBRAL_AVANZAR = 0.55
-_UMBRAL_FRENAR  = 0.15   # cualquier freno real activa S
+# Con teclado el control es binario. ETS2 tiene limitador de velocidad
+# integrado (configurar en juego a 80-90 km/h) que impide que W acelere
+# indefinidamente. Con eso, MANTENER (0.3) presiona W pero el juego
+# no supera el límite configurado.
+_UMBRAL_AVANZAR = 0.2    # MANTENER(0.3) y ACELERAR(0.6) presionan W
+_UMBRAL_FRENAR  = 0.15   # FRENAR_SUAVE(0.4) y FUERTE(0.8) presionan S
 _UMBRAL_GIRAR   = 0.25
 
 

@@ -43,6 +43,7 @@ _ROI_DEFAULT: dict[Region, tuple[int, int, int, int]] = {
 
 _AREA_MIN_FRENTE = 5000   # px² para considerar vehículo relevante en frente cercano
 _AREA_MIN_ESPEJO = 2000
+_AREA_MIN_PEATON = 3000   # peatón muy pequeño = falso positivo (HUD, árbol, poste)
 
 
 def _intersecta(caja: tuple, roi: tuple) -> bool:
@@ -95,7 +96,9 @@ class AnalizadorContexto:
                     senal_alto = True
 
             elif seg.clase == Clase.PEATON:
-                if _intersecta(caja, roi_fc) or _intersecta(caja, roi_li) or _intersecta(caja, roi_ld):
+                if seg.area >= _AREA_MIN_PEATON and (
+                    _intersecta(caja, roi_fc) or _intersecta(caja, roi_li) or _intersecta(caja, roi_ld)
+                ):
                     peaton_riesgo = True
 
             elif seg.clase in (Clase.VEHICULO, Clase.MOTOCICLETA):
