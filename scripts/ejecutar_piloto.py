@@ -24,6 +24,7 @@ from src.control import ControladorGamepad, ControladorNulo, ControladorTeclado
 from src.decision import FSMDecision
 from src.fuente import FuentePantalla, FuenteVideo
 from src.fuente.buffer import FuenteConBuffer
+from src.fuente.ventana import FuenteVentana, buscar_ventana
 from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
 from src.percepcion.carriles import DetectorCarriles
@@ -68,7 +69,15 @@ def construir_fuente(cfg: dict):
             region=cfg["fuente"].get("region"),
             escalar_a=tuple(escalar) if escalar else None,
         )
-        return FuenteConBuffer(pantalla)  # captura en hilo separado para no bloquear YOLO
+        return FuenteConBuffer(pantalla)
+    elif tipo == "ventana":
+        titulo = cfg["fuente"].get("titulo_ventana", "Euro Truck Simulator 2")
+        escalar = cfg["fuente"].get("escalar_a", [1920, 1080])
+        ventana = FuenteVentana(
+            titulo=titulo,
+            escalar_a=tuple(escalar) if escalar else None,
+        )
+        return FuenteConBuffer(ventana)
     raise ValueError(f"Tipo de fuente desconocido: {tipo}")
 
 

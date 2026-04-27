@@ -1,9 +1,10 @@
 fuente:
-  tipo: "video"                   # "video" | "pantalla"
+  tipo: "ventana"                 # "video" | "pantalla" | "ventana"
+  titulo_ventana: "Euro Truck Simulator 2"
   ruta_video: "datos/videos/ets2_volvo_fh16.f299.mp4"
   monitor: 0
-  region: null                    # null = pantalla completa; o [left, top, right, bottom]
-  escalar_a: [1920, 1080]         # redimensiona a esta resolución (para que coincidan las ROI calibradas)
+  region: null
+  escalar_a: [1920, 1080]         # redimensiona a 1920x1080 para coincidir con ROI calibradas
 
 modelo:
   pesos: "datos/modelos/yolo11n.pt"
