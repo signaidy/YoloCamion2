@@ -1,15 +1,8 @@
-"""Detector de carriles para ETS2 — Volvo FH16 en primera persona.
+"""Detector de carriles para ETS2 — Volvo FH16 primera persona.
 
-Estrategia específica para ETS2 (conducción por la derecha):
-- Línea derecha (borde de carril): aparece en el 55-95% derecho del frame
-- Línea izquierda (centro de vía): aparece en el 10-45% izquierdo del frame
-- Líneas del sentido contrario: aparecen muy a la izquierda (<15%) → excluidas
-- Referencia primaria: línea derecha (más estable y sin ambigüedad)
-
-Devuelve desviacion en [-1, +1]:
-  negativo = camión está muy a la derecha → girar izquierda (A)
-  cero     = centrado
-  positivo = camión está muy a la izquierda → girar derecha (D)
+Usa detección por brillo (escala de grises) en lugar de HSV,
+lo que es más robusto con el renderizado de ETS2 donde las marcas
+viales son consistentemente brillantes sobre asfalto oscuro.
 """
 from dataclasses import dataclass
 from collections import deque
@@ -27,21 +20,25 @@ class EstadoCarril:
 
 
 # Posición esperada de la línea derecha cuando el camión está centrado
-# (como fracción del ancho de la ROI). En ETS2 con Volvo FH16 es ~0.68.
-_POS_LINEA_DER_CENTRADO = 0.68
-# Margen máximo de desviación normalizada antes de saturar
-_ESCALA_DER = 0.30
+_POS_DER_CENTRADO = 0.68
+_ESCALA_DER = 0.28
 
 
 class DetectorCarriles:
+    """Detecta marcas de carril usando brillo sobre asfalto.
+
+    ETS2 renderiza las marcas viales como zonas brillantes (>160 de brillo)
+    sobre asfalto oscuro (<80). Esto es más confiable que HSV para gráficos.
+    """
+
     def __init__(
         self,
-        zona_roi: tuple[float, float, float, float] = (0.18, 0.56, 0.82, 0.84),
-        suavizado: int = 7,
+        zona_roi: tuple[float, float, float, float] = (0.15, 0.52, 0.85, 0.83),
+        suavizado: int = 8,
         zona_muerta: float = 0.07,
     ):
         self._roi = zona_roi
-        self._historial: deque[float] = deque(maxlen=suavizado)
+        self._hist: deque[float] = deque(maxlen=suavizado)
         self._zona_muerta = zona_muerta
 
     def detectar(self, frame: np.ndarray) -> EstadoCarril:
@@ -52,26 +49,32 @@ class DetectorCarriles:
         roi = frame[y1:y2, x1:x2]
         roi_h, roi_w = roi.shape[:2]
 
-        # Detección de marcas blancas y amarillas
-        hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
-        mask_blanca   = cv2.inRange(hsv, (0,   0,  155), (180,  50, 255))
-        mask_amarilla = cv2.inRange(hsv, (14,  65,  75), (38,  255, 255))
-        mask = cv2.bitwise_or(mask_blanca, mask_amarilla)
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 5))
-        mask = cv2.dilate(mask, kernel, iterations=1)
+        # Convertir a escala de grises y aplicar CLAHE para equalizar
+        gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+        gray = clahe.apply(gray)
 
-        edges = cv2.Canny(mask, 30, 100)
+        # Máscara de zonas brillantes (marcas viales blancas/amarillas)
+        _, mask_bright = cv2.threshold(gray, 160, 255, cv2.THRESH_BINARY)
+
+        # Eliminar ruido fino (reflejos, bordes de objetos)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
+        mask_bright = cv2.morphologyEx(mask_bright, cv2.MORPH_OPEN, kernel)
+
+        edges = cv2.Canny(mask_bright, 30, 90)
+
+        # maxLineGap grande para conectar líneas discontinuas (marcas de guión)
         lines = cv2.HoughLinesP(
             edges, 1, np.pi / 180,
-            threshold=20, minLineLength=18, maxLineGap=90
+            threshold=15,
+            minLineLength=15,
+            maxLineGap=150,
         )
 
-        # Zonas de búsqueda estrictas (sin solapamiento para evitar ambigüedad)
-        # Línea derecha: 55-95% del ancho → borde derecho de nuestro carril
-        # Línea izquierda: 15-44% del ancho → centro de vía (excluye carril contrario)
-        ZONA_DER_MIN = 0.55
-        ZONA_IZQ_MAX = 0.44
-        ZONA_IZQ_MIN = 0.12   # excluye líneas del carril contrario (muy a la izq)
+        # Zonas estrictas sin solapamiento
+        DER_MIN = 0.54   # línea derecha: 54-96% del ancho de ROI
+        IZQ_MAX = 0.44   # línea izquierda: 12-44%
+        IZQ_MIN = 0.10   # excluye carril contrario muy a la izquierda
 
         left_xs, right_xs = [], []
 
@@ -82,16 +85,14 @@ class DetectorCarriles:
                     continue
                 slope = (yb_l - ya) / (xb - xa)
 
-                # Descartar líneas casi horizontales (señalización lateral, sombras)
-                if abs(slope) < 0.20:
+                if abs(slope) < 0.18:   # casi horizontal → ignorar
                     continue
 
-                # Proyectar al fondo de la ROI para clasificar por posición
                 x_bot = xa + (roi_h - ya) / slope if slope != 0 else xa
 
-                if slope > 0.20 and ZONA_DER_MIN * roi_w < x_bot < 0.97 * roi_w:
+                if slope > 0.18 and DER_MIN * roi_w < x_bot < 0.97 * roi_w:
                     right_xs.append(x_bot)
-                elif slope < -0.20 and ZONA_IZQ_MIN * roi_w < x_bot < ZONA_IZQ_MAX * roi_w:
+                elif slope < -0.18 and IZQ_MIN * roi_w < x_bot < IZQ_MAX * roi_w:
                     left_xs.append(x_bot)
 
         izq_det = bool(left_xs)
@@ -101,40 +102,30 @@ class DetectorCarriles:
         confianza = 0.0
 
         if der_det and izq_det:
-            # Ambas líneas: usar el centro del carril
             centro = (np.median(left_xs) + np.median(right_xs)) / 2
-            desviacion_raw = (centro / roi_w - 0.50) / 0.40
+            desviacion_raw = (centro / roi_w - 0.50) / 0.38
             confianza = 1.0
-
         elif der_det:
-            # Solo línea derecha (caso más común y confiable)
-            # Si está a la derecha del punto esperado → camión muy a la izquierda → desviar +
-            # Si está a la izquierda del punto esperado → camión muy a la derecha → desviar -
             pos_norm = np.median(right_xs) / roi_w
-            desviacion_raw = (pos_norm - _POS_LINEA_DER_CENTRADO) / _ESCALA_DER
+            desviacion_raw = (pos_norm - _POS_DER_CENTRADO) / _ESCALA_DER
             confianza = 0.85
-
         elif izq_det:
-            # Solo línea izquierda — menos confiable
             pos_norm = np.median(left_xs) / roi_w
-            # Posición esperada de línea izq cuando centrado ≈ 0.32
-            desviacion_raw = -(_POS_LINEA_DER_CENTRADO - 1.0 + pos_norm) / _ESCALA_DER
+            desviacion_raw = -(0.32 - pos_norm) / _ESCALA_DER
             confianza = 0.5
-
         else:
-            self._historial.append(0.0)
+            self._hist.append(0.0)
             return EstadoCarril(0.0, 0.0, False, False)
 
         desviacion_raw = float(np.clip(desviacion_raw, -1.0, 1.0))
-
         if abs(desviacion_raw) < self._zona_muerta:
             desviacion_raw = 0.0
 
-        self._historial.append(desviacion_raw)
-        desviacion_suave = float(np.mean(self._historial))
+        self._hist.append(desviacion_raw)
+        suave = float(np.mean(self._hist))
 
         return EstadoCarril(
-            desviacion=desviacion_suave,
+            desviacion=suave,
             confianza=confianza,
             linea_izq_detectada=izq_det,
             linea_der_detectada=der_det,
