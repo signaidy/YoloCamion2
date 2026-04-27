@@ -152,6 +152,12 @@ class FSMDecision:
                 7, "alto completado, laterales libres"
             )
 
+        # Resetear timer si venimos de REBASANDO (rebase terminado o abortado)
+        # Sin esto, R9 dispara de nuevo en el siguiente frame porque el timer
+        # ya tenía >= _T_MIN_SIGUIENDO acumulados.
+        if self._estado == EstadoFSM.REBASANDO:
+            self._t_siguiendo_desde = None
+
         # Actualizar timer de "siguiendo" antes de evaluar R8/R9
         if escena.frente_cercano_ocupado:
             if self._t_siguiendo_desde is None:
@@ -162,6 +168,7 @@ class FSMDecision:
         # Regla 10 — Conflicto lateral durante rebase → abortar inmediatamente (RF seguridad)
         if (self._estado == EstadoFSM.REBASANDO
                 and (escena.espejo_izq_ocupado or escena.espejo_der_ocupado)):
+            self._t_siguiendo_desde = None
             return ResultadoDecision(
                 Accion.FRENAR_SUAVE, EstadoFSM.SIGUIENDO_VEHICULO,
                 10, "conflicto lateral durante rebase — abortando"
