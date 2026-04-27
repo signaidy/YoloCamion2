@@ -1,3 +1,9 @@
+"""Controlador de teclado con PWM para steering suave.
+
+W/S se mantienen pulsadas mientras la condición persiste.
+A/D usan pulsos cortos proporcionales a la magnitud de desviación,
+lo que simula control analógico con teclas binarias.
+"""
 import logging
 import time
 
@@ -8,52 +14,70 @@ from src.control.base import Controlador
 
 logger = logging.getLogger(__name__)
 
-# Con teclado el control es binario. ETS2 tiene limitador de velocidad
-# integrado (configurar en juego a 80-90 km/h) que impide que W acelere
-# indefinidamente. Con eso, MANTENER (0.3) presiona W pero el juego
-# no supera el límite configurado.
-_UMBRAL_AVANZAR = 0.2    # MANTENER(0.3) y ACELERAR(0.6) presionan W
-_UMBRAL_FRENAR  = 0.15   # FRENAR_SUAVE(0.4) y FUERTE(0.8) presionan S
-_UMBRAL_GIRAR   = 0.25
+_UMBRAL_AVANZAR = 0.20   # MANTENER(0.3) y ACELERAR(0.6) presionan W
+_UMBRAL_FRENAR  = 0.15   # cualquier freno real activa S
+_UMBRAL_GIRAR   = 0.25   # mínima desviación para activar A/D
+
+# Duración del pulso de steering (ms) según magnitud de desviación
+# Desviación 0.25 → 12ms | 0.5 → 20ms | 1.0 → 40ms
+_MS_PULSO_MIN = 12
+_MS_PULSO_MAX = 40
+
+
+def _duracion_pulso(magnitud: float) -> float:
+    """Duración en segundos del pulso A/D proporcional a la desviación."""
+    t = (magnitud - _UMBRAL_GIRAR) / (1.0 - _UMBRAL_GIRAR)
+    ms = _MS_PULSO_MIN + t * (_MS_PULSO_MAX - _MS_PULSO_MIN)
+    return max(_MS_PULSO_MIN, min(_MS_PULSO_MAX, ms)) / 1000.0
 
 
 class ControladorTeclado(Controlador):
-    """Emula controles binarizados con pydirectinput (W/A/S/D).
+    """Teclado con PWM para steering proporcional.
 
-    Diseñado para ejecutarse como Administrador (requerido cuando ETS2
-    corre con privilegios elevados).
+    Requiere ejecutar como Administrador cuando ETS2 corre con privilegios elevados.
     """
 
     def __init__(self):
-        self._teclas_activas: set[str] = set()
+        self._teclas_continuas: set[str] = set()   # W, S — se mantienen
+        self._steering_activo: str | None = None    # última tecla de giro
 
     def aplicar(self, cmd: ComandoControl) -> None:
+        # ── Velocidad: W/S se mantienen mientras la condición persiste ───────
         deseadas: set[str] = set()
-
         if cmd.acelerador >= _UMBRAL_AVANZAR:
             deseadas.add("w")
         if cmd.freno >= _UMBRAL_FRENAR:
             deseadas.add("s")
-        if cmd.volante <= -_UMBRAL_GIRAR:
-            deseadas.add("a")
-        if cmd.volante >= _UMBRAL_GIRAR:
-            deseadas.add("d")
-
-        # No presionar W y S al mismo tiempo (conflicto)
         if "w" in deseadas and "s" in deseadas:
-            deseadas.discard("w")
+            deseadas.discard("w")  # freno tiene prioridad
 
-        for tecla in self._teclas_activas - deseadas:
+        for tecla in self._teclas_continuas - deseadas:
             pydirectinput.keyUp(tecla)
-        for tecla in deseadas - self._teclas_activas:
+        for tecla in deseadas - self._teclas_continuas:
             pydirectinput.keyDown(tecla)
+        self._teclas_continuas = deseadas
 
-        self._teclas_activas = deseadas
+        # ── Steering: siempre soltar antes de aplicar nuevo pulso ────────────
+        if self._steering_activo:
+            pydirectinput.keyUp(self._steering_activo)
+            self._steering_activo = None
+
+        volante = cmd.volante
+        if abs(volante) >= _UMBRAL_GIRAR:
+            tecla = "a" if volante < 0 else "d"
+            duracion = _duracion_pulso(abs(volante))
+            pydirectinput.keyDown(tecla)
+            time.sleep(duracion)
+            pydirectinput.keyUp(tecla)
+            # No guardamos como activo — siempre se libera dentro del mismo ciclo
 
     def liberar(self) -> None:
-        for tecla in list(self._teclas_activas):
+        for tecla in list(self._teclas_continuas):
             pydirectinput.keyUp(tecla)
-        self._teclas_activas.clear()
+        self._teclas_continuas.clear()
+        if self._steering_activo:
+            pydirectinput.keyUp(self._steering_activo)
+            self._steering_activo = None
         logger.info("Teclado liberado")
 
     def cerrar(self) -> None:

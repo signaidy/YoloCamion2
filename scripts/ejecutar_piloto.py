@@ -111,6 +111,8 @@ def main():
                         help="Segundos de countdown antes de arrancar (útil para cambiar al juego)")
     parser.add_argument("--sin-video", action="store_true",
                         help="No grabar video (más rápido, recomendado para pruebas en vivo)")
+    parser.add_argument("--debug-carril", action="store_true",
+                        help="Mostrar estado del carril cada 30 frames para calibración")
     args = parser.parse_args()
 
     cfg = cargar_config(args.config)
@@ -234,8 +236,16 @@ def main():
 
             if resultado.estado_nuevo in _ESTADOS_CARRIL:
                 if carril.confianza >= 0.5 and abs(carril.desviacion) > 0.08:
-                    # Factor 0.55: corrección moderada para evitar sobre-corrección
-                    cmd.volante = float(max(-1.0, min(1.0, carril.desviacion * 0.55)))
+                    cmd.volante = float(max(-1.0, min(1.0, carril.desviacion * 0.50)))
+
+            if args.debug_carril and n_frame % 30 == 0:
+                logger.info(
+                    "CARRIL desv=%+.3f conf=%.2f izq=%s der=%s vol=%.2f",
+                    carril.desviacion, carril.confianza,
+                    "✓" if carril.linea_izq_detectada else "✗",
+                    "✓" if carril.linea_der_detectada else "✗",
+                    cmd.volante,
+                )
 
             controlador.aplicar(cmd)
 
