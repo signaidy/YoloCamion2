@@ -1,4 +1,5 @@
 import logging
+import time
 
 import pydirectinput
 
@@ -7,15 +8,20 @@ from src.control.base import Controlador
 
 logger = logging.getLogger(__name__)
 
-_UMBRAL_AVANZAR = 0.2
-_UMBRAL_FRENAR  = 0.2
-_UMBRAL_GIRAR   = 0.3
+# Con teclado el control es binario (tecla pulsada o no).
+# MANTENER envía acelerador=0.3 — subimos el umbral a 0.55 para que
+# MANTENER NO presione W (el camión cruza por inercia/freno motor).
+# Solo ACELERAR (0.6) y GIRAR (0.2 con volante 0.5) presionan W.
+_UMBRAL_AVANZAR = 0.55
+_UMBRAL_FRENAR  = 0.15   # cualquier freno real activa S
+_UMBRAL_GIRAR   = 0.25
 
 
 class ControladorTeclado(Controlador):
     """Emula controles binarizados con pydirectinput (W/A/S/D).
 
-    Fallback sin driver adicional cuando vgamepad no está disponible.
+    Diseñado para ejecutarse como Administrador (requerido cuando ETS2
+    corre con privilegios elevados).
     """
 
     def __init__(self):
@@ -32,6 +38,10 @@ class ControladorTeclado(Controlador):
             deseadas.add("a")
         if cmd.volante >= _UMBRAL_GIRAR:
             deseadas.add("d")
+
+        # No presionar W y S al mismo tiempo (conflicto)
+        if "w" in deseadas and "s" in deseadas:
+            deseadas.discard("w")
 
         for tecla in self._teclas_activas - deseadas:
             pydirectinput.keyUp(tecla)
