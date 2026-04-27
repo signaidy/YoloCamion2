@@ -26,6 +26,7 @@ from src.fuente import FuentePantalla, FuenteVideo
 from src.fuente.buffer import FuenteConBuffer
 from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
+from src.percepcion.carriles import DetectorCarriles
 from src.registro import GrabadorVideo, LoggerJSONL, MetricasSesion
 from src.seguridad import MonitorSeguridad
 from src.tipos import Accion, ComandoControl
@@ -144,6 +145,7 @@ def main():
     )
     contexto = AnalizadorContexto(rois=rois)
     fsm = FSMDecision()
+    detector_carriles = DetectorCarriles()
     controlador = construir_controlador(cfg)
     metricas = MetricasSesion()
     log = LoggerJSONL(cfg["registro"]["ruta_base"])
@@ -211,8 +213,25 @@ def main():
             # ── Decisión ────────────────────────────────────────────────────
             resultado = fsm.decidir(escena)
 
-            # ── Control ─────────────────────────────────────────────────────
+            # ── Control + corrección de carril ───────────────────────────────
             cmd = accion_a_comando(resultado.accion)
+
+            # Solo aplicar corrección de carril cuando conducimos normal o
+            # seguimos un vehículo — no durante maniobras activas (rebase, giro)
+            from src.decision.estado import EstadoFSM
+            estado_ok_carril = resultado.estado_nuevo in (
+                EstadoFSM.CONDUCIENDO_NORMAL,
+                EstadoFSM.SIGUIENDO_VEHICULO,
+                EstadoFSM.RECUPERACION,
+            )
+            if estado_ok_carril:
+                carril = detector_carriles.detectar(cuadro.imagen)
+                if carril.confianza >= 0.5 and abs(carril.desviacion) > 0.08:
+                    # Corrección proporcional: desviación → volante
+                    cmd.volante = float(
+                        max(-1.0, min(1.0, carril.desviacion * 0.7))
+                    )
+
             controlador.aplicar(cmd)
 
             # ── Registro ────────────────────────────────────────────────────
