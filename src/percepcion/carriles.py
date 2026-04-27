@@ -54,8 +54,9 @@ class DetectorCarriles:
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         gray = clahe.apply(gray)
 
-        # Máscara de zonas brillantes (marcas viales blancas/amarillas)
-        _, mask_bright = cv2.threshold(gray, 160, 255, cv2.THRESH_BINARY)
+        # Máscara de zonas brillantes. Umbral calibrado para ETS2:
+        # 1920x1080 → ~160, 1280x720 → ~110 (más bajo por interpolación)
+        _, mask_bright = cv2.threshold(gray, 110, 255, cv2.THRESH_BINARY)
 
         # Eliminar ruido fino (reflejos, bordes de objetos)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
