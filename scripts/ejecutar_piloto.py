@@ -184,8 +184,20 @@ def main():
         primer_frame = True
         estado_anterior = fsm.estado_actual
         n_frame = 0
+        # Cache del último resultado YOLO/FSM — se actualiza cada YOLO_CADA frames
+        YOLO_CADA = 3        # YOLO cada 3 frames → ~10 FPS detección, ~30 FPS carril
+        yolo_contador = 0
+        resultado_cache = None
+
+        from src.decision.estado import EstadoFSM
+        _ESTADOS_CARRIL = (
+            EstadoFSM.CONDUCIENDO_NORMAL,
+            EstadoFSM.SIGUIENDO_VEHICULO,
+            EstadoFSM.RECUPERACION,
+        )
 
         logger.info("Pipeline iniciado — presiona %s para parar", cfg["seguridad"]["tecla_paro"].upper())
+        logger.info("YOLO cada %d frames | Carril cada frame", YOLO_CADA)
 
         while fuente.esta_activa:
             if monitor.paro_activado():
@@ -199,38 +211,31 @@ def main():
 
             cuadro = fuente.siguiente()
             if cuadro is None:
-                # FuenteConBuffer devuelve None mientras espera el primer frame
-                # o entre frames. Solo salir si la fuente ya no está activa.
                 if not fuente.esta_activa:
                     break
-                time.sleep(0.01)
+                time.sleep(0.005)
                 continue
 
-            # ── Percepción ──────────────────────────────────────────────────
-            seguimientos = tracker.rastrear(cuadro.imagen)
-            escena = contexto.analizar(seguimientos, cuadro.imagen)
+            # ── Detección de carril (cada frame — rápida ~3ms) ───────────────
+            carril = detector_carriles.detectar(cuadro.imagen)
 
-            # ── Decisión ────────────────────────────────────────────────────
-            resultado = fsm.decidir(escena)
+            # ── YOLO + FSM (cada YOLO_CADA frames — lenta ~100ms) ───────────
+            yolo_contador += 1
+            if yolo_contador >= YOLO_CADA or resultado_cache is None:
+                yolo_contador = 0
+                seguimientos = tracker.rastrear(cuadro.imagen)
+                escena = contexto.analizar(seguimientos, cuadro.imagen)
+                resultado_cache = fsm.decidir(escena)
 
-            # ── Control + corrección de carril ───────────────────────────────
+            resultado = resultado_cache
+
+            # ── Combinar: FSM controla velocidad, carril controla volante ────
             cmd = accion_a_comando(resultado.accion)
 
-            # Solo aplicar corrección de carril cuando conducimos normal o
-            # seguimos un vehículo — no durante maniobras activas (rebase, giro)
-            from src.decision.estado import EstadoFSM
-            estado_ok_carril = resultado.estado_nuevo in (
-                EstadoFSM.CONDUCIENDO_NORMAL,
-                EstadoFSM.SIGUIENDO_VEHICULO,
-                EstadoFSM.RECUPERACION,
-            )
-            if estado_ok_carril:
-                carril = detector_carriles.detectar(cuadro.imagen)
+            if resultado.estado_nuevo in _ESTADOS_CARRIL:
                 if carril.confianza >= 0.5 and abs(carril.desviacion) > 0.08:
-                    # Corrección proporcional: desviación → volante
-                    cmd.volante = float(
-                        max(-1.0, min(1.0, carril.desviacion * 0.7))
-                    )
+                    # Factor 0.55: corrección moderada para evitar sobre-corrección
+                    cmd.volante = float(max(-1.0, min(1.0, carril.desviacion * 0.55)))
 
             controlador.aplicar(cmd)
 

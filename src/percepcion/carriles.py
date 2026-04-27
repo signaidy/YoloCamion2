@@ -25,13 +25,19 @@ class EstadoCarril:
 
 
 class DetectorCarriles:
-    """Detecta marcas de carril y calcula la desviación lateral del vehículo."""
+    """Detecta marcas de carril y calcula la desviación lateral del vehículo.
+
+    ROI optimizada para cámara primera persona del Volvo FH16 en ETS2:
+    - Excluye el tablero del camión (parte inferior)
+    - Excluye los espejos laterales
+    - Se enfoca en la zona donde las líneas del carril son más claras
+    """
 
     def __init__(
         self,
-        zona_roi: tuple[float, float, float, float] = (0.15, 0.58, 0.85, 0.88),
-        suavizado: int = 5,
-        zona_muerta: float = 0.08,
+        zona_roi: tuple[float, float, float, float] = (0.18, 0.56, 0.82, 0.84),
+        suavizado: int = 6,
+        zona_muerta: float = 0.07,
     ):
         # zona_roi: (x_izq, y_top, x_der, y_bot) como fracción del frame
         self._roi = zona_roi
@@ -48,18 +54,18 @@ class DetectorCarriles:
 
         # Máscara de marcas blancas y amarillas en HSV
         hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
-        mask_blanca  = cv2.inRange(hsv, (0,   0,  170), (180,  40, 255))
-        mask_amarilla = cv2.inRange(hsv, (15, 80,   80), (35,  255, 255))
+        mask_blanca   = cv2.inRange(hsv, (0,   0,  160), (180,  45, 255))
+        mask_amarilla = cv2.inRange(hsv, (15,  70,  80), (38,  255, 255))
         mask = cv2.bitwise_or(mask_blanca, mask_amarilla)
 
-        # Morphological closing para unir trazos discontinuos
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+        # Dilatar ligeramente para conectar líneas discontinuas
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 5))
+        mask = cv2.dilate(mask, kernel, iterations=1)
 
-        edges = cv2.Canny(mask, 40, 120)
+        edges = cv2.Canny(mask, 30, 100)
         lines = cv2.HoughLinesP(
             edges, 1, np.pi / 180,
-            threshold=25, minLineLength=25, maxLineGap=60
+            threshold=20, minLineLength=20, maxLineGap=80
         )
 
         left_xs, right_xs = [], []
