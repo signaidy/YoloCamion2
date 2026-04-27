@@ -8,6 +8,38 @@ from src.tipos import Cuadro
 from src.fuente.base import FuenteCuadros
 
 
+def _escalar_con_recorte(frame: np.ndarray, objetivo: tuple[int, int]) -> np.ndarray:
+    """Escala manteniendo el aspect ratio del destino recortando el centro.
+
+    Si la pantalla es 16:10 (2560x1600) y el destino es 16:9 (1920x1080),
+    recorta las bandas superiores/inferiores para no distorsionar la imagen.
+    """
+    w_dst, h_dst = objetivo
+    h_src, w_src = frame.shape[:2]
+
+    ratio_dst = w_dst / h_dst
+    ratio_src = w_src / h_src
+
+    if abs(ratio_src - ratio_dst) < 0.01:
+        # Misma relación de aspecto — escalar directo
+        return cv2.resize(frame, (w_dst, h_dst), interpolation=cv2.INTER_LINEAR)
+
+    if ratio_src > ratio_dst:
+        # Fuente más ancha → recortar lados
+        h_new = h_src
+        w_new = int(h_src * ratio_dst)
+        x0 = (w_src - w_new) // 2
+        recortado = frame[:, x0:x0 + w_new]
+    else:
+        # Fuente más alta → recortar arriba/abajo (caso 2560x1600 → 16:9)
+        w_new = w_src
+        h_new = int(w_src / ratio_dst)
+        y0 = (h_src - h_new) // 2
+        recortado = frame[y0:y0 + h_new, :]
+
+    return cv2.resize(recortado, (w_dst, h_dst), interpolation=cv2.INTER_LINEAR)
+
+
 class FuentePantalla(FuenteCuadros):
     """Captura cuadros en tiempo real.
 
@@ -103,9 +135,7 @@ class FuentePantalla(FuenteCuadros):
             return None
 
         if self._escalar_a is not None:
-            w, h = self._escalar_a
-            if frame_bgr.shape[1] != w or frame_bgr.shape[0] != h:
-                frame_bgr = cv2.resize(frame_bgr, (w, h), interpolation=cv2.INTER_LINEAR)
+            frame_bgr = _escalar_con_recorte(frame_bgr, self._escalar_a)
 
         ahora = time.monotonic()
         elapsed = ahora - self._t_inicio

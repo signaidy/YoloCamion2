@@ -197,7 +197,12 @@ def main():
 
             cuadro = fuente.siguiente()
             if cuadro is None:
-                break
+                # FuenteConBuffer devuelve None mientras espera el primer frame
+                # o entre frames. Solo salir si la fuente ya no está activa.
+                if not fuente.esta_activa:
+                    break
+                time.sleep(0.01)
+                continue
 
             # ── Percepción ──────────────────────────────────────────────────
             seguimientos = tracker.rastrear(cuadro.imagen)
