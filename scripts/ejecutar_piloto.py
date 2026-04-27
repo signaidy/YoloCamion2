@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.control import ControladorGamepad, ControladorNulo, ControladorTeclado
 from src.decision import FSMDecision
 from src.fuente import FuentePantalla, FuenteVideo
+from src.fuente.buffer import FuenteConBuffer
 from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
 from src.registro import GrabadorVideo, LoggerJSONL, MetricasSesion
@@ -61,11 +62,12 @@ def construir_fuente(cfg: dict):
         return FuenteVideo(cfg["fuente"]["ruta_video"])
     elif tipo == "pantalla":
         escalar = cfg["fuente"].get("escalar_a")
-        return FuentePantalla(
+        pantalla = FuentePantalla(
             monitor=cfg["fuente"].get("monitor", 0),
             region=cfg["fuente"].get("region"),
             escalar_a=tuple(escalar) if escalar else None,
         )
+        return FuenteConBuffer(pantalla)  # captura en hilo separado para no bloquear YOLO
     raise ValueError(f"Tipo de fuente desconocido: {tipo}")
 
 
@@ -106,6 +108,8 @@ def main():
     parser.add_argument("--max-frames", type=int, default=0, help="0 = sin límite")
     parser.add_argument("--delay", type=int, default=0,
                         help="Segundos de countdown antes de arrancar (útil para cambiar al juego)")
+    parser.add_argument("--sin-video", action="store_true",
+                        help="No grabar video (más rápido, recomendado para pruebas en vivo)")
     args = parser.parse_args()
 
     cfg = cargar_config(args.config)
@@ -143,7 +147,10 @@ def main():
     controlador = construir_controlador(cfg)
     metricas = MetricasSesion()
     log = LoggerJSONL(cfg["registro"]["ruta_base"])
-    grabador = GrabadorVideo(cfg["registro"]["ruta_base"]) if cfg["registro"]["grabar_video"] else None
+    grabar = cfg["registro"]["grabar_video"] and not args.sin_video
+    grabador = GrabadorVideo(cfg["registro"]["ruta_base"]) if grabar else None
+    if args.sin_video:
+        logger.info("Grabación de video desactivada (--sin-video)")
 
     def en_paro():
         fsm.activar_paro_manual()
