@@ -80,8 +80,11 @@ cv2.imwrite(ruta2, roi_debug)
 
 # ── Ejecutar el detector y mostrar resultado ─────────────────────────────────
 det = DetectorCarriles()
+noche = det._es_noche(frame)
 estado = det.detectar(frame)
 
+print(f"\nModo detectado: {'NOCHE 🌙' if noche else 'DÍA ☀️'}")
+print(f"Brillo medio frame: {cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).mean():.1f}/255")
 print(f"\nResultado del detector:")
 print(f"  Desviación:  {estado.desviacion:+.3f}")
 print(f"  Confianza:   {estado.confianza:.2f}")

@@ -27,23 +27,39 @@ _ESCALA_DER = 0.28
 class DetectorCarriles:
     """Detecta marcas de carril usando brillo sobre asfalto.
 
-    ETS2 renderiza las marcas viales como zonas brillantes (>160 de brillo)
-    sobre asfalto oscuro (<80). Esto es más confiable que HSV para gráficos.
+    Soporta dos modos:
+    - Día (modo_noche=False): ROI media, umbral ~110, zona amplia
+    - Noche (modo_noche=True): ROI baja (zona iluminada por faros), umbral ~80
+
+    Detección automática de noche si el brillo medio del frame < 60.
     """
 
     def __init__(
         self,
         zona_roi: tuple[float, float, float, float] = (0.15, 0.52, 0.85, 0.83),
+        zona_roi_noche: tuple[float, float, float, float] = (0.20, 0.72, 0.80, 0.90),
         suavizado: int = 8,
         zona_muerta: float = 0.07,
+        modo_noche: bool | None = None,   # None = automático
     ):
-        self._roi = zona_roi
+        self._roi_dia = zona_roi
+        self._roi_noche = zona_roi_noche
         self._hist: deque[float] = deque(maxlen=suavizado)
         self._zona_muerta = zona_muerta
+        self._modo_noche_forzado = modo_noche
+
+    def _es_noche(self, frame: np.ndarray) -> bool:
+        if self._modo_noche_forzado is not None:
+            return self._modo_noche_forzado
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        return float(gray.mean()) < 55.0
 
     def detectar(self, frame: np.ndarray) -> EstadoCarril:
         h, w = frame.shape[:2]
-        xi, yt, xd, yb = self._roi
+        noche = self._es_noche(frame)
+        roi_coords = self._roi_noche if noche else self._roi_dia
+        umbral = 75 if noche else 110
+        xi, yt, xd, yb = roi_coords
         x1, y1 = int(w * xi), int(h * yt)
         x2, y2 = int(w * xd), int(h * yb)
         roi = frame[y1:y2, x1:x2]
@@ -54,9 +70,7 @@ class DetectorCarriles:
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         gray = clahe.apply(gray)
 
-        # Máscara de zonas brillantes. Umbral calibrado para ETS2:
-        # 1920x1080 → ~160, 1280x720 → ~110 (más bajo por interpolación)
-        _, mask_bright = cv2.threshold(gray, 110, 255, cv2.THRESH_BINARY)
+        _, mask_bright = cv2.threshold(gray, umbral, 255, cv2.THRESH_BINARY)
 
         # Eliminar ruido fino (reflejos, bordes de objetos)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
