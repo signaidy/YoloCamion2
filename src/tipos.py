@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+import math
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
@@ -31,9 +32,26 @@ class Deteccion:
 
 
 @dataclass
+class FisicaVisual:
+    """Estimación visual de proximidad y velocidad relativa de un objeto rastreado.
+
+    Pure-vision: TTC se deriva del crecimiento del bounding box y/o flujo óptico,
+    nunca de telemetría interna. ttc_segundos = +inf cuando el objeto se aleja
+    o no se aproxima de forma medible.
+    """
+    velocidad_relativa_px_s: float = 0.0
+    ttc_segundos: float = math.inf
+    area_px: int = 0
+    area_anterior_px: int = 0
+    centroide: tuple[int, int] = (0, 0)
+    vector_flujo: tuple[float, float] = (0.0, 0.0)
+
+
+@dataclass
 class Seguimiento(Deteccion):
     id_seguimiento: int
     edad: int
+    fisica: Optional[FisicaVisual] = None
 
 
 class EstadoSemaforo(Enum):
@@ -64,6 +82,8 @@ class EstadoEscena:
     vehiculos_totales: int
     confianza_percepcion: float
     timestamp: float
+    ttc_minimo_frente_s: float = math.inf
+    vehiculo_critico_id: Optional[int] = None
 
 
 class Accion(Enum):
@@ -85,3 +105,15 @@ class ComandoControl:
     freno: float
     volante: float
     timestamp: float
+
+
+@dataclass
+class SetpointControl:
+    """Objetivo continuo que el FSM emite hacia los PIDs de la Capa 3.
+
+    A diferencia de ComandoControl (salida instantánea), SetpointControl es
+    una intención que el PID convierte en valores analógicos suaves.
+    """
+    velocidad_objetivo_norm: float = 0.0   # 0-1; 1 = velocidad máxima permitida
+    freno_objetivo: float = 0.0            # 0-1; >=0.9 dispara bypass de emergencia
+    desviacion_volante: float = 0.0        # -1..+1 (signo: <0 izq, >0 der)

@@ -23,7 +23,7 @@ class Tracker:
 
     def __init__(
         self,
-        ruta_modelo: str | Path = "datos/modelos/yolo11n.pt",
+        ruta_modelo: str | Path = "datos/modelos/yolo26n.pt",
         confianza_min: float = 0.35,
         imgsz: int = 640,
         device: str = "cuda",

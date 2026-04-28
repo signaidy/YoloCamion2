@@ -7,7 +7,7 @@ fuente:
   escalar_a: [1920, 1080]         # redimensiona a 1920x1080 para coincidir con ROI calibradas
 
 modelo:
-  pesos: "datos/modelos/yolo11n.pt"
+  pesos: "datos/modelos/yolo26n.pt"   # RF-03: YOLO26 como núcleo de detección (req. catedrático)
   imgsz: 640
   conf_min: 0.35
   device: "cuda"
