@@ -1,4 +1,11 @@
-"""Controlador de teclado con PWM para steering suave.
+"""Controlador de teclado con PWM para steering suave (DEPRECATED).
+
+DEPRECATED desde Tarea 3.5 (refactor pure-vision):
+    El control oficial es `ControladorGamepadPID` (gamepad analogico con
+    tres PIDs alimentados por velocidad propia visual). Este controlador
+    de teclado se mantiene SOLO como fallback de emergencia. No recibe
+    desarrollo nuevo y no se beneficia de los PIDs ni del setpoint
+    continuo del FSM.
 
 W/S se mantienen pulsadas mientras la condición persiste.
 A/D usan pulsos cortos proporcionales a la magnitud de desviación,
@@ -38,6 +45,10 @@ class ControladorTeclado(Controlador):
     """
 
     def __init__(self):
+        logger.warning(
+            "ControladorTeclado esta DEPRECATED desde Tarea 3.5; "
+            "usar ControladorGamepadPID. Solo se mantiene como fallback."
+        )
         self._teclas_continuas: set[str] = set()   # W, S — se mantienen
         self._steering_activo: str | None = None    # última tecla de giro
 

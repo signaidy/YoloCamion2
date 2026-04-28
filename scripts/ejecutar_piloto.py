@@ -21,6 +21,7 @@ import yaml
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.control import ControladorGamepad, ControladorNulo, ControladorTeclado
+from src.control.gamepad_pid import ControladorGamepadPID
 from src.decision import FSMDecision
 from src.fuente import FuentePantalla, FuenteVideo
 from src.fuente.buffer import FuenteConBuffer
@@ -28,9 +29,12 @@ from src.fuente.ventana import FuenteVentana, buscar_ventana
 from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
 from src.percepcion.carriles import DetectorCarriles
+from src.percepcion.fisica import EstimadorFisicaVisual
+from src.percepcion.flujo_optico import EstimadorFlujoOpticoLK
+from src.percepcion.velocidad_propia import EstimadorVelocidadPropia
 from src.registro import GrabadorVideo, LoggerJSONL, MetricasSesion
 from src.seguridad import MonitorSeguridad
-from src.tipos import Accion, ComandoControl
+from src.tipos import Accion, ComandoControl, SetpointControl
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,19 +42,33 @@ logging.basicConfig(
 )
 logger = logging.getLogger("piloto")
 
-# Mapa acción → ComandoControl (valores del diseño)
-_MAPA_ACCION: dict[Accion, tuple[float, float, float]] = {
-    Accion.MANTENER:      (0.3, 0.0, 0.0),
-    Accion.ACELERAR:      (0.6, 0.0, 0.0),
-    Accion.FRENAR_SUAVE:  (0.0, 0.4, 0.0),
-    Accion.FRENAR_FUERTE: (0.0, 0.8, 0.0),
-    Accion.ALTO_TOTAL:    (0.0, 1.0, 0.0),
-    Accion.GIRAR_IZQ:     (0.2, 0.0, -0.5),
-    Accion.GIRAR_DER:     (0.2, 0.0,  0.5),
-    Accion.REBASAR_IZQ:   (0.8, 0.0, -0.3),
-    Accion.REBASAR_DER:   (0.8, 0.0,  0.3),
-    Accion.ESPERAR:       (0.0, 0.0,  0.0),
-}
+# Acciones con giro intencional: el FSM ya fija desviacion_volante segun la
+# accion y el detector de carriles NO debe sobreescribirla (es maniobra activa,
+# no seguimiento de carril).
+_ACCIONES_CON_GIRO: frozenset[Accion] = frozenset({
+    Accion.GIRAR_IZQ, Accion.GIRAR_DER,
+    Accion.REBASAR_IZQ, Accion.REBASAR_DER,
+})
+
+
+def _setpoint_a_comando(sp: SetpointControl) -> ComandoControl:
+    """Adaptador: SetpointControl -> ComandoControl para controladores no-PID."""
+    return ComandoControl(
+        acelerador=sp.velocidad_objetivo_norm,
+        freno=sp.freno_objetivo,
+        volante=sp.desviacion_volante,
+        timestamp=time.monotonic(),
+    )
+
+
+def _roi_franja_inferior(w: int, h: int) -> tuple[int, int, int, int]:
+    """ROI para flujo optico de velocidad propia: franja inferior central."""
+    return (
+        int(round(0.30 * w)),
+        int(round(0.78 * h)),
+        int(round(0.70 * w)),
+        int(round(0.97 * h)),
+    )
 
 
 def cargar_config(ruta: str) -> dict:
@@ -86,17 +104,18 @@ def construir_controlador(cfg: dict, tipo_override: str | None = None):
     if tipo == "nulo":
         return ControladorNulo()
     elif tipo == "gamepad":
+        # Pure-vision: gamepad analogico con tres PIDs (Tarea 3.2-3.4)
+        ctrl = ControladorGamepadPID()
+        ctrl.iniciar()
+        return ctrl
+    elif tipo == "gamepad_directo":
+        # Fallback sin PID: pasthrough analogico (no recomendado)
         ctrl = ControladorGamepad()
         ctrl.iniciar()
         return ctrl
     elif tipo == "teclado":
         return ControladorTeclado()
     raise ValueError(f"Tipo de control desconocido: {tipo}")
-
-
-def accion_a_comando(accion: Accion) -> ComandoControl:
-    acel, freno, vol = _MAPA_ACCION.get(accion, (0.0, 0.0, 0.0))
-    return ComandoControl(acelerador=acel, freno=freno, volante=vol, timestamp=time.monotonic())
 
 
 def countdown(segundos: int) -> None:
@@ -154,10 +173,23 @@ def main():
         imgsz=cfg["modelo"]["imgsz"],
         device=cfg["modelo"]["device"],
     )
-    contexto = AnalizadorContexto(rois=rois)
+    estimador_fisica = EstimadorFisicaVisual()
+    contexto = AnalizadorContexto(rois=rois, estimador_fisica=estimador_fisica)
     fsm = FSMDecision()
     detector_carriles = DetectorCarriles()
     controlador = construir_controlador(cfg)
+
+    # Capa pure-vision para velocidad propia (RNF-07): flujo optico LK
+    # restringido a franja inferior central, normalizado a [0, 1].
+    escalar = cfg["fuente"].get("escalar_a") or [1920, 1080]
+    w_capt, h_capt = int(escalar[0]), int(escalar[1])
+    cfg_velprop = cfg.get("velocidad_propia", {}) or {}
+    estimador_flujo = EstimadorFlujoOpticoLK(roi=_roi_franja_inferior(w_capt, h_capt))
+    estimador_velocidad = EstimadorVelocidadPropia(
+        factor_calibracion=float(cfg_velprop.get("factor_calibracion", 0.01)),
+        alpha_ema=float(cfg_velprop.get("alpha_ema", 0.3)),
+    )
+    velocidad_actual_norm = 0.0
     metricas = MetricasSesion()
     log = LoggerJSONL(cfg["registro"]["ruta_base"])
     grabar = cfg["registro"]["grabar_video"] and not args.sin_video
@@ -230,33 +262,48 @@ def main():
             # ── Detección de carril (cada frame — rápida ~3ms) ───────────────
             carril = detector_carriles.detectar(cuadro.imagen)
 
+            # ── Velocidad propia visual (pure-vision, RNF-07) ────────────────
+            flujo_lk = estimador_flujo.calcular(cuadro.imagen, cuadro.timestamp)
+            velocidad_actual_norm = estimador_velocidad.estimar(flujo_lk)
+            if isinstance(controlador, ControladorGamepadPID):
+                controlador.actualizar_velocidad_actual(velocidad_actual_norm)
+
             # ── YOLO + FSM (cada YOLO_CADA frames — lenta ~100ms) ───────────
             yolo_contador += 1
             if yolo_contador >= YOLO_CADA or resultado_cache is None:
                 yolo_contador = 0
                 seguimientos = tracker.rastrear(cuadro.imagen)
-                escena = contexto.analizar(seguimientos, cuadro.imagen)
+                escena = contexto.analizar(seguimientos, cuadro.imagen, cuadro.timestamp)
                 resultado_cache = fsm.decidir(escena)
 
             resultado = resultado_cache
 
-            # ── Combinar: FSM controla velocidad, carril controla volante ────
-            cmd = accion_a_comando(resultado.accion)
+            # ── Setpoint del FSM (mutable) + override de carril ──────────────
+            setpoint = SetpointControl(
+                velocidad_objetivo_norm=resultado.setpoint.velocidad_objetivo_norm,
+                freno_objetivo=resultado.setpoint.freno_objetivo,
+                desviacion_volante=resultado.setpoint.desviacion_volante,
+            )
 
-            if resultado.estado_nuevo in _ESTADOS_CARRIL:
-                if carril.confianza >= 0.5 and abs(carril.desviacion) > 0.08:
-                    cmd.volante = float(max(-1.0, min(1.0, carril.desviacion * 0.50)))
+            if (resultado.accion not in _ACCIONES_CON_GIRO
+                    and resultado.estado_nuevo in _ESTADOS_CARRIL
+                    and carril.confianza >= 0.5
+                    and abs(carril.desviacion) > 0.08):
+                setpoint.desviacion_volante = float(max(-1.0, min(1.0, carril.desviacion)))
 
             if args.debug_carril and n_frame % 30 == 0:
                 logger.info(
-                    "CARRIL desv=%+.3f conf=%.2f izq=%s der=%s vol=%.2f",
+                    "CARRIL desv=%+.3f conf=%.2f izq=%s der=%s vol=%+.2f vel=%.2f",
                     carril.desviacion, carril.confianza,
                     "✓" if carril.linea_izq_detectada else "✗",
                     "✓" if carril.linea_der_detectada else "✗",
-                    cmd.volante,
+                    setpoint.desviacion_volante, velocidad_actual_norm,
                 )
 
-            controlador.aplicar(cmd)
+            if isinstance(controlador, ControladorGamepadPID):
+                controlador.aplicar(setpoint)
+            else:
+                controlador.aplicar(_setpoint_a_comando(setpoint))
 
             # ── Registro ────────────────────────────────────────────────────
             latencia_ms = (time.perf_counter() - t0) * 1000
