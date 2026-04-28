@@ -16,8 +16,9 @@ from typing import Optional
 from src.tipos import Accion, EstadoEscena, EstadoSemaforo, SetpointControl
 from src.decision.estado import EstadoFSM
 
-_N_FRAMES_OCUPADO = 4   # frames consecutivos para declarar "ocupado" (mss ~5-10 FPS → ~0.5-0.8s)
-_N_FRAMES_LIBRE   = 10  # frames consecutivos para declarar "libre"  (mss → ~1-2s sin detección)
+_N_FRAMES_OCUPADO = 4   # frames consecutivos para declarar "ocupado" (~0.4s a 10 FPS YOLO)
+_N_FRAMES_LIBRE   = 18  # frames consecutivos para declarar "libre" (~1.8s a 10 FPS YOLO)
+                        # Aumentado de 10 para reducir ciclado R8/R4 por detecciones espurias
 _T_ESPERA_ALTO    = 2.0  # segundos de parada completa antes de cruzar
 _T_MIN_SIGUIENDO  = 8.0  # segundos mínimos siguiendo antes de evaluar rebase
 
@@ -155,18 +156,33 @@ class FSMDecision:
             )
 
         # Regla 3.5 — TTC visual crítico en frente: frenar fuerte de inmediato
-        # Sin histeresis: el TTC ya integra varios frames vía EstimadorFisicaVisual.
+        # Stickiness: si ya estamos en FRENANDO_PREVENTIVO, no volvemos a
+        # ACELERAR hasta que TTC >= _TTC_FRENO_SUAVE (3s). Evita el patrón
+        # "frena 0.2-0.4s → acelera → frena" observado cuando el TTC sube
+        # un frame por encima del umbral por ruido del estimador.
         ttc = escena.ttc_minimo_frente_s
-        if ttc < _TTC_FRENO_FUERTE:
+        _ttc_critico = ttc < _TTC_FRENO_FUERTE or (
+            self._estado == EstadoFSM.FRENANDO_PREVENTIVO
+            and ttc < _TTC_FRENO_SUAVE
+        )
+        if _ttc_critico:
             id_str = (f" id={escena.vehiculo_critico_id}"
                       if escena.vehiculo_critico_id is not None else "")
             return ResultadoDecision(
                 Accion.FRENAR_FUERTE, EstadoFSM.FRENANDO_PREVENTIVO,
-                35, f"TTC frontal {ttc:.2f}s < {_TTC_FRENO_FUERTE}s{id_str}"
+                35, f"TTC frontal {ttc:.2f}s < umbral{id_str}"
             )
 
         # Regla 4 — Semáforo rojo → detenerse (RF-07)
-        if self._c_semaforo_rojo.esta_activo():
+        # Stickiness: si ya estamos en DETENIDO_SEMAFORO, mantenemos el
+        # alto hasta que el contador acumule _N_FRAMES_LIBRE negativos
+        # consecutivos, evitando que un solo frame sin detección relance
+        # el camión (patrón "frena 0.5s, arranca, frena" observado en pruebas).
+        _semaforo_rojo_sticky = self._c_semaforo_rojo.esta_activo() or (
+            self._estado == EstadoFSM.DETENIDO_SEMAFORO
+            and not self._c_semaforo_rojo.esta_inactivo()
+        )
+        if _semaforo_rojo_sticky:
             return ResultadoDecision(
                 Accion.ALTO_TOTAL, EstadoFSM.DETENIDO_SEMAFORO,
                 4, "semáforo en ROJO"
@@ -243,7 +259,18 @@ class FSMDecision:
             )
 
         # Regla 8 — Frente cercano ocupado → tres tiers segun TTC visual (R8b)
-        if self._c_frente_cercano.esta_activo() and self._estado != EstadoFSM.REBASANDO:
+        # Stickiness: si ya estamos en SIGUIENDO_VEHICULO, mantenemos el
+        # estado hasta acumular _N_FRAMES_LIBRE negativos consecutivos.
+        # Evita el ciclado rápido R8→R12→R8 (0.3-0.7s) que ocurre cuando el
+        # YOLO pierde la detección un frame y el camión vuelve a acelerar.
+        _frente_cercano_activo = (
+            self._c_frente_cercano.esta_activo()
+            or (
+                self._estado == EstadoFSM.SIGUIENDO_VEHICULO
+                and not self._c_frente_cercano.esta_inactivo()
+            )
+        )
+        if _frente_cercano_activo and self._estado != EstadoFSM.REBASANDO:
             if ttc < _TTC_FRENO_SUAVE:
                 return ResultadoDecision(
                     Accion.FRENAR_SUAVE, EstadoFSM.SIGUIENDO_VEHICULO,
@@ -262,8 +289,11 @@ class FSMDecision:
                 11, "semáforo VERDE, frente libre"
             )
 
-        # Regla 12 — Default: conducir normal
+        # Regla 12 — Default: conducir normal acelerando hacia velocidad de
+        # crucero. MANTENER (vel_obj=0.30) era demasiado conservador y
+        # provocaba que el PID frenara apenas se alcanzaba ~30% del maximo,
+        # haciendo que el camion no avanzara realmente.
         return ResultadoDecision(
-            Accion.MANTENER, EstadoFSM.CONDUCIENDO_NORMAL,
+            Accion.ACELERAR, EstadoFSM.CONDUCIENDO_NORMAL,
             12, "sin condiciones especiales"
         )

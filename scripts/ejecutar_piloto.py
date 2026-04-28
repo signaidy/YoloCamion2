@@ -141,6 +141,8 @@ def main():
                         help="No grabar video (más rápido, recomendado para pruebas en vivo)")
     parser.add_argument("--debug-carril", action="store_true",
                         help="Mostrar estado del carril cada 30 frames para calibración")
+    parser.add_argument("--debug-carril-img", action="store_true",
+                        help="Guardar imagen de debug con líneas detectadas cada 60 frames")
     args = parser.parse_args()
 
     cfg = cargar_config(args.config)
@@ -232,6 +234,12 @@ def main():
         yolo_contador = 0
         resultado_cache = None
 
+        # EMA de la desviación lateral del carril.
+        # alpha=0.50: respuesta más rápida en curvas; el deque interno de DetectorCarriles
+        # (4 frames) ya aporta suavizado base, así que no necesitamos más inercia aquí.
+        _ALPHA_EMA_CARRIL = 0.50
+        desv_ema: float = 0.0
+
         from src.decision.estado import EstadoFSM
         _ESTADOS_CARRIL = (
             EstadoFSM.CONDUCIENDO_NORMAL,
@@ -262,6 +270,15 @@ def main():
             # ── Detección de carril (cada frame — rápida ~3ms) ───────────────
             carril = detector_carriles.detectar(cuadro.imagen)
 
+            # Actualizar EMA de desviación: cuando no hay detección confiable,
+            # dejamos que la EMA decaiga hacia 0 para no aplicar una corrección
+            # obsoleta (el camión quizás ya se centró solo).
+            if carril.confianza >= 0.5:
+                desv_ema = (_ALPHA_EMA_CARRIL * carril.desviacion
+                            + (1.0 - _ALPHA_EMA_CARRIL) * desv_ema)
+            else:
+                desv_ema *= 0.85  # decaimiento rápido sin señal confiable
+
             # ── Velocidad propia visual (pure-vision, RNF-07) ────────────────
             flujo_lk = estimador_flujo.calcular(cuadro.imagen, cuadro.timestamp)
             velocidad_actual_norm = estimador_velocidad.estimar(flujo_lk)
@@ -285,20 +302,37 @@ def main():
                 desviacion_volante=resultado.setpoint.desviacion_volante,
             )
 
+            # Override de carril:
+            #  - confianza >= 0.85: solo cuando se detecta la línea derecha (o ambas).
+            #    La detección solo-izquierda (conf=0.50) es poco fiable en tráfico
+            #    denso y produce giros erróneos al confundir luces/vehículos con líneas.
+            #  - abs(desv_ema) > 0.06: zona muerta ligeramente más sensible que el
+            #    deque interno (0.07) para que correcciones pequeñas no se pierdan.
+            #  - velocidad > 0.05: evitar bucle muerto cuando el camión está parado.
             if (resultado.accion not in _ACCIONES_CON_GIRO
                     and resultado.estado_nuevo in _ESTADOS_CARRIL
-                    and carril.confianza >= 0.5
-                    and abs(carril.desviacion) > 0.08):
-                setpoint.desviacion_volante = float(max(-1.0, min(1.0, carril.desviacion)))
+                    and carril.confianza >= 0.85
+                    and abs(desv_ema) > 0.06
+                    and velocidad_actual_norm > 0.05):
+                desv = float(max(-1.0, min(1.0, desv_ema)))
+                setpoint.desviacion_volante = desv
 
             if args.debug_carril and n_frame % 30 == 0:
                 logger.info(
-                    "CARRIL desv=%+.3f conf=%.2f izq=%s der=%s vol=%+.2f vel=%.2f",
-                    carril.desviacion, carril.confianza,
+                    "CARRIL desv=%+.3f ema=%+.3f conf=%.2f izq=%s der=%s vol=%+.2f vel=%.2f",
+                    carril.desviacion, desv_ema, carril.confianza,
                     "✓" if carril.linea_izq_detectada else "✗",
                     "✓" if carril.linea_der_detectada else "✗",
                     setpoint.desviacion_volante, velocidad_actual_norm,
                 )
+
+            if args.debug_carril_img and n_frame % 60 == 0:
+                import cv2 as _cv2
+                from pathlib import Path as _Path
+                dbg = detector_carriles.debug_frame(cuadro.imagen)
+                ruta_dbg = _Path(cfg["registro"]["ruta_base"]) / f"debug_carril_{n_frame:06d}.jpg"
+                _cv2.imwrite(str(ruta_dbg), dbg)
+                logger.info("Debug imagen guardada: %s", ruta_dbg)
 
             if isinstance(controlador, ControladorGamepadPID):
                 controlador.aplicar(setpoint)

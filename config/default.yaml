@@ -13,7 +13,7 @@ modelo:
   device: "cuda"
 
 control:
-  tipo: "nulo"                    # "nulo" | "gamepad" | "teclado"
+  tipo: "gamepad"                 # "nulo" | "gamepad" | "teclado"
 
 seguridad:
   tecla_paro: "f12"

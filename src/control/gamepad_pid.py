@@ -37,9 +37,10 @@ class ConfigPID:
 # Defaults calibrados para ETS2 Volvo FH16 (ajustables en config/default.yaml)
 # Calibracion final en pista en Fase 5.
 _CFG_VOLANTE_DEFAULT  = ConfigPID(kp=0.55, ki=0.015, kd=0.08)
-_CFG_VELOCIDAD_DEFAULT = ConfigPID(kp=0.12, ki=0.008, kd=0.04)
+_CFG_VELOCIDAD_DEFAULT = ConfigPID(kp=0.65, ki=0.05, kd=0.04)
 
-_FRENO_EMERGENCIA = 0.9   # umbral del setpoint para bypass de PID
+_FRENO_EMERGENCIA = 0.9   # umbral del setpoint para bypass total (cancela PID acel.)
+_FRENO_DIRECTO_MIN = 0.05  # cualquier freno_objetivo>=esto se aplica como LT directo
 
 
 class ControladorGamepadPID(Controlador):
@@ -110,27 +111,34 @@ class ControladorGamepadPID(Controlador):
         )
 
         # ── Velocidad / Frenado ─────────────────────────────────────────────
-        if sp.freno_objetivo >= _FRENO_EMERGENCIA:
-            # Bypass total: presion directa al LT, RT a cero, reset PID vel
-            self._gamepad.right_trigger(value=0)
-            self._gamepad.left_trigger(value=int(sp.freno_objetivo * 255))
+        # Throttle OPEN-LOOP (feedforward del setpoint). Razón: la velocidad
+        # propia visual via flujo óptico LK no está calibrada todavía y reporta
+        # ~0.4-0.7 incluso con el camión parado (ruido de fondo, sway de cabina,
+        # textura del capó). Eso engañaba al PID a creer que ya estaba a
+        # velocidad y a no aplicar throttle. Hasta calibrar el flujo óptico,
+        # mapeamos directamente velocidad_objetivo_norm -> RT.
+        # El freno del FSM se aplica directo: si freno_objetivo >= umbral,
+        # se anula el RT y se aplica LT proporcional.
+        if sp.freno_objetivo >= _FRENO_DIRECTO_MIN:
+            rt_aplicado = 0
+            lt_aplicado = int(min(1.0, sp.freno_objetivo) * 255)
             self._pid_vel.reset()
         else:
-            pid_out = self._pid_vel.calcular(
-                setpoint=sp.velocidad_objetivo_norm,
-                medicion=self._vel_actual,
-                dt=dt,
-            )
-            if pid_out >= 0:
-                rt = int(min(1.0, pid_out) * 255)
-                self._gamepad.right_trigger(value=rt)
-                self._gamepad.left_trigger(value=0)
-            else:
-                lt = int(min(1.0, -pid_out) * 255)
-                self._gamepad.right_trigger(value=0)
-                self._gamepad.left_trigger(value=lt)
+            rt_aplicado = int(min(1.0, max(0.0, sp.velocidad_objetivo_norm)) * 255)
+            lt_aplicado = 0
+
+        self._gamepad.right_trigger(value=rt_aplicado)
+        self._gamepad.left_trigger(value=lt_aplicado)
+        self._ultimo_rt = rt_aplicado
+        self._ultimo_lt = lt_aplicado
+        self._ultimo_stick = float(stick_x)
 
         self._gamepad.update()
+
+    @property
+    def ultimo_comando_aplicado(self) -> tuple[int, int, float]:
+        """(rt, lt, stick_x) del ultimo aplicar(); util para debug-piloto."""
+        return self._ultimo_rt, self._ultimo_lt, self._ultimo_stick
 
     def liberar(self) -> None:
         if self._gamepad is None:

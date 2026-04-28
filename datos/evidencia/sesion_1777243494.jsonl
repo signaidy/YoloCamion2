@@ -1,0 +1,4 @@
+{"t": 514439.477526, "tipo": "seguridad", "msg": "paro de emergencia activado"}
+{"t": 514441.8844664, "tipo": "frame", "indice": 1, "fps": 0.0}
+{"t": 514441.8846312, "tipo": "decision", "regla": 1, "accion": "alto_total", "estado": "paro_emergencia", "razon": "paro manual activado"}
+{"t": 514441.8847151, "tipo": "transicion", "de": "inicializando", "a": "paro_emergencia", "regla": 1}

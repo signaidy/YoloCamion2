@@ -1,0 +1,974 @@
+{"t": 515997.7910268, "tipo": "frame", "indice": 1, "fps": 0.0}
+{"t": 515997.7913288, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515997.7914082, "tipo": "transicion", "de": "inicializando", "a": "conduciendo_normal", "regla": 12}
+{"t": 515998.0559349, "tipo": "frame", "indice": 2, "fps": 0.61}
+{"t": 515998.056068, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515998.2943633, "tipo": "frame", "indice": 3, "fps": 1.06}
+{"t": 515998.2944882, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515998.5978874, "tipo": "frame", "indice": 4, "fps": 1.42}
+{"t": 515998.5979692, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515998.9166481, "tipo": "frame", "indice": 5, "fps": 1.65}
+{"t": 515998.9167637, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515999.2281226, "tipo": "frame", "indice": 6, "fps": 1.83}
+{"t": 515999.2282506, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515999.5491902, "tipo": "frame", "indice": 7, "fps": 1.96}
+{"t": 515999.5492794, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 515999.7930858, "tipo": "frame", "indice": 8, "fps": 2.07}
+{"t": 515999.7931929, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516000.0530396, "tipo": "frame", "indice": 9, "fps": 2.2}
+{"t": 516000.0531382, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516000.4578255, "tipo": "frame", "indice": 10, "fps": 2.32}
+{"t": 516000.4579126, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516000.760992, "tipo": "frame", "indice": 11, "fps": 2.31}
+{"t": 516000.7611189, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516001.0040453, "tipo": "frame", "indice": 12, "fps": 2.39}
+{"t": 516001.004234, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516001.2310576, "tipo": "frame", "indice": 13, "fps": 2.49}
+{"t": 516001.2311497, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516001.4938257, "tipo": "frame", "indice": 14, "fps": 2.55}
+{"t": 516001.4939319, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516001.4940265, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 516001.7582261, "tipo": "frame", "indice": 15, "fps": 2.62}
+{"t": 516001.7583266, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516001.7583551, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 516002.00223, "tipo": "frame", "indice": 16, "fps": 2.69}
+{"t": 516002.0023768, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516002.2247161, "tipo": "frame", "indice": 17, "fps": 2.74}
+{"t": 516002.2248125, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516002.4313326, "tipo": "frame", "indice": 18, "fps": 2.81}
+{"t": 516002.4314236, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516002.6360039, "tipo": "frame", "indice": 19, "fps": 2.88}
+{"t": 516002.6361282, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516002.824449, "tipo": "frame", "indice": 20, "fps": 2.95}
+{"t": 516002.8245597, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516003.0417772, "tipo": "frame", "indice": 21, "fps": 3.01}
+{"t": 516003.0418729, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516003.295528, "tipo": "frame", "indice": 22, "fps": 3.05}
+{"t": 516003.2956762, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516003.5313081, "tipo": "frame", "indice": 23, "fps": 3.08}
+{"t": 516003.5314075, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516003.7678238, "tipo": "frame", "indice": 24, "fps": 3.12}
+{"t": 516003.7679696, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516003.7680244, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 516004.0117866, "tipo": "frame", "indice": 25, "fps": 3.16}
+{"t": 516004.0118835, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516004.2656571, "tipo": "frame", "indice": 26, "fps": 3.19}
+{"t": 516004.2658462, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516004.5459631, "tipo": "frame", "indice": 27, "fps": 3.2}
+{"t": 516004.5461081, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516004.7763869, "tipo": "frame", "indice": 28, "fps": 3.22}
+{"t": 516004.7765012, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516005.0056061, "tipo": "frame", "indice": 29, "fps": 3.26}
+{"t": 516005.0057059, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516005.1822551, "tipo": "frame", "indice": 30, "fps": 3.29}
+{"t": 516005.182355, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516005.3594231, "tipo": "frame", "indice": 31, "fps": 3.34}
+{"t": 516005.3595144, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516005.5389432, "tipo": "frame", "indice": 32, "fps": 3.38}
+{"t": 516005.5390463, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516005.5390756, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 516005.7882591, "tipo": "frame", "indice": 33, "fps": 3.42}
+{"t": 516005.7883813, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516006.0038778, "tipo": "frame", "indice": 34, "fps": 3.43}
+{"t": 516006.0039663, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516006.1998636, "tipo": "frame", "indice": 35, "fps": 3.47}
+{"t": 516006.2000238, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516006.4176811, "tipo": "frame", "indice": 36, "fps": 3.5}
+{"t": 516006.4178494, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516006.4178904, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 516006.633155, "tipo": "frame", "indice": 37, "fps": 3.52}
+{"t": 516006.6333471, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516007.4755994, "tipo": "frame", "indice": 38, "fps": 3.51}
+{"t": 516007.4756999, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516007.4757292, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 516007.7688798, "tipo": "frame", "indice": 39, "fps": 3.36}
+{"t": 516007.7689918, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516007.9486963, "tipo": "frame", "indice": 40, "fps": 3.37}
+{"t": 516007.9487872, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516008.1137475, "tipo": "frame", "indice": 41, "fps": 3.41}
+{"t": 516008.1139539, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516008.3297783, "tipo": "frame", "indice": 42, "fps": 3.44}
+{"t": 516008.3298844, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516008.3299145, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 516008.5453747, "tipo": "frame", "indice": 43, "fps": 3.46}
+{"t": 516008.5454632, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516008.5454896, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 516008.7374964, "tipo": "frame", "indice": 44, "fps": 3.48}
+{"t": 516008.7375888, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516008.9332571, "tipo": "frame", "indice": 45, "fps": 3.51}
+{"t": 516008.933347, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516009.0967735, "tipo": "frame", "indice": 46, "fps": 3.54}
+{"t": 516009.0968604, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516009.2721022, "tipo": "frame", "indice": 47, "fps": 3.57}
+{"t": 516009.2721919, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516009.4747959, "tipo": "frame", "indice": 48, "fps": 3.59}
+{"t": 516009.4749265, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516009.7203923, "tipo": "frame", "indice": 49, "fps": 3.61}
+{"t": 516009.7204807, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516009.9909282, "tipo": "frame", "indice": 50, "fps": 3.62}
+{"t": 516009.9910191, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516009.9910518, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 516010.2035172, "tipo": "frame", "indice": 51, "fps": 3.62}
+{"t": 516010.2036051, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516010.4587418, "tipo": "frame", "indice": 52, "fps": 3.64}
+{"t": 516010.4588333, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516010.6509061, "tipo": "frame", "indice": 53, "fps": 3.65}
+{"t": 516010.6510105, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516010.6510391, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 516010.8791017, "tipo": "frame", "indice": 54, "fps": 3.66}
+{"t": 516010.8791883, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516011.1057791, "tipo": "frame", "indice": 55, "fps": 3.67}
+{"t": 516011.1058729, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516011.2884535, "tipo": "frame", "indice": 56, "fps": 3.69}
+{"t": 516011.2885444, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516011.4976857, "tipo": "frame", "indice": 57, "fps": 3.71}
+{"t": 516011.4977801, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516011.6660905, "tipo": "frame", "indice": 58, "fps": 3.73}
+{"t": 516011.666174, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516011.8272176, "tipo": "frame", "indice": 59, "fps": 3.76}
+{"t": 516011.8273063, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516012.0108403, "tipo": "frame", "indice": 60, "fps": 3.78}
+{"t": 516012.0109235, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516012.1914449, "tipo": "frame", "indice": 61, "fps": 3.8}
+{"t": 516012.1915399, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516012.3622267, "tipo": "frame", "indice": 62, "fps": 3.82}
+{"t": 516012.3623073, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516012.5714457, "tipo": "frame", "indice": 63, "fps": 3.84}
+{"t": 516012.5715536, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516012.7426104, "tipo": "frame", "indice": 64, "fps": 3.85}
+{"t": 516012.7427015, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516012.9139454, "tipo": "frame", "indice": 65, "fps": 3.87}
+{"t": 516012.9140356, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516013.0821337, "tipo": "frame", "indice": 66, "fps": 3.89}
+{"t": 516013.0822174, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516013.2575785, "tipo": "frame", "indice": 67, "fps": 3.91}
+{"t": 516013.2576681, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516013.4156368, "tipo": "frame", "indice": 68, "fps": 3.93}
+{"t": 516013.415718, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516013.5808173, "tipo": "frame", "indice": 69, "fps": 3.95}
+{"t": 516013.5809299, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516013.7466845, "tipo": "frame", "indice": 70, "fps": 3.97}
+{"t": 516013.7467708, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516013.9081795, "tipo": "frame", "indice": 71, "fps": 3.99}
+{"t": 516013.9082638, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516014.0884055, "tipo": "frame", "indice": 72, "fps": 4.01}
+{"t": 516014.0885025, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516014.2633479, "tipo": "frame", "indice": 73, "fps": 4.03}
+{"t": 516014.2634598, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516014.4538594, "tipo": "frame", "indice": 74, "fps": 4.05}
+{"t": 516014.4539494, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516014.6237973, "tipo": "frame", "indice": 75, "fps": 4.06}
+{"t": 516014.6239584, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516014.8193273, "tipo": "frame", "indice": 76, "fps": 4.08}
+{"t": 516014.8194096, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516014.9866228, "tipo": "frame", "indice": 77, "fps": 4.08}
+{"t": 516014.9867025, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516015.1712918, "tipo": "frame", "indice": 78, "fps": 4.1}
+{"t": 516015.1714159, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516015.3470859, "tipo": "frame", "indice": 79, "fps": 4.11}
+{"t": 516015.3471673, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516015.5212093, "tipo": "frame", "indice": 80, "fps": 4.13}
+{"t": 516015.5212859, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516015.6913618, "tipo": "frame", "indice": 81, "fps": 4.14}
+{"t": 516015.6914403, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516015.9172409, "tipo": "frame", "indice": 82, "fps": 4.16}
+{"t": 516015.9173232, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516016.0739683, "tipo": "frame", "indice": 83, "fps": 4.16}
+{"t": 516016.0740958, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516016.2391299, "tipo": "frame", "indice": 84, "fps": 4.18}
+{"t": 516016.2392128, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516016.3940633, "tipo": "frame", "indice": 85, "fps": 4.2}
+{"t": 516016.3941543, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516016.5659047, "tipo": "frame", "indice": 86, "fps": 4.21}
+{"t": 516016.5659936, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516016.7441858, "tipo": "frame", "indice": 87, "fps": 4.22}
+{"t": 516016.7443171, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516016.9132483, "tipo": "frame", "indice": 88, "fps": 4.24}
+{"t": 516016.9133342, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516017.1011755, "tipo": "frame", "indice": 89, "fps": 4.25}
+{"t": 516017.1012685, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516017.2708218, "tipo": "frame", "indice": 90, "fps": 4.26}
+{"t": 516017.2709031, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516017.4230417, "tipo": "frame", "indice": 91, "fps": 4.28}
+{"t": 516017.4231311, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516017.5984263, "tipo": "frame", "indice": 92, "fps": 4.29}
+{"t": 516017.5985162, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516017.7493618, "tipo": "frame", "indice": 93, "fps": 4.3}
+{"t": 516017.7494825, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516017.9306167, "tipo": "frame", "indice": 94, "fps": 4.32}
+{"t": 516017.9307872, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516018.1039568, "tipo": "frame", "indice": 95, "fps": 4.33}
+{"t": 516018.1041198, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516018.2871756, "tipo": "frame", "indice": 96, "fps": 4.34}
+{"t": 516018.2872703, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516018.4472868, "tipo": "frame", "indice": 97, "fps": 4.35}
+{"t": 516018.4473785, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516018.615974, "tipo": "frame", "indice": 98, "fps": 4.36}
+{"t": 516018.6161646, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516018.8110404, "tipo": "frame", "indice": 99, "fps": 4.37}
+{"t": 516018.8111287, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516018.9655439, "tipo": "frame", "indice": 100, "fps": 4.38}
+{"t": 516018.9656324, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516019.1149541, "tipo": "frame", "indice": 101, "fps": 4.4}
+{"t": 516019.1150561, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516019.2914503, "tipo": "frame", "indice": 102, "fps": 4.41}
+{"t": 516019.2915843, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516019.4590549, "tipo": "frame", "indice": 103, "fps": 4.42}
+{"t": 516019.4591623, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516019.62076, "tipo": "frame", "indice": 104, "fps": 4.43}
+{"t": 516019.6208495, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516019.7908896, "tipo": "frame", "indice": 105, "fps": 4.44}
+{"t": 516019.7909861, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516019.9477379, "tipo": "frame", "indice": 106, "fps": 4.45}
+{"t": 516019.9478227, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516020.1425651, "tipo": "frame", "indice": 107, "fps": 4.46}
+{"t": 516020.1426575, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516020.3069279, "tipo": "frame", "indice": 108, "fps": 4.47}
+{"t": 516020.3070254, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516020.4625398, "tipo": "frame", "indice": 109, "fps": 4.48}
+{"t": 516020.4626426, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516020.6192373, "tipo": "frame", "indice": 110, "fps": 4.5}
+{"t": 516020.6193178, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516020.7740905, "tipo": "frame", "indice": 111, "fps": 4.51}
+{"t": 516020.7741898, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516020.9721086, "tipo": "frame", "indice": 112, "fps": 4.52}
+{"t": 516020.9722385, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516021.1543236, "tipo": "frame", "indice": 113, "fps": 4.52}
+{"t": 516021.1544157, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516021.3293474, "tipo": "frame", "indice": 114, "fps": 4.53}
+{"t": 516021.3294433, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516021.4920169, "tipo": "frame", "indice": 115, "fps": 4.54}
+{"t": 516021.4921001, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516021.6694612, "tipo": "frame", "indice": 116, "fps": 4.55}
+{"t": 516021.6695573, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516021.8285863, "tipo": "frame", "indice": 117, "fps": 4.56}
+{"t": 516021.8286806, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516021.9635782, "tipo": "frame", "indice": 118, "fps": 4.57}
+{"t": 516021.9636731, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516022.1403741, "tipo": "frame", "indice": 119, "fps": 4.58}
+{"t": 516022.1404636, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516022.3116415, "tipo": "frame", "indice": 120, "fps": 4.59}
+{"t": 516022.3117292, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516022.5199636, "tipo": "frame", "indice": 121, "fps": 4.6}
+{"t": 516022.5200488, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516022.7219678, "tipo": "frame", "indice": 122, "fps": 4.6}
+{"t": 516022.7220526, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516022.9143032, "tipo": "frame", "indice": 123, "fps": 4.6}
+{"t": 516022.9144017, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516023.093339, "tipo": "frame", "indice": 124, "fps": 4.61}
+{"t": 516023.0934249, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516023.2683206, "tipo": "frame", "indice": 125, "fps": 4.61}
+{"t": 516023.268409, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516023.2684385, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 516023.44112, "tipo": "frame", "indice": 126, "fps": 4.62}
+{"t": 516023.4412076, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516023.6170795, "tipo": "frame", "indice": 127, "fps": 4.63}
+{"t": 516023.617246, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516023.8426296, "tipo": "frame", "indice": 128, "fps": 4.63}
+{"t": 516023.8427108, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516024.0617613, "tipo": "frame", "indice": 129, "fps": 4.63}
+{"t": 516024.0618366, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516024.2863599, "tipo": "frame", "indice": 130, "fps": 4.63}
+{"t": 516024.2864537, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 516024.5401863, "tipo": "frame", "indice": 131, "fps": 4.63}
+{"t": 516024.5402584, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516024.5402776, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 516024.7450659, "tipo": "frame", "indice": 132, "fps": 4.63}
+{"t": 516024.7451458, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516024.9403111, "tipo": "frame", "indice": 133, "fps": 4.63}
+{"t": 516024.9403887, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516025.1359462, "tipo": "frame", "indice": 134, "fps": 4.63}
+{"t": 516025.1360304, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516025.3577707, "tipo": "frame", "indice": 135, "fps": 4.64}
+{"t": 516025.3578766, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516025.6587905, "tipo": "frame", "indice": 136, "fps": 4.63}
+{"t": 516025.6588626, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516025.9292313, "tipo": "frame", "indice": 137, "fps": 4.62}
+{"t": 516025.9293199, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516026.1976943, "tipo": "frame", "indice": 138, "fps": 4.61}
+{"t": 516026.1977861, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516026.4633188, "tipo": "frame", "indice": 139, "fps": 4.6}
+{"t": 516026.4634408, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516026.7278151, "tipo": "frame", "indice": 140, "fps": 4.59}
+{"t": 516026.727899, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516026.9903648, "tipo": "frame", "indice": 141, "fps": 4.59}
+{"t": 516026.9904855, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516027.2365496, "tipo": "frame", "indice": 142, "fps": 4.58}
+{"t": 516027.2366317, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516027.492836, "tipo": "frame", "indice": 143, "fps": 4.58}
+{"t": 516027.4929241, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516027.7427847, "tipo": "frame", "indice": 144, "fps": 4.57}
+{"t": 516027.7428654, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516028.0032111, "tipo": "frame", "indice": 145, "fps": 4.57}
+{"t": 516028.0033152, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516028.259201, "tipo": "frame", "indice": 146, "fps": 4.56}
+{"t": 516028.2592871, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516028.5149307, "tipo": "frame", "indice": 147, "fps": 4.56}
+{"t": 516028.5150244, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516028.76431, "tipo": "frame", "indice": 148, "fps": 4.55}
+{"t": 516028.7644054, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516029.0109016, "tipo": "frame", "indice": 149, "fps": 4.55}
+{"t": 516029.0109934, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516029.2638776, "tipo": "frame", "indice": 150, "fps": 4.54}
+{"t": 516029.2639578, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516029.520733, "tipo": "frame", "indice": 151, "fps": 4.54}
+{"t": 516029.5208803, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516029.7793378, "tipo": "frame", "indice": 152, "fps": 4.53}
+{"t": 516029.7794182, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516030.0160565, "tipo": "frame", "indice": 153, "fps": 4.53}
+{"t": 516030.0161377, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516030.2678785, "tipo": "frame", "indice": 154, "fps": 4.53}
+{"t": 516030.2679679, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516030.5201705, "tipo": "frame", "indice": 155, "fps": 4.52}
+{"t": 516030.520248, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516030.8009602, "tipo": "frame", "indice": 156, "fps": 4.52}
+{"t": 516030.8010529, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516031.0659229, "tipo": "frame", "indice": 157, "fps": 4.51}
+{"t": 516031.0660054, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516031.3210381, "tipo": "frame", "indice": 158, "fps": 4.51}
+{"t": 516031.3211129, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516031.5736557, "tipo": "frame", "indice": 159, "fps": 4.5}
+{"t": 516031.5737437, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516031.8322149, "tipo": "frame", "indice": 160, "fps": 4.5}
+{"t": 516031.8322993, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516032.1157625, "tipo": "frame", "indice": 161, "fps": 4.49}
+{"t": 516032.1158523, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516032.3910712, "tipo": "frame", "indice": 162, "fps": 4.48}
+{"t": 516032.3911553, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516032.6574711, "tipo": "frame", "indice": 163, "fps": 4.48}
+{"t": 516032.6575487, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516032.9198775, "tipo": "frame", "indice": 164, "fps": 4.47}
+{"t": 516032.920039, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516033.1691794, "tipo": "frame", "indice": 165, "fps": 4.47}
+{"t": 516033.1692693, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516033.4067775, "tipo": "frame", "indice": 166, "fps": 4.47}
+{"t": 516033.4068604, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516033.6486707, "tipo": "frame", "indice": 167, "fps": 4.46}
+{"t": 516033.6487561, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516033.9004402, "tipo": "frame", "indice": 168, "fps": 4.46}
+{"t": 516033.9005294, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516034.1509517, "tipo": "frame", "indice": 169, "fps": 4.46}
+{"t": 516034.1510538, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516034.4051115, "tipo": "frame", "indice": 170, "fps": 4.45}
+{"t": 516034.4052036, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516034.6424746, "tipo": "frame", "indice": 171, "fps": 4.45}
+{"t": 516034.6425535, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516034.886232, "tipo": "frame", "indice": 172, "fps": 4.45}
+{"t": 516034.8863162, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516035.140468, "tipo": "frame", "indice": 173, "fps": 4.45}
+{"t": 516035.140554, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516035.4081935, "tipo": "frame", "indice": 174, "fps": 4.44}
+{"t": 516035.4082767, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516035.6762736, "tipo": "frame", "indice": 175, "fps": 4.44}
+{"t": 516035.6763705, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516035.9448063, "tipo": "frame", "indice": 176, "fps": 4.43}
+{"t": 516035.9448971, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516036.2131845, "tipo": "frame", "indice": 177, "fps": 4.43}
+{"t": 516036.2132683, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516036.4920548, "tipo": "frame", "indice": 178, "fps": 4.43}
+{"t": 516036.4921353, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516036.7666087, "tipo": "frame", "indice": 179, "fps": 4.42}
+{"t": 516036.7666985, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516037.0258383, "tipo": "frame", "indice": 180, "fps": 4.41}
+{"t": 516037.0259224, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516037.2819802, "tipo": "frame", "indice": 181, "fps": 4.41}
+{"t": 516037.2820635, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516037.5431423, "tipo": "frame", "indice": 182, "fps": 4.41}
+{"t": 516037.5432368, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516037.8054754, "tipo": "frame", "indice": 183, "fps": 4.4}
+{"t": 516037.8055842, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516038.0731592, "tipo": "frame", "indice": 184, "fps": 4.4}
+{"t": 516038.0732438, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516038.3334153, "tipo": "frame", "indice": 185, "fps": 4.4}
+{"t": 516038.3335818, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516038.5773425, "tipo": "frame", "indice": 186, "fps": 4.39}
+{"t": 516038.5774225, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516038.8332218, "tipo": "frame", "indice": 187, "fps": 4.39}
+{"t": 516038.8333024, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516039.0725549, "tipo": "frame", "indice": 188, "fps": 4.39}
+{"t": 516039.0726382, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516039.3097986, "tipo": "frame", "indice": 189, "fps": 4.39}
+{"t": 516039.3098748, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516039.5504722, "tipo": "frame", "indice": 190, "fps": 4.39}
+{"t": 516039.5505683, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516039.8028556, "tipo": "frame", "indice": 191, "fps": 4.38}
+{"t": 516039.8029351, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516040.0521798, "tipo": "frame", "indice": 192, "fps": 4.38}
+{"t": 516040.0523062, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516040.2989349, "tipo": "frame", "indice": 193, "fps": 4.38}
+{"t": 516040.2990268, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516040.531649, "tipo": "frame", "indice": 194, "fps": 4.38}
+{"t": 516040.5317265, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516040.7819014, "tipo": "frame", "indice": 195, "fps": 4.38}
+{"t": 516040.7820367, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516041.0232577, "tipo": "frame", "indice": 196, "fps": 4.38}
+{"t": 516041.0233411, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516041.2616721, "tipo": "frame", "indice": 197, "fps": 4.37}
+{"t": 516041.2617475, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516041.504975, "tipo": "frame", "indice": 198, "fps": 4.37}
+{"t": 516041.5050565, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516041.7473673, "tipo": "frame", "indice": 199, "fps": 4.37}
+{"t": 516041.7474499, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516041.9838271, "tipo": "frame", "indice": 200, "fps": 4.37}
+{"t": 516041.9839125, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516042.2161293, "tipo": "frame", "indice": 201, "fps": 4.37}
+{"t": 516042.2162081, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516042.4757847, "tipo": "frame", "indice": 202, "fps": 4.37}
+{"t": 516042.4758789, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516042.7350199, "tipo": "frame", "indice": 203, "fps": 4.37}
+{"t": 516042.7351304, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516042.9786604, "tipo": "frame", "indice": 204, "fps": 4.36}
+{"t": 516042.9787379, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516043.2340523, "tipo": "frame", "indice": 205, "fps": 4.36}
+{"t": 516043.2341446, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516043.4872797, "tipo": "frame", "indice": 206, "fps": 4.36}
+{"t": 516043.4873874, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516043.7251558, "tipo": "frame", "indice": 207, "fps": 4.36}
+{"t": 516043.7252391, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516043.964046, "tipo": "frame", "indice": 208, "fps": 4.36}
+{"t": 516043.9641282, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516044.2300753, "tipo": "frame", "indice": 209, "fps": 4.36}
+{"t": 516044.2301577, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516044.4862061, "tipo": "frame", "indice": 210, "fps": 4.35}
+{"t": 516044.4862874, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516044.73416, "tipo": "frame", "indice": 211, "fps": 4.35}
+{"t": 516044.7342438, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516044.9761277, "tipo": "frame", "indice": 212, "fps": 4.35}
+{"t": 516044.9762101, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516045.217834, "tipo": "frame", "indice": 213, "fps": 4.35}
+{"t": 516045.2179959, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516045.4556909, "tipo": "frame", "indice": 214, "fps": 4.35}
+{"t": 516045.4557702, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516045.6901066, "tipo": "frame", "indice": 215, "fps": 4.35}
+{"t": 516045.6901858, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516045.9330455, "tipo": "frame", "indice": 216, "fps": 4.35}
+{"t": 516045.9331256, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516046.1628712, "tipo": "frame", "indice": 217, "fps": 4.34}
+{"t": 516046.1629503, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516046.4110524, "tipo": "frame", "indice": 218, "fps": 4.34}
+{"t": 516046.4111818, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516046.6604383, "tipo": "frame", "indice": 219, "fps": 4.34}
+{"t": 516046.6605489, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516046.9045555, "tipo": "frame", "indice": 220, "fps": 4.34}
+{"t": 516046.9046318, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516047.1584051, "tipo": "frame", "indice": 221, "fps": 4.34}
+{"t": 516047.1585167, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516047.4038987, "tipo": "frame", "indice": 222, "fps": 4.34}
+{"t": 516047.4039804, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516047.6471077, "tipo": "frame", "indice": 223, "fps": 4.34}
+{"t": 516047.6472197, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516047.8971311, "tipo": "frame", "indice": 224, "fps": 4.34}
+{"t": 516047.8972144, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516048.1384475, "tipo": "frame", "indice": 225, "fps": 4.33}
+{"t": 516048.1385248, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516048.3908534, "tipo": "frame", "indice": 226, "fps": 4.33}
+{"t": 516048.3909301, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516048.6312181, "tipo": "frame", "indice": 227, "fps": 4.33}
+{"t": 516048.6313054, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516048.87786, "tipo": "frame", "indice": 228, "fps": 4.33}
+{"t": 516048.877948, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516049.134146, "tipo": "frame", "indice": 229, "fps": 4.33}
+{"t": 516049.1342646, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516049.3939859, "tipo": "frame", "indice": 230, "fps": 4.33}
+{"t": 516049.3940669, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516049.6608502, "tipo": "frame", "indice": 231, "fps": 4.32}
+{"t": 516049.6609308, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516049.9142476, "tipo": "frame", "indice": 232, "fps": 4.32}
+{"t": 516049.9143333, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516050.1569575, "tipo": "frame", "indice": 233, "fps": 4.32}
+{"t": 516050.1570391, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516050.3943526, "tipo": "frame", "indice": 234, "fps": 4.32}
+{"t": 516050.3944439, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516050.6290698, "tipo": "frame", "indice": 235, "fps": 4.32}
+{"t": 516050.6292173, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516050.9219472, "tipo": "frame", "indice": 236, "fps": 4.32}
+{"t": 516050.9220468, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516051.1830801, "tipo": "frame", "indice": 237, "fps": 4.31}
+{"t": 516051.1831622, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516051.4433536, "tipo": "frame", "indice": 238, "fps": 4.31}
+{"t": 516051.4434323, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516051.6959252, "tipo": "frame", "indice": 239, "fps": 4.31}
+{"t": 516051.6960058, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516051.9390717, "tipo": "frame", "indice": 240, "fps": 4.31}
+{"t": 516051.9391616, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516052.1999175, "tipo": "frame", "indice": 241, "fps": 4.31}
+{"t": 516052.200063, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516052.4394616, "tipo": "frame", "indice": 242, "fps": 4.3}
+{"t": 516052.4395458, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516052.6989627, "tipo": "frame", "indice": 243, "fps": 4.3}
+{"t": 516052.6990461, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516052.9702264, "tipo": "frame", "indice": 244, "fps": 4.3}
+{"t": 516052.9703198, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516053.235984, "tipo": "frame", "indice": 245, "fps": 4.3}
+{"t": 516053.2360622, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516053.4986886, "tipo": "frame", "indice": 246, "fps": 4.3}
+{"t": 516053.4987794, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516053.7510053, "tipo": "frame", "indice": 247, "fps": 4.29}
+{"t": 516053.7510863, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516054.0070739, "tipo": "frame", "indice": 248, "fps": 4.29}
+{"t": 516054.0071594, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516054.269383, "tipo": "frame", "indice": 249, "fps": 4.29}
+{"t": 516054.2694948, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516054.5336841, "tipo": "frame", "indice": 250, "fps": 4.29}
+{"t": 516054.5337679, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516054.7928931, "tipo": "frame", "indice": 251, "fps": 4.29}
+{"t": 516054.7929791, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516055.0636806, "tipo": "frame", "indice": 252, "fps": 4.28}
+{"t": 516055.0637611, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516055.3305882, "tipo": "frame", "indice": 253, "fps": 4.28}
+{"t": 516055.3306683, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516055.5917882, "tipo": "frame", "indice": 254, "fps": 4.28}
+{"t": 516055.5918747, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516055.8644021, "tipo": "frame", "indice": 255, "fps": 4.28}
+{"t": 516055.8644921, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516056.1340781, "tipo": "frame", "indice": 256, "fps": 4.27}
+{"t": 516056.1341796, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516056.4043587, "tipo": "frame", "indice": 257, "fps": 4.27}
+{"t": 516056.4044588, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516056.6759004, "tipo": "frame", "indice": 258, "fps": 4.27}
+{"t": 516056.675981, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516056.9412385, "tipo": "frame", "indice": 259, "fps": 4.27}
+{"t": 516056.9413197, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516057.1915028, "tipo": "frame", "indice": 260, "fps": 4.26}
+{"t": 516057.1916298, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516057.436331, "tipo": "frame", "indice": 261, "fps": 4.26}
+{"t": 516057.4364237, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516057.6892722, "tipo": "frame", "indice": 262, "fps": 4.26}
+{"t": 516057.6893457, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516057.93989, "tipo": "frame", "indice": 263, "fps": 4.26}
+{"t": 516057.9399801, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516058.2120257, "tipo": "frame", "indice": 264, "fps": 4.26}
+{"t": 516058.2121916, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516058.4791962, "tipo": "frame", "indice": 265, "fps": 4.26}
+{"t": 516058.4792939, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516058.7337988, "tipo": "frame", "indice": 266, "fps": 4.26}
+{"t": 516058.7339024, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516058.9892755, "tipo": "frame", "indice": 267, "fps": 4.25}
+{"t": 516058.9893609, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516059.2412175, "tipo": "frame", "indice": 268, "fps": 4.25}
+{"t": 516059.2412973, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516059.4915963, "tipo": "frame", "indice": 269, "fps": 4.25}
+{"t": 516059.4916995, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516059.743894, "tipo": "frame", "indice": 270, "fps": 4.25}
+{"t": 516059.7439769, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516059.9998864, "tipo": "frame", "indice": 271, "fps": 4.25}
+{"t": 516059.9999643, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516060.2404716, "tipo": "frame", "indice": 272, "fps": 4.25}
+{"t": 516060.2405622, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516060.4780296, "tipo": "frame", "indice": 273, "fps": 4.25}
+{"t": 516060.4781216, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516060.7261439, "tipo": "frame", "indice": 274, "fps": 4.25}
+{"t": 516060.726222, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516060.9720464, "tipo": "frame", "indice": 275, "fps": 4.25}
+{"t": 516060.9721412, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516061.221781, "tipo": "frame", "indice": 276, "fps": 4.25}
+{"t": 516061.2218664, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516061.4812259, "tipo": "frame", "indice": 277, "fps": 4.25}
+{"t": 516061.4813319, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516061.7267436, "tipo": "frame", "indice": 278, "fps": 4.24}
+{"t": 516061.7268383, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516061.9794138, "tipo": "frame", "indice": 279, "fps": 4.24}
+{"t": 516061.979492, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516062.2379121, "tipo": "frame", "indice": 280, "fps": 4.24}
+{"t": 516062.2379874, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516062.4916106, "tipo": "frame", "indice": 281, "fps": 4.24}
+{"t": 516062.4917179, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516062.7595169, "tipo": "frame", "indice": 282, "fps": 4.24}
+{"t": 516062.7595978, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516062.994022, "tipo": "frame", "indice": 283, "fps": 4.24}
+{"t": 516062.9941055, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516063.2296811, "tipo": "frame", "indice": 284, "fps": 4.24}
+{"t": 516063.2297735, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516063.4677116, "tipo": "frame", "indice": 285, "fps": 4.24}
+{"t": 516063.4677955, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516063.7204464, "tipo": "frame", "indice": 286, "fps": 4.24}
+{"t": 516063.7205258, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516063.9566157, "tipo": "frame", "indice": 287, "fps": 4.24}
+{"t": 516063.956707, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516064.2088115, "tipo": "frame", "indice": 288, "fps": 4.24}
+{"t": 516064.2089436, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516064.448356, "tipo": "frame", "indice": 289, "fps": 4.24}
+{"t": 516064.4484702, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516064.6863736, "tipo": "frame", "indice": 290, "fps": 4.24}
+{"t": 516064.6864613, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516064.9275905, "tipo": "frame", "indice": 291, "fps": 4.24}
+{"t": 516064.9277, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516065.1694953, "tipo": "frame", "indice": 292, "fps": 4.23}
+{"t": 516065.169587, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516065.4077115, "tipo": "frame", "indice": 293, "fps": 4.24}
+{"t": 516065.4078206, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516065.6479847, "tipo": "frame", "indice": 294, "fps": 4.23}
+{"t": 516065.6480934, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516065.9066115, "tipo": "frame", "indice": 295, "fps": 4.23}
+{"t": 516065.9066993, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516066.1569676, "tipo": "frame", "indice": 296, "fps": 4.23}
+{"t": 516066.1570466, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516066.4115458, "tipo": "frame", "indice": 297, "fps": 4.23}
+{"t": 516066.4116324, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516066.6568224, "tipo": "frame", "indice": 298, "fps": 4.23}
+{"t": 516066.6569055, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516066.9181375, "tipo": "frame", "indice": 299, "fps": 4.23}
+{"t": 516066.918225, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516067.176261, "tipo": "frame", "indice": 300, "fps": 4.23}
+{"t": 516067.176362, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516067.410838, "tipo": "frame", "indice": 301, "fps": 4.23}
+{"t": 516067.4109213, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516067.6584446, "tipo": "frame", "indice": 302, "fps": 4.23}
+{"t": 516067.6585227, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516067.9103835, "tipo": "frame", "indice": 303, "fps": 4.23}
+{"t": 516067.9104647, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516068.1825459, "tipo": "frame", "indice": 304, "fps": 4.23}
+{"t": 516068.1826585, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516068.4537204, "tipo": "frame", "indice": 305, "fps": 4.22}
+{"t": 516068.4538311, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516068.7119276, "tipo": "frame", "indice": 306, "fps": 4.22}
+{"t": 516068.7120094, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516068.9655752, "tipo": "frame", "indice": 307, "fps": 4.22}
+{"t": 516068.9656584, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516069.2181132, "tipo": "frame", "indice": 308, "fps": 4.22}
+{"t": 516069.2181875, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516069.464741, "tipo": "frame", "indice": 309, "fps": 4.22}
+{"t": 516069.4648588, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516069.7211486, "tipo": "frame", "indice": 310, "fps": 4.22}
+{"t": 516069.7212314, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516069.9647498, "tipo": "frame", "indice": 311, "fps": 4.22}
+{"t": 516069.9648259, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516070.2147376, "tipo": "frame", "indice": 312, "fps": 4.22}
+{"t": 516070.2148168, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516070.4585596, "tipo": "frame", "indice": 313, "fps": 4.22}
+{"t": 516070.4586548, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516070.7147196, "tipo": "frame", "indice": 314, "fps": 4.22}
+{"t": 516070.714797, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516070.9608938, "tipo": "frame", "indice": 315, "fps": 4.21}
+{"t": 516070.9609781, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516071.2194544, "tipo": "frame", "indice": 316, "fps": 4.21}
+{"t": 516071.2195424, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516071.4722212, "tipo": "frame", "indice": 317, "fps": 4.21}
+{"t": 516071.4723058, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516071.7150274, "tipo": "frame", "indice": 318, "fps": 4.21}
+{"t": 516071.7151211, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516071.9543961, "tipo": "frame", "indice": 319, "fps": 4.21}
+{"t": 516071.9544781, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516072.2041364, "tipo": "frame", "indice": 320, "fps": 4.21}
+{"t": 516072.2042198, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516072.4595836, "tipo": "frame", "indice": 321, "fps": 4.21}
+{"t": 516072.4596915, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516072.7029135, "tipo": "frame", "indice": 322, "fps": 4.21}
+{"t": 516072.7030211, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516072.9530785, "tipo": "frame", "indice": 323, "fps": 4.21}
+{"t": 516072.9531552, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516073.2046544, "tipo": "frame", "indice": 324, "fps": 4.21}
+{"t": 516073.204743, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516073.4543068, "tipo": "frame", "indice": 325, "fps": 4.21}
+{"t": 516073.454393, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516073.7039408, "tipo": "frame", "indice": 326, "fps": 4.21}
+{"t": 516073.7040207, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516073.9582608, "tipo": "frame", "indice": 327, "fps": 4.21}
+{"t": 516073.9583438, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516074.1426681, "tipo": "frame", "indice": 328, "fps": 4.21}
+{"t": 516074.1427796, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516074.29649, "tipo": "frame", "indice": 329, "fps": 4.21}
+{"t": 516074.2965602, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516074.5183286, "tipo": "frame", "indice": 330, "fps": 4.21}
+{"t": 516074.5184156, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516074.7688815, "tipo": "frame", "indice": 331, "fps": 4.21}
+{"t": 516074.7689673, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516075.0499841, "tipo": "frame", "indice": 332, "fps": 4.21}
+{"t": 516075.0501739, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516075.3654272, "tipo": "frame", "indice": 333, "fps": 4.21}
+{"t": 516075.3655084, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516075.6063624, "tipo": "frame", "indice": 334, "fps": 4.21}
+{"t": 516075.6064838, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516075.8548732, "tipo": "frame", "indice": 335, "fps": 4.21}
+{"t": 516075.8549556, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516076.1058192, "tipo": "frame", "indice": 336, "fps": 4.21}
+{"t": 516076.1059092, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516076.3492087, "tipo": "frame", "indice": 337, "fps": 4.21}
+{"t": 516076.3492877, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516076.5989211, "tipo": "frame", "indice": 338, "fps": 4.21}
+{"t": 516076.5990045, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516076.8446532, "tipo": "frame", "indice": 339, "fps": 4.2}
+{"t": 516076.844738, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516077.0866735, "tipo": "frame", "indice": 340, "fps": 4.2}
+{"t": 516077.0867494, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516077.3400931, "tipo": "frame", "indice": 341, "fps": 4.2}
+{"t": 516077.3401756, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516077.5892381, "tipo": "frame", "indice": 342, "fps": 4.2}
+{"t": 516077.5893193, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516077.8421082, "tipo": "frame", "indice": 343, "fps": 4.2}
+{"t": 516077.8422234, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516078.0868436, "tipo": "frame", "indice": 344, "fps": 4.2}
+{"t": 516078.0870386, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516078.3166935, "tipo": "frame", "indice": 345, "fps": 4.2}
+{"t": 516078.3167938, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516078.5806565, "tipo": "frame", "indice": 346, "fps": 4.2}
+{"t": 516078.5807756, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516078.8142963, "tipo": "frame", "indice": 347, "fps": 4.2}
+{"t": 516078.8143957, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516079.0535214, "tipo": "frame", "indice": 348, "fps": 4.2}
+{"t": 516079.0536186, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516079.3080094, "tipo": "frame", "indice": 349, "fps": 4.2}
+{"t": 516079.3081223, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516079.5371388, "tipo": "frame", "indice": 350, "fps": 4.2}
+{"t": 516079.5372272, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516079.7674423, "tipo": "frame", "indice": 351, "fps": 4.2}
+{"t": 516079.7675171, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516080.0008795, "tipo": "frame", "indice": 352, "fps": 4.2}
+{"t": 516080.0010309, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516080.2310027, "tipo": "frame", "indice": 353, "fps": 4.2}
+{"t": 516080.2310987, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516080.4683892, "tipo": "frame", "indice": 354, "fps": 4.2}
+{"t": 516080.4684843, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516080.7173989, "tipo": "frame", "indice": 355, "fps": 4.2}
+{"t": 516080.7174838, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516080.9509112, "tipo": "frame", "indice": 356, "fps": 4.2}
+{"t": 516080.9509967, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516081.185208, "tipo": "frame", "indice": 357, "fps": 4.2}
+{"t": 516081.1852848, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516081.422969, "tipo": "frame", "indice": 358, "fps": 4.2}
+{"t": 516081.4230474, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516081.6603418, "tipo": "frame", "indice": 359, "fps": 4.2}
+{"t": 516081.6604623, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516081.9609887, "tipo": "frame", "indice": 360, "fps": 4.2}
+{"t": 516081.9610619, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516082.1857037, "tipo": "frame", "indice": 361, "fps": 4.2}
+{"t": 516082.1857851, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516082.4096049, "tipo": "frame", "indice": 362, "fps": 4.2}
+{"t": 516082.4096818, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516082.6062697, "tipo": "frame", "indice": 363, "fps": 4.2}
+{"t": 516082.606366, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516082.8035036, "tipo": "frame", "indice": 364, "fps": 4.2}
+{"t": 516082.8036085, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516083.1016342, "tipo": "frame", "indice": 365, "fps": 4.2}
+{"t": 516083.101704, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516083.3806216, "tipo": "frame", "indice": 366, "fps": 4.2}
+{"t": 516083.3807007, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516083.6591286, "tipo": "frame", "indice": 367, "fps": 4.2}
+{"t": 516083.6592065, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516083.9232158, "tipo": "frame", "indice": 368, "fps": 4.2}
+{"t": 516083.9232929, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516084.1500923, "tipo": "frame", "indice": 369, "fps": 4.2}
+{"t": 516084.1501923, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516084.3905584, "tipo": "frame", "indice": 370, "fps": 4.2}
+{"t": 516084.3906596, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516084.6288567, "tipo": "frame", "indice": 371, "fps": 4.2}
+{"t": 516084.6289374, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516084.8768798, "tipo": "frame", "indice": 372, "fps": 4.2}
+{"t": 516084.8769634, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516085.1109765, "tipo": "frame", "indice": 373, "fps": 4.2}
+{"t": 516085.1110714, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516085.3488119, "tipo": "frame", "indice": 374, "fps": 4.2}
+{"t": 516085.3488999, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516085.6034408, "tipo": "frame", "indice": 375, "fps": 4.2}
+{"t": 516085.603541, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516085.863688, "tipo": "frame", "indice": 376, "fps": 4.19}
+{"t": 516085.8638153, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516086.1150314, "tipo": "frame", "indice": 377, "fps": 4.19}
+{"t": 516086.1151068, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516086.3591429, "tipo": "frame", "indice": 378, "fps": 4.19}
+{"t": 516086.3592384, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516086.596798, "tipo": "frame", "indice": 379, "fps": 4.19}
+{"t": 516086.5968808, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516086.8473816, "tipo": "frame", "indice": 380, "fps": 4.19}
+{"t": 516086.8474637, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516087.0867837, "tipo": "frame", "indice": 381, "fps": 4.19}
+{"t": 516087.0868602, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516087.3279317, "tipo": "frame", "indice": 382, "fps": 4.19}
+{"t": 516087.3280106, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516087.5923094, "tipo": "frame", "indice": 383, "fps": 4.19}
+{"t": 516087.5923866, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516087.8362205, "tipo": "frame", "indice": 384, "fps": 4.19}
+{"t": 516087.8362991, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516088.0768321, "tipo": "frame", "indice": 385, "fps": 4.19}
+{"t": 516088.0769866, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516088.3130141, "tipo": "frame", "indice": 386, "fps": 4.19}
+{"t": 516088.3131088, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516088.5546197, "tipo": "frame", "indice": 387, "fps": 4.19}
+{"t": 516088.5547023, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516088.7926099, "tipo": "frame", "indice": 388, "fps": 4.19}
+{"t": 516088.7927633, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516089.0355568, "tipo": "frame", "indice": 389, "fps": 4.19}
+{"t": 516089.0356353, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516089.2705212, "tipo": "frame", "indice": 390, "fps": 4.19}
+{"t": 516089.2706709, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516089.5028871, "tipo": "frame", "indice": 391, "fps": 4.19}
+{"t": 516089.5029703, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516089.7449146, "tipo": "frame", "indice": 392, "fps": 4.19}
+{"t": 516089.7450209, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516089.9789634, "tipo": "frame", "indice": 393, "fps": 4.19}
+{"t": 516089.9790386, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516090.2100134, "tipo": "frame", "indice": 394, "fps": 4.19}
+{"t": 516090.2100952, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516090.448058, "tipo": "frame", "indice": 395, "fps": 4.19}
+{"t": 516090.4481663, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516090.6898676, "tipo": "frame", "indice": 396, "fps": 4.19}
+{"t": 516090.6899535, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516090.9272701, "tipo": "frame", "indice": 397, "fps": 4.19}
+{"t": 516090.9273727, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516091.1635423, "tipo": "frame", "indice": 398, "fps": 4.19}
+{"t": 516091.1636202, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516091.3890639, "tipo": "frame", "indice": 399, "fps": 4.19}
+{"t": 516091.3892195, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516091.6205002, "tipo": "frame", "indice": 400, "fps": 4.19}
+{"t": 516091.6205902, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516091.8469009, "tipo": "frame", "indice": 401, "fps": 4.19}
+{"t": 516091.8469845, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516092.0871212, "tipo": "frame", "indice": 402, "fps": 4.19}
+{"t": 516092.0872343, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516092.3172426, "tipo": "frame", "indice": 403, "fps": 4.19}
+{"t": 516092.3173595, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516092.5401909, "tipo": "frame", "indice": 404, "fps": 4.19}
+{"t": 516092.540271, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516092.7917781, "tipo": "frame", "indice": 405, "fps": 4.19}
+{"t": 516092.7918688, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516093.0553983, "tipo": "frame", "indice": 406, "fps": 4.19}
+{"t": 516093.0555081, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516093.334557, "tipo": "frame", "indice": 407, "fps": 4.19}
+{"t": 516093.3346766, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516093.6158593, "tipo": "frame", "indice": 408, "fps": 4.19}
+{"t": 516093.6159764, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516093.8690295, "tipo": "frame", "indice": 409, "fps": 4.19}
+{"t": 516093.869122, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516094.139388, "tipo": "frame", "indice": 410, "fps": 4.19}
+{"t": 516094.1394668, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516094.4048247, "tipo": "frame", "indice": 411, "fps": 4.19}
+{"t": 516094.4049065, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516094.668316, "tipo": "frame", "indice": 412, "fps": 4.19}
+{"t": 516094.6684535, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516094.923396, "tipo": "frame", "indice": 413, "fps": 4.18}
+{"t": 516094.9234895, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516095.1780841, "tipo": "frame", "indice": 414, "fps": 4.18}
+{"t": 516095.1781715, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516095.4425473, "tipo": "frame", "indice": 415, "fps": 4.18}
+{"t": 516095.4426287, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516095.6988936, "tipo": "frame", "indice": 416, "fps": 4.18}
+{"t": 516095.6989747, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516095.9539801, "tipo": "frame", "indice": 417, "fps": 4.18}
+{"t": 516095.9540651, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516096.2130598, "tipo": "frame", "indice": 418, "fps": 4.18}
+{"t": 516096.2131615, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516096.4566083, "tipo": "frame", "indice": 419, "fps": 4.18}
+{"t": 516096.4566871, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516096.7037766, "tipo": "frame", "indice": 420, "fps": 4.18}
+{"t": 516096.7038587, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516096.9595153, "tipo": "frame", "indice": 421, "fps": 4.18}
+{"t": 516096.9595919, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516097.2129388, "tipo": "frame", "indice": 422, "fps": 4.18}
+{"t": 516097.2130171, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516097.4659547, "tipo": "frame", "indice": 423, "fps": 4.18}
+{"t": 516097.4660536, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516097.7094235, "tipo": "frame", "indice": 424, "fps": 4.18}
+{"t": 516097.7095064, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516097.9644736, "tipo": "frame", "indice": 425, "fps": 4.18}
+{"t": 516097.9645594, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516098.2186988, "tipo": "frame", "indice": 426, "fps": 4.18}
+{"t": 516098.2187784, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516098.4782008, "tipo": "frame", "indice": 427, "fps": 4.18}
+{"t": 516098.4782858, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516098.7594423, "tipo": "frame", "indice": 428, "fps": 4.17}
+{"t": 516098.7595408, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516098.9400283, "tipo": "frame", "indice": 429, "fps": 4.17}
+{"t": 516098.9401301, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516099.1944111, "tipo": "frame", "indice": 430, "fps": 4.18}
+{"t": 516099.1945049, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516099.4501371, "tipo": "frame", "indice": 431, "fps": 4.18}
+{"t": 516099.4502318, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516099.7427157, "tipo": "frame", "indice": 432, "fps": 4.17}
+{"t": 516099.7428751, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516100.0695818, "tipo": "frame", "indice": 433, "fps": 4.17}
+{"t": 516100.06969, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516100.341933, "tipo": "frame", "indice": 434, "fps": 4.17}
+{"t": 516100.3420794, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516100.5969757, "tipo": "frame", "indice": 435, "fps": 4.17}
+{"t": 516100.5970778, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516100.8712959, "tipo": "frame", "indice": 436, "fps": 4.17}
+{"t": 516100.8714015, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516101.0768291, "tipo": "frame", "indice": 437, "fps": 4.17}
+{"t": 516101.0769096, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516101.3210847, "tipo": "frame", "indice": 438, "fps": 4.17}
+{"t": 516101.3211642, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516101.5630815, "tipo": "frame", "indice": 439, "fps": 4.17}
+{"t": 516101.5631648, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516101.8060757, "tipo": "frame", "indice": 440, "fps": 4.17}
+{"t": 516101.8061549, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516102.0583814, "tipo": "frame", "indice": 441, "fps": 4.17}
+{"t": 516102.0584643, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516102.3137294, "tipo": "frame", "indice": 442, "fps": 4.17}
+{"t": 516102.3138239, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516102.5612772, "tipo": "frame", "indice": 443, "fps": 4.17}
+{"t": 516102.5613708, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516102.8275582, "tipo": "frame", "indice": 444, "fps": 4.17}
+{"t": 516102.8276643, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516103.10547, "tipo": "frame", "indice": 445, "fps": 4.16}
+{"t": 516103.1055543, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516103.3460806, "tipo": "frame", "indice": 446, "fps": 4.16}
+{"t": 516103.3461732, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516103.6007878, "tipo": "frame", "indice": 447, "fps": 4.16}
+{"t": 516103.6008745, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516103.8407859, "tipo": "frame", "indice": 448, "fps": 4.16}
+{"t": 516103.8408872, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516104.0894338, "tipo": "frame", "indice": 449, "fps": 4.16}
+{"t": 516104.0895236, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516104.3402398, "tipo": "frame", "indice": 450, "fps": 4.16}
+{"t": 516104.3403397, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516104.6047867, "tipo": "frame", "indice": 451, "fps": 4.16}
+{"t": 516104.6048885, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516104.8798047, "tipo": "frame", "indice": 452, "fps": 4.16}
+{"t": 516104.8798818, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516105.1338809, "tipo": "frame", "indice": 453, "fps": 4.16}
+{"t": 516105.1339648, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516105.3841346, "tipo": "frame", "indice": 454, "fps": 4.16}
+{"t": 516105.3842115, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516105.6496513, "tipo": "frame", "indice": 455, "fps": 4.16}
+{"t": 516105.6497659, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516105.9004711, "tipo": "frame", "indice": 456, "fps": 4.16}
+{"t": 516105.9005748, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516106.1667123, "tipo": "frame", "indice": 457, "fps": 4.16}
+{"t": 516106.1667963, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516106.4257067, "tipo": "frame", "indice": 458, "fps": 4.16}
+{"t": 516106.4257927, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516106.6922625, "tipo": "frame", "indice": 459, "fps": 4.16}
+{"t": 516106.6923467, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516106.9585843, "tipo": "frame", "indice": 460, "fps": 4.15}
+{"t": 516106.958676, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516107.2328441, "tipo": "frame", "indice": 461, "fps": 4.15}
+{"t": 516107.2329207, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516107.4933395, "tipo": "frame", "indice": 462, "fps": 4.15}
+{"t": 516107.493424, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516107.7522794, "tipo": "frame", "indice": 463, "fps": 4.15}
+{"t": 516107.752356, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516107.998581, "tipo": "frame", "indice": 464, "fps": 4.15}
+{"t": 516107.9986717, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516108.2463405, "tipo": "frame", "indice": 465, "fps": 4.15}
+{"t": 516108.2464227, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516108.5004458, "tipo": "frame", "indice": 466, "fps": 4.15}
+{"t": 516108.5005567, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516108.7652645, "tipo": "frame", "indice": 467, "fps": 4.15}
+{"t": 516108.7653653, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516109.023945, "tipo": "frame", "indice": 468, "fps": 4.15}
+{"t": 516109.0240356, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516109.2777242, "tipo": "frame", "indice": 469, "fps": 4.15}
+{"t": 516109.2778415, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516113.457524, "tipo": "frame", "indice": 470, "fps": 4.15}
+{"t": 516113.4576054, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516114.3380433, "tipo": "frame", "indice": 471, "fps": 3.99}
+{"t": 516114.3381868, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516114.5092418, "tipo": "frame", "indice": 472, "fps": 3.99}
+{"t": 516114.5093774, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516114.7773062, "tipo": "frame", "indice": 473, "fps": 3.99}
+{"t": 516114.7774573, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516115.1790015, "tipo": "frame", "indice": 474, "fps": 3.99}
+{"t": 516115.1790721, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516115.3757993, "tipo": "frame", "indice": 475, "fps": 3.98}
+{"t": 516115.3759675, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516115.5402638, "tipo": "frame", "indice": 476, "fps": 3.99}
+{"t": 516115.5403614, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516115.7291328, "tipo": "frame", "indice": 477, "fps": 3.99}
+{"t": 516115.7292477, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516118.5449858, "tipo": "frame", "indice": 478, "fps": 3.92}
+{"t": 516118.5450964, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516122.4838897, "tipo": "frame", "indice": 479, "fps": 3.9}
+{"t": 516122.4840051, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516127.7077742, "tipo": "frame", "indice": 480, "fps": 3.73}
+{"t": 516127.7080716, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 516129.5498726, "tipo": "seguridad", "msg": "paro de emergencia activado"}

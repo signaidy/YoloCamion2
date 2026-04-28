@@ -1,0 +1,1621 @@
+{"t": 600338.7705857, "tipo": "frame", "indice": 1, "fps": 0.0}
+{"t": 600338.7709117, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600338.7778241, "tipo": "transicion", "de": "inicializando", "a": "conduciendo_normal", "regla": 12}
+{"t": 600338.8241978, "tipo": "frame", "indice": 4, "fps": 3.42}
+{"t": 600338.8243547, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600338.8658387, "tipo": "frame", "indice": 5, "fps": 4.19}
+{"t": 600338.8659745, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600339.1986169, "tipo": "frame", "indice": 5, "fps": 4.19}
+{"t": 600339.1987561, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600339.4563294, "tipo": "frame", "indice": 10, "fps": 6.79}
+{"t": 600339.4564243, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600339.7110565, "tipo": "frame", "indice": 13, "fps": 7.79}
+{"t": 600339.7111762, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.0701149, "tipo": "frame", "indice": 17, "fps": 8.76}
+{"t": 600340.070448, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.3669042, "tipo": "frame", "indice": 22, "fps": 9.63}
+{"t": 600340.3670083, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.377569, "tipo": "frame", "indice": 25, "fps": 9.6}
+{"t": 600340.3776645, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.4806181, "tipo": "frame", "indice": 25, "fps": 9.6}
+{"t": 600340.4807095, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.4909741, "tipo": "frame", "indice": 26, "fps": 9.68}
+{"t": 600340.4911253, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.5006743, "tipo": "frame", "indice": 26, "fps": 9.68}
+{"t": 600340.5007578, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.5878666, "tipo": "frame", "indice": 27, "fps": 9.82}
+{"t": 600340.5879772, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.6006306, "tipo": "frame", "indice": 28, "fps": 9.94}
+{"t": 600340.6007203, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.6245462, "tipo": "frame", "indice": 28, "fps": 9.94}
+{"t": 600340.6246358, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.7666671, "tipo": "frame", "indice": 28, "fps": 9.94}
+{"t": 600340.7667547, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.7840733, "tipo": "frame", "indice": 30, "fps": 10.12}
+{"t": 600340.7841625, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.798098, "tipo": "frame", "indice": 30, "fps": 10.12}
+{"t": 600340.7981827, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.9636734, "tipo": "frame", "indice": 31, "fps": 10.22}
+{"t": 600340.9638881, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600340.982972, "tipo": "frame", "indice": 33, "fps": 10.4}
+{"t": 600340.9830894, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600341.0001141, "tipo": "frame", "indice": 33, "fps": 10.4}
+{"t": 600341.0002513, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600341.1923018, "tipo": "frame", "indice": 34, "fps": 10.48}
+{"t": 600341.1923902, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600341.2295439, "tipo": "frame", "indice": 36, "fps": 10.57}
+{"t": 600341.2296334, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600341.2463916, "tipo": "frame", "indice": 36, "fps": 10.57}
+{"t": 600341.2465157, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600341.6313314, "tipo": "frame", "indice": 37, "fps": 10.64}
+{"t": 600341.6314419, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600341.6314846, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 600341.6656091, "tipo": "frame", "indice": 42, "fps": 10.93}
+{"t": 600341.6657029, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600341.6965642, "tipo": "frame", "indice": 42, "fps": 10.93}
+{"t": 600341.6966596, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600341.8925383, "tipo": "frame", "indice": 43, "fps": 10.93}
+{"t": 600341.8926643, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600341.9281683, "tipo": "frame", "indice": 45, "fps": 10.96}
+{"t": 600341.9283095, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600341.9506824, "tipo": "frame", "indice": 45, "fps": 10.96}
+{"t": 600341.9507678, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.0880962, "tipo": "frame", "indice": 46, "fps": 11.01}
+{"t": 600342.0881908, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.1052243, "tipo": "frame", "indice": 48, "fps": 11.1}
+{"t": 600342.1053214, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.1238959, "tipo": "frame", "indice": 48, "fps": 11.1}
+{"t": 600342.1240024, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.2773541, "tipo": "frame", "indice": 48, "fps": 11.1}
+{"t": 600342.2774499, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.3048941, "tipo": "frame", "indice": 50, "fps": 11.18}
+{"t": 600342.3049961, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.3261274, "tipo": "frame", "indice": 50, "fps": 11.18}
+{"t": 600342.3262205, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.4688921, "tipo": "frame", "indice": 51, "fps": 11.2}
+{"t": 600342.4689875, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.4877238, "tipo": "frame", "indice": 53, "fps": 11.27}
+{"t": 600342.4878448, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.5115983, "tipo": "frame", "indice": 53, "fps": 11.27}
+{"t": 600342.5116821, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.6182599, "tipo": "frame", "indice": 53, "fps": 11.27}
+{"t": 600342.6184179, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.6438731, "tipo": "frame", "indice": 54, "fps": 11.31}
+{"t": 600342.6439977, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.6693318, "tipo": "frame", "indice": 55, "fps": 11.31}
+{"t": 600342.6694411, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.8042709, "tipo": "frame", "indice": 55, "fps": 11.31}
+{"t": 600342.8044894, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.8241292, "tipo": "frame", "indice": 57, "fps": 11.35}
+{"t": 600342.8242175, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.8517917, "tipo": "frame", "indice": 57, "fps": 11.35}
+{"t": 600342.8518778, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.94045, "tipo": "frame", "indice": 57, "fps": 11.35}
+{"t": 600342.940545, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.9583758, "tipo": "frame", "indice": 59, "fps": 11.41}
+{"t": 600342.9584813, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600342.9810126, "tipo": "frame", "indice": 59, "fps": 11.41}
+{"t": 600342.9811133, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.1524029, "tipo": "frame", "indice": 59, "fps": 11.41}
+{"t": 600343.152503, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.1731787, "tipo": "frame", "indice": 61, "fps": 11.45}
+{"t": 600343.1732686, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.1907694, "tipo": "frame", "indice": 62, "fps": 11.47}
+{"t": 600343.1908747, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.3475051, "tipo": "frame", "indice": 62, "fps": 11.47}
+{"t": 600343.3476118, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.3679037, "tipo": "frame", "indice": 64, "fps": 11.51}
+{"t": 600343.3679936, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.3939557, "tipo": "frame", "indice": 64, "fps": 11.51}
+{"t": 600343.3940523, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.5465648, "tipo": "frame", "indice": 64, "fps": 11.51}
+{"t": 600343.5466565, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.5636799, "tipo": "frame", "indice": 67, "fps": 11.59}
+{"t": 600343.5637942, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.5812915, "tipo": "frame", "indice": 67, "fps": 11.59}
+{"t": 600343.5814024, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.6925809, "tipo": "frame", "indice": 67, "fps": 11.59}
+{"t": 600343.6927039, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.7092604, "tipo": "frame", "indice": 69, "fps": 11.65}
+{"t": 600343.7093791, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.7262944, "tipo": "frame", "indice": 69, "fps": 11.65}
+{"t": 600343.7264087, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.8863674, "tipo": "frame", "indice": 69, "fps": 11.65}
+{"t": 600343.8865068, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.9115507, "tipo": "frame", "indice": 71, "fps": 11.65}
+{"t": 600343.9116459, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600343.9306485, "tipo": "frame", "indice": 71, "fps": 11.65}
+{"t": 600343.9307407, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.052762, "tipo": "frame", "indice": 71, "fps": 11.65}
+{"t": 600344.052876, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.0831197, "tipo": "frame", "indice": 73, "fps": 11.66}
+{"t": 600344.0832793, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.1182377, "tipo": "frame", "indice": 73, "fps": 11.66}
+{"t": 600344.1183502, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.2711178, "tipo": "frame", "indice": 73, "fps": 11.66}
+{"t": 600344.271251, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.3056152, "tipo": "frame", "indice": 75, "fps": 11.62}
+{"t": 600344.3057112, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.3293667, "tipo": "frame", "indice": 75, "fps": 11.62}
+{"t": 600344.3295172, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.5063282, "tipo": "frame", "indice": 76, "fps": 11.6}
+{"t": 600344.50643, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.5304603, "tipo": "frame", "indice": 78, "fps": 11.61}
+{"t": 600344.5305905, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.5567838, "tipo": "frame", "indice": 78, "fps": 11.61}
+{"t": 600344.556878, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.6835571, "tipo": "frame", "indice": 78, "fps": 11.61}
+{"t": 600344.6836662, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.7103849, "tipo": "frame", "indice": 80, "fps": 11.63}
+{"t": 600344.7104772, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.7358291, "tipo": "frame", "indice": 80, "fps": 11.63}
+{"t": 600344.7359188, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.8960144, "tipo": "frame", "indice": 81, "fps": 11.65}
+{"t": 600344.8961293, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.9175264, "tipo": "frame", "indice": 83, "fps": 11.68}
+{"t": 600344.9176124, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600344.9366287, "tipo": "frame", "indice": 83, "fps": 11.68}
+{"t": 600344.9367197, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.0659048, "tipo": "frame", "indice": 83, "fps": 11.68}
+{"t": 600345.0660058, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.0890827, "tipo": "frame", "indice": 85, "fps": 11.73}
+{"t": 600345.0891761, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.1077605, "tipo": "frame", "indice": 86, "fps": 11.75}
+{"t": 600345.107849, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.2498818, "tipo": "frame", "indice": 86, "fps": 11.75}
+{"t": 600345.2499993, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.2730073, "tipo": "frame", "indice": 87, "fps": 11.76}
+{"t": 600345.2731212, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.3001418, "tipo": "frame", "indice": 88, "fps": 11.76}
+{"t": 600345.300264, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.4543299, "tipo": "frame", "indice": 88, "fps": 11.76}
+{"t": 600345.4544666, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.4998921, "tipo": "frame", "indice": 90, "fps": 11.77}
+{"t": 600345.5000869, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.5291796, "tipo": "frame", "indice": 90, "fps": 11.77}
+{"t": 600345.5292913, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.6971384, "tipo": "frame", "indice": 91, "fps": 11.75}
+{"t": 600345.6972719, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.7188368, "tipo": "frame", "indice": 93, "fps": 11.73}
+{"t": 600345.7189554, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.7396368, "tipo": "frame", "indice": 93, "fps": 11.73}
+{"t": 600345.7397955, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.8757928, "tipo": "frame", "indice": 93, "fps": 11.73}
+{"t": 600345.8759018, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.8982806, "tipo": "frame", "indice": 95, "fps": 11.73}
+{"t": 600345.8984493, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600345.9338726, "tipo": "frame", "indice": 95, "fps": 11.73}
+{"t": 600345.9340362, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.1132961, "tipo": "frame", "indice": 95, "fps": 11.73}
+{"t": 600346.1134095, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.1385403, "tipo": "frame", "indice": 97, "fps": 11.71}
+{"t": 600346.138679, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.1591102, "tipo": "frame", "indice": 98, "fps": 11.71}
+{"t": 600346.159241, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.362791, "tipo": "frame", "indice": 98, "fps": 11.71}
+{"t": 600346.3629699, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.3810042, "tipo": "frame", "indice": 101, "fps": 11.76}
+{"t": 600346.3811511, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.400698, "tipo": "frame", "indice": 101, "fps": 11.76}
+{"t": 600346.4007834, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.5051136, "tipo": "frame", "indice": 101, "fps": 11.76}
+{"t": 600346.5052142, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.522925, "tipo": "frame", "indice": 103, "fps": 11.8}
+{"t": 600346.5230461, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.5468997, "tipo": "frame", "indice": 103, "fps": 11.8}
+{"t": 600346.5469967, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.6814666, "tipo": "frame", "indice": 103, "fps": 11.8}
+{"t": 600346.6815607, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.7015279, "tipo": "frame", "indice": 105, "fps": 11.82}
+{"t": 600346.7016262, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.7338424, "tipo": "frame", "indice": 105, "fps": 11.82}
+{"t": 600346.7340042, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.9141312, "tipo": "frame", "indice": 105, "fps": 11.82}
+{"t": 600346.9142417, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.9393282, "tipo": "frame", "indice": 107, "fps": 11.82}
+{"t": 600346.939485, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600346.9609664, "tipo": "frame", "indice": 108, "fps": 11.8}
+{"t": 600346.9610796, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.1070276, "tipo": "frame", "indice": 108, "fps": 11.8}
+{"t": 600347.1071435, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.1336675, "tipo": "frame", "indice": 110, "fps": 11.79}
+{"t": 600347.1338293, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.1627716, "tipo": "frame", "indice": 110, "fps": 11.79}
+{"t": 600347.16297, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.3612532, "tipo": "frame", "indice": 110, "fps": 11.79}
+{"t": 600347.3614033, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.3898735, "tipo": "frame", "indice": 113, "fps": 11.78}
+{"t": 600347.3899669, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.4165582, "tipo": "frame", "indice": 113, "fps": 11.78}
+{"t": 600347.4167661, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.5828572, "tipo": "frame", "indice": 113, "fps": 11.78}
+{"t": 600347.5830008, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.6267476, "tipo": "frame", "indice": 115, "fps": 11.76}
+{"t": 600347.6268908, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.653622, "tipo": "frame", "indice": 115, "fps": 11.76}
+{"t": 600347.6537659, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.8604647, "tipo": "frame", "indice": 116, "fps": 11.75}
+{"t": 600347.8605651, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.8972539, "tipo": "frame", "indice": 118, "fps": 11.74}
+{"t": 600347.8973532, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600347.9306715, "tipo": "frame", "indice": 118, "fps": 11.74}
+{"t": 600347.9308616, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.0930312, "tipo": "frame", "indice": 119, "fps": 11.73}
+{"t": 600348.0931182, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.1202919, "tipo": "frame", "indice": 121, "fps": 11.76}
+{"t": 600348.1204451, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.1432899, "tipo": "frame", "indice": 121, "fps": 11.76}
+{"t": 600348.1434207, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.3216394, "tipo": "frame", "indice": 121, "fps": 11.76}
+{"t": 600348.3217416, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.3417125, "tipo": "frame", "indice": 124, "fps": 11.76}
+{"t": 600348.3418145, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.3650542, "tipo": "frame", "indice": 124, "fps": 11.76}
+{"t": 600348.3651611, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.4939134, "tipo": "frame", "indice": 124, "fps": 11.76}
+{"t": 600348.4940151, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.5214259, "tipo": "frame", "indice": 126, "fps": 11.75}
+{"t": 600348.521528, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.5456015, "tipo": "frame", "indice": 126, "fps": 11.75}
+{"t": 600348.555939, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.716393, "tipo": "frame", "indice": 126, "fps": 11.75}
+{"t": 600348.7165572, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.741742, "tipo": "frame", "indice": 128, "fps": 11.73}
+{"t": 600348.7418519, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.7821422, "tipo": "frame", "indice": 128, "fps": 11.73}
+{"t": 600348.7823034, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.9600772, "tipo": "frame", "indice": 128, "fps": 11.73}
+{"t": 600348.9602216, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600348.9939959, "tipo": "frame", "indice": 130, "fps": 11.69}
+{"t": 600348.9941461, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.0247375, "tipo": "frame", "indice": 131, "fps": 11.68}
+{"t": 600349.0249017, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.1819086, "tipo": "frame", "indice": 131, "fps": 11.68}
+{"t": 600349.1820889, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.2038189, "tipo": "frame", "indice": 133, "fps": 11.67}
+{"t": 600349.2039377, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.2323491, "tipo": "frame", "indice": 133, "fps": 11.67}
+{"t": 600349.232522, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.3958743, "tipo": "frame", "indice": 133, "fps": 11.67}
+{"t": 600349.3960033, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.417375, "tipo": "frame", "indice": 135, "fps": 11.64}
+{"t": 600349.4175174, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.4490667, "tipo": "frame", "indice": 135, "fps": 11.64}
+{"t": 600349.4492178, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.8969784, "tipo": "frame", "indice": 135, "fps": 11.64}
+{"t": 600349.897117, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600349.962085, "tipo": "frame", "indice": 138, "fps": 11.42}
+{"t": 600349.9621908, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.0029999, "tipo": "frame", "indice": 138, "fps": 11.42}
+{"t": 600350.0031526, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.2879719, "tipo": "frame", "indice": 139, "fps": 11.39}
+{"t": 600350.2881937, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.3596268, "tipo": "frame", "indice": 141, "fps": 11.34}
+{"t": 600350.359735, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.4235351, "tipo": "frame", "indice": 142, "fps": 11.29}
+{"t": 600350.425461, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.6128746, "tipo": "frame", "indice": 142, "fps": 11.29}
+{"t": 600350.6130162, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.648521, "tipo": "frame", "indice": 144, "fps": 11.27}
+{"t": 600350.6486849, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.6824593, "tipo": "frame", "indice": 145, "fps": 11.28}
+{"t": 600350.6825961, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.8630533, "tipo": "frame", "indice": 145, "fps": 11.28}
+{"t": 600350.8631384, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.8933741, "tipo": "frame", "indice": 148, "fps": 11.31}
+{"t": 600350.8934624, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600350.921542, "tipo": "frame", "indice": 148, "fps": 11.31}
+{"t": 600350.9216301, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.0441155, "tipo": "frame", "indice": 149, "fps": 11.33}
+{"t": 600351.04422, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.0615347, "tipo": "frame", "indice": 151, "fps": 11.38}
+{"t": 600351.0616224, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.0801203, "tipo": "frame", "indice": 151, "fps": 11.38}
+{"t": 600351.0802036, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.1786483, "tipo": "frame", "indice": 151, "fps": 11.38}
+{"t": 600351.1787453, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.1965836, "tipo": "frame", "indice": 153, "fps": 11.42}
+{"t": 600351.1966815, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.2234913, "tipo": "frame", "indice": 153, "fps": 11.42}
+{"t": 600351.223581, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.3455566, "tipo": "frame", "indice": 153, "fps": 11.42}
+{"t": 600351.3456722, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.370731, "tipo": "frame", "indice": 155, "fps": 11.45}
+{"t": 600351.3708924, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.3997048, "tipo": "frame", "indice": 155, "fps": 11.45}
+{"t": 600351.3998496, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.5766486, "tipo": "frame", "indice": 156, "fps": 11.46}
+{"t": 600351.5767556, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.5956151, "tipo": "frame", "indice": 159, "fps": 11.51}
+{"t": 600351.5957065, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.6146202, "tipo": "frame", "indice": 159, "fps": 11.51}
+{"t": 600351.6147197, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.7164773, "tipo": "frame", "indice": 159, "fps": 11.51}
+{"t": 600351.7165994, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.7367317, "tipo": "frame", "indice": 161, "fps": 11.55}
+{"t": 600351.736834, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.7656389, "tipo": "frame", "indice": 161, "fps": 11.55}
+{"t": 600351.7657297, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.906119, "tipo": "frame", "indice": 161, "fps": 11.55}
+{"t": 600351.9062234, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.9243655, "tipo": "frame", "indice": 164, "fps": 11.61}
+{"t": 600351.9244605, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600351.9496235, "tipo": "frame", "indice": 164, "fps": 11.61}
+{"t": 600351.9498038, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.0782067, "tipo": "frame", "indice": 164, "fps": 11.61}
+{"t": 600352.0783034, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.1013512, "tipo": "frame", "indice": 166, "fps": 11.65}
+{"t": 600352.1016463, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.1239988, "tipo": "frame", "indice": 167, "fps": 11.66}
+{"t": 600352.1241199, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.2402244, "tipo": "frame", "indice": 167, "fps": 11.66}
+{"t": 600352.240361, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.2651261, "tipo": "frame", "indice": 169, "fps": 11.69}
+{"t": 600352.2652643, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.2965453, "tipo": "frame", "indice": 169, "fps": 11.69}
+{"t": 600352.2966733, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.4245209, "tipo": "frame", "indice": 170, "fps": 11.71}
+{"t": 600352.4246532, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.4443099, "tipo": "frame", "indice": 171, "fps": 11.72}
+{"t": 600352.4444029, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.4645175, "tipo": "frame", "indice": 172, "fps": 11.73}
+{"t": 600352.4646096, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.593202, "tipo": "frame", "indice": 172, "fps": 11.73}
+{"t": 600352.5933145, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.6137865, "tipo": "frame", "indice": 174, "fps": 11.74}
+{"t": 600352.6138906, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.635349, "tipo": "frame", "indice": 174, "fps": 11.74}
+{"t": 600352.6354809, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.7654982, "tipo": "frame", "indice": 174, "fps": 11.74}
+{"t": 600352.7656013, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.7920666, "tipo": "frame", "indice": 176, "fps": 11.74}
+{"t": 600352.7922298, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600352.8311713, "tipo": "frame", "indice": 176, "fps": 11.74}
+{"t": 600352.8313268, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.0128761, "tipo": "frame", "indice": 176, "fps": 11.74}
+{"t": 600353.0130084, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.0431296, "tipo": "frame", "indice": 178, "fps": 11.74}
+{"t": 600353.0432247, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.069139, "tipo": "frame", "indice": 179, "fps": 11.74}
+{"t": 600353.0763164, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.2388636, "tipo": "frame", "indice": 179, "fps": 11.74}
+{"t": 600353.2389726, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.2651196, "tipo": "frame", "indice": 181, "fps": 11.74}
+{"t": 600353.2653283, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.2876202, "tipo": "frame", "indice": 182, "fps": 11.75}
+{"t": 600353.2877268, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.4271646, "tipo": "frame", "indice": 182, "fps": 11.75}
+{"t": 600353.427304, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.4571756, "tipo": "frame", "indice": 184, "fps": 11.75}
+{"t": 600353.4572691, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.4825256, "tipo": "frame", "indice": 184, "fps": 11.75}
+{"t": 600353.4826821, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.6061611, "tipo": "frame", "indice": 184, "fps": 11.75}
+{"t": 600353.6062884, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.6316709, "tipo": "frame", "indice": 186, "fps": 11.75}
+{"t": 600353.631772, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.664613, "tipo": "frame", "indice": 186, "fps": 11.75}
+{"t": 600353.6647542, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.8328596, "tipo": "frame", "indice": 186, "fps": 11.75}
+{"t": 600353.8329604, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.8555534, "tipo": "frame", "indice": 189, "fps": 11.77}
+{"t": 600353.8556509, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600353.9262075, "tipo": "frame", "indice": 189, "fps": 11.77}
+{"t": 600353.9263321, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.0833279, "tipo": "frame", "indice": 189, "fps": 11.77}
+{"t": 600354.0834413, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.1101554, "tipo": "frame", "indice": 191, "fps": 11.72}
+{"t": 600354.1102677, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.1508025, "tipo": "frame", "indice": 191, "fps": 11.72}
+{"t": 600354.1509708, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.3571082, "tipo": "frame", "indice": 192, "fps": 11.72}
+{"t": 600354.3572209, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.3810752, "tipo": "frame", "indice": 194, "fps": 11.72}
+{"t": 600354.3811795, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.4081321, "tipo": "frame", "indice": 194, "fps": 11.72}
+{"t": 600354.4082256, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.5817865, "tipo": "frame", "indice": 195, "fps": 11.73}
+{"t": 600354.5818965, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.607507, "tipo": "frame", "indice": 197, "fps": 11.73}
+{"t": 600354.6076176, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.6382119, "tipo": "frame", "indice": 197, "fps": 11.73}
+{"t": 600354.6383189, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.7848602, "tipo": "frame", "indice": 198, "fps": 11.74}
+{"t": 600354.784995, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.8218837, "tipo": "frame", "indice": 200, "fps": 11.76}
+{"t": 600354.8219809, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600354.8597982, "tipo": "frame", "indice": 200, "fps": 11.76}
+{"t": 600354.859938, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.0173735, "tipo": "frame", "indice": 201, "fps": 11.76}
+{"t": 600355.0174707, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.0484525, "tipo": "frame", "indice": 203, "fps": 11.77}
+{"t": 600355.048558, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.0812858, "tipo": "frame", "indice": 203, "fps": 11.77}
+{"t": 600355.081424, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.2710628, "tipo": "frame", "indice": 204, "fps": 11.78}
+{"t": 600355.2711761, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.3322775, "tipo": "frame", "indice": 206, "fps": 11.8}
+{"t": 600355.3323936, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.3552228, "tipo": "frame", "indice": 207, "fps": 11.8}
+{"t": 600355.355327, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.5655847, "tipo": "frame", "indice": 207, "fps": 11.8}
+{"t": 600355.565732, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.5943211, "tipo": "frame", "indice": 209, "fps": 11.79}
+{"t": 600355.594439, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.6227442, "tipo": "frame", "indice": 210, "fps": 11.79}
+{"t": 600355.6228492, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.7594488, "tipo": "frame", "indice": 210, "fps": 11.79}
+{"t": 600355.759557, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.7875492, "tipo": "frame", "indice": 212, "fps": 11.81}
+{"t": 600355.7876568, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.8142802, "tipo": "frame", "indice": 212, "fps": 11.81}
+{"t": 600355.8143848, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600355.9972119, "tipo": "frame", "indice": 213, "fps": 11.81}
+{"t": 600355.9973116, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.0199776, "tipo": "frame", "indice": 215, "fps": 11.8}
+{"t": 600356.020081, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.0584761, "tipo": "frame", "indice": 215, "fps": 11.8}
+{"t": 600356.0585823, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.2121986, "tipo": "frame", "indice": 215, "fps": 11.8}
+{"t": 600356.2123024, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.2368801, "tipo": "frame", "indice": 217, "fps": 11.79}
+{"t": 600356.2371153, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.2675032, "tipo": "frame", "indice": 217, "fps": 11.79}
+{"t": 600356.2676527, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.4435944, "tipo": "frame", "indice": 218, "fps": 11.79}
+{"t": 600356.4437354, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.4737873, "tipo": "frame", "indice": 220, "fps": 11.79}
+{"t": 600356.4738914, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.5203551, "tipo": "frame", "indice": 220, "fps": 11.79}
+{"t": 600356.5216368, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.7058238, "tipo": "frame", "indice": 221, "fps": 11.78}
+{"t": 600356.7061267, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.7392692, "tipo": "frame", "indice": 223, "fps": 11.79}
+{"t": 600356.7451484, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.7729195, "tipo": "frame", "indice": 223, "fps": 11.79}
+{"t": 600356.7730564, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.9664431, "tipo": "frame", "indice": 224, "fps": 11.79}
+{"t": 600356.9666035, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600356.9952144, "tipo": "frame", "indice": 226, "fps": 11.79}
+{"t": 600356.9953721, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.0345931, "tipo": "frame", "indice": 226, "fps": 11.79}
+{"t": 600357.0347063, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.2081581, "tipo": "frame", "indice": 226, "fps": 11.79}
+{"t": 600357.2082875, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.2439032, "tipo": "frame", "indice": 228, "fps": 11.78}
+{"t": 600357.244086, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.2766899, "tipo": "frame", "indice": 229, "fps": 11.78}
+{"t": 600357.2772589, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.4713413, "tipo": "frame", "indice": 229, "fps": 11.78}
+{"t": 600357.4714536, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.5084668, "tipo": "frame", "indice": 231, "fps": 11.76}
+{"t": 600357.5085821, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.5437402, "tipo": "frame", "indice": 232, "fps": 11.76}
+{"t": 600357.5438725, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.6991273, "tipo": "frame", "indice": 232, "fps": 11.76}
+{"t": 600357.6992649, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.7359975, "tipo": "frame", "indice": 234, "fps": 11.74}
+{"t": 600357.7361081, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.771487, "tipo": "frame", "indice": 234, "fps": 11.74}
+{"t": 600357.7716458, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.9377753, "tipo": "frame", "indice": 234, "fps": 11.74}
+{"t": 600357.9379166, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600357.9657149, "tipo": "frame", "indice": 237, "fps": 11.75}
+{"t": 600357.9658716, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600358.0071156, "tipo": "frame", "indice": 237, "fps": 11.75}
+{"t": 600358.0072501, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600358.3464827, "tipo": "frame", "indice": 238, "fps": 11.76}
+{"t": 600358.3465836, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.3466102, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 600358.3748329, "tipo": "frame", "indice": 243, "fps": 11.82}
+{"t": 600358.3749271, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.3962126, "tipo": "frame", "indice": 243, "fps": 11.82}
+{"t": 600358.3963136, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.5198636, "tipo": "frame", "indice": 244, "fps": 11.84}
+{"t": 600358.519969, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.5426184, "tipo": "frame", "indice": 246, "fps": 11.86}
+{"t": 600358.5427114, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.5693949, "tipo": "frame", "indice": 246, "fps": 11.86}
+{"t": 600358.5695038, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.6926435, "tipo": "frame", "indice": 246, "fps": 11.86}
+{"t": 600358.6927978, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.7301776, "tipo": "frame", "indice": 248, "fps": 11.87}
+{"t": 600358.7303342, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.7716932, "tipo": "frame", "indice": 248, "fps": 11.87}
+{"t": 600358.7718658, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.9307066, "tipo": "frame", "indice": 249, "fps": 11.86}
+{"t": 600358.9308764, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.9612016, "tipo": "frame", "indice": 251, "fps": 11.87}
+{"t": 600358.9613217, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600358.9977549, "tipo": "frame", "indice": 251, "fps": 11.87}
+{"t": 600358.9979312, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.1295284, "tipo": "frame", "indice": 252, "fps": 11.88}
+{"t": 600359.1296559, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.1522324, "tipo": "frame", "indice": 254, "fps": 11.9}
+{"t": 600359.152327, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.1870339, "tipo": "frame", "indice": 254, "fps": 11.9}
+{"t": 600359.187182, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.3975569, "tipo": "frame", "indice": 255, "fps": 11.91}
+{"t": 600359.3977295, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.4240079, "tipo": "frame", "indice": 258, "fps": 11.93}
+{"t": 600359.4241678, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.4537416, "tipo": "frame", "indice": 258, "fps": 11.93}
+{"t": 600359.4538425, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.5910614, "tipo": "frame", "indice": 259, "fps": 11.95}
+{"t": 600359.5911656, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.6135764, "tipo": "frame", "indice": 261, "fps": 11.96}
+{"t": 600359.6138301, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.6378593, "tipo": "frame", "indice": 261, "fps": 11.96}
+{"t": 600359.6379539, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.732041, "tipo": "frame", "indice": 261, "fps": 11.96}
+{"t": 600359.7321377, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.7555366, "tipo": "frame", "indice": 263, "fps": 11.98}
+{"t": 600359.7556394, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.7821696, "tipo": "frame", "indice": 263, "fps": 11.98}
+{"t": 600359.7822759, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.9684192, "tipo": "frame", "indice": 263, "fps": 11.98}
+{"t": 600359.9686044, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600359.9925947, "tipo": "frame", "indice": 266, "fps": 11.99}
+{"t": 600359.9927197, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.0243429, "tipo": "frame", "indice": 266, "fps": 11.99}
+{"t": 600360.0244898, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.204123, "tipo": "frame", "indice": 266, "fps": 11.99}
+{"t": 600360.2042755, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.2413649, "tipo": "frame", "indice": 268, "fps": 11.98}
+{"t": 600360.2415306, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.2936863, "tipo": "frame", "indice": 269, "fps": 11.99}
+{"t": 600360.2938352, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.4410715, "tipo": "frame", "indice": 270, "fps": 11.99}
+{"t": 600360.4411766, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.4722417, "tipo": "frame", "indice": 271, "fps": 11.98}
+{"t": 600360.4723465, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.5046495, "tipo": "frame", "indice": 272, "fps": 11.99}
+{"t": 600360.5047599, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.6577355, "tipo": "frame", "indice": 272, "fps": 11.99}
+{"t": 600360.6579329, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.690089, "tipo": "frame", "indice": 274, "fps": 11.98}
+{"t": 600360.690194, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.7289497, "tipo": "frame", "indice": 274, "fps": 11.98}
+{"t": 600360.7290418, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.8929495, "tipo": "frame", "indice": 275, "fps": 11.98}
+{"t": 600360.8931172, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.9238529, "tipo": "frame", "indice": 277, "fps": 11.98}
+{"t": 600360.9239568, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600360.9498128, "tipo": "frame", "indice": 277, "fps": 11.98}
+{"t": 600360.9499082, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.089548, "tipo": "frame", "indice": 277, "fps": 11.98}
+{"t": 600361.0896411, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.1163287, "tipo": "frame", "indice": 279, "fps": 11.98}
+{"t": 600361.1164816, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.1430846, "tipo": "frame", "indice": 279, "fps": 11.98}
+{"t": 600361.1431763, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.2772644, "tipo": "frame", "indice": 280, "fps": 11.98}
+{"t": 600361.2774252, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.3011242, "tipo": "frame", "indice": 281, "fps": 11.99}
+{"t": 600361.3012247, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.3289168, "tipo": "frame", "indice": 281, "fps": 11.99}
+{"t": 600361.329046, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.4874465, "tipo": "frame", "indice": 282, "fps": 11.98}
+{"t": 600361.4876103, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.5177922, "tipo": "frame", "indice": 284, "fps": 11.98}
+{"t": 600361.5179062, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.5578912, "tipo": "frame", "indice": 284, "fps": 11.98}
+{"t": 600361.5580939, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.8169498, "tipo": "frame", "indice": 284, "fps": 11.98}
+{"t": 600361.8171599, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.9062557, "tipo": "frame", "indice": 287, "fps": 11.96}
+{"t": 600361.9064159, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600361.9559269, "tipo": "frame", "indice": 287, "fps": 11.96}
+{"t": 600361.9560342, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.169093, "tipo": "frame", "indice": 288, "fps": 11.93}
+{"t": 600362.1692492, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.2167361, "tipo": "frame", "indice": 290, "fps": 11.91}
+{"t": 600362.2168978, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.2568227, "tipo": "frame", "indice": 291, "fps": 11.9}
+{"t": 600362.2569738, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.4452173, "tipo": "frame", "indice": 291, "fps": 11.9}
+{"t": 600362.4453673, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.4831274, "tipo": "frame", "indice": 294, "fps": 11.92}
+{"t": 600362.4832789, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.521586, "tipo": "frame", "indice": 294, "fps": 11.92}
+{"t": 600362.5216821, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.6355305, "tipo": "frame", "indice": 295, "fps": 11.93}
+{"t": 600362.63563, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.6578694, "tipo": "frame", "indice": 297, "fps": 11.94}
+{"t": 600362.6579749, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.6881335, "tipo": "frame", "indice": 297, "fps": 11.94}
+{"t": 600362.6882409, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.8199663, "tipo": "frame", "indice": 297, "fps": 11.94}
+{"t": 600362.8200639, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.8460987, "tipo": "frame", "indice": 299, "fps": 11.97}
+{"t": 600362.8462054, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.8704816, "tipo": "frame", "indice": 300, "fps": 11.97}
+{"t": 600362.870577, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.9718172, "tipo": "frame", "indice": 300, "fps": 11.97}
+{"t": 600362.9719203, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600362.9967183, "tipo": "frame", "indice": 301, "fps": 11.97}
+{"t": 600362.9968183, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.0204485, "tipo": "frame", "indice": 302, "fps": 11.98}
+{"t": 600363.0205572, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.1735498, "tipo": "frame", "indice": 302, "fps": 11.98}
+{"t": 600363.1737093, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.2067603, "tipo": "frame", "indice": 304, "fps": 11.97}
+{"t": 600363.2068708, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.2524352, "tipo": "frame", "indice": 304, "fps": 11.97}
+{"t": 600363.2525757, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.3959113, "tipo": "frame", "indice": 305, "fps": 11.97}
+{"t": 600363.3960571, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.4301322, "tipo": "frame", "indice": 307, "fps": 11.98}
+{"t": 600363.4302262, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.4647296, "tipo": "frame", "indice": 307, "fps": 11.98}
+{"t": 600363.4648297, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.6215753, "tipo": "frame", "indice": 307, "fps": 11.98}
+{"t": 600363.6216809, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.6502869, "tipo": "frame", "indice": 309, "fps": 11.98}
+{"t": 600363.650389, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.6795765, "tipo": "frame", "indice": 310, "fps": 11.98}
+{"t": 600363.6796835, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.8477435, "tipo": "frame", "indice": 310, "fps": 11.98}
+{"t": 600363.8479054, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.8710983, "tipo": "frame", "indice": 312, "fps": 11.99}
+{"t": 600363.871199, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.8997115, "tipo": "frame", "indice": 313, "fps": 12.0}
+{"t": 600363.8998155, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600363.9996201, "tipo": "frame", "indice": 313, "fps": 12.0}
+{"t": 600363.9997047, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.0246841, "tipo": "frame", "indice": 315, "fps": 12.01}
+{"t": 600364.024778, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.0600563, "tipo": "frame", "indice": 315, "fps": 12.01}
+{"t": 600364.060159, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.2578116, "tipo": "frame", "indice": 316, "fps": 12.02}
+{"t": 600364.2579781, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.2882748, "tipo": "frame", "indice": 318, "fps": 12.03}
+{"t": 600364.2883863, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.3116894, "tipo": "frame", "indice": 319, "fps": 12.03}
+{"t": 600364.3117867, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.4954065, "tipo": "frame", "indice": 319, "fps": 12.03}
+{"t": 600364.4955106, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.5237151, "tipo": "frame", "indice": 321, "fps": 12.03}
+{"t": 600364.5238277, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.539475, "tipo": "frame", "indice": 321, "fps": 12.03}
+{"t": 600364.5396662, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.7469263, "tipo": "frame", "indice": 321, "fps": 12.03}
+{"t": 600364.7470847, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.7643353, "tipo": "frame", "indice": 324, "fps": 12.02}
+{"t": 600364.764468, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.7775372, "tipo": "frame", "indice": 324, "fps": 12.02}
+{"t": 600364.7776498, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.9349358, "tipo": "frame", "indice": 324, "fps": 12.02}
+{"t": 600364.9350386, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.9484071, "tipo": "frame", "indice": 326, "fps": 12.02}
+{"t": 600364.9487012, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600364.9630187, "tipo": "frame", "indice": 326, "fps": 12.02}
+{"t": 600364.9631705, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.1148084, "tipo": "frame", "indice": 326, "fps": 12.02}
+{"t": 600365.1149088, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.1299226, "tipo": "frame", "indice": 328, "fps": 12.02}
+{"t": 600365.1300742, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.141177, "tipo": "frame", "indice": 328, "fps": 12.02}
+{"t": 600365.1413322, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.2534604, "tipo": "frame", "indice": 328, "fps": 12.02}
+{"t": 600365.2536039, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.2671682, "tipo": "frame", "indice": 330, "fps": 12.02}
+{"t": 600365.2672744, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.2830546, "tipo": "frame", "indice": 330, "fps": 12.02}
+{"t": 600365.2832157, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.3760317, "tipo": "frame", "indice": 330, "fps": 12.02}
+{"t": 600365.3761833, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.3868405, "tipo": "frame", "indice": 331, "fps": 12.02}
+{"t": 600365.3869277, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.400426, "tipo": "frame", "indice": 332, "fps": 12.02}
+{"t": 600365.4005884, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.5192877, "tipo": "frame", "indice": 332, "fps": 12.02}
+{"t": 600365.519456, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.5444358, "tipo": "frame", "indice": 333, "fps": 12.02}
+{"t": 600365.5446119, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.5614245, "tipo": "frame", "indice": 333, "fps": 12.02}
+{"t": 600365.5615218, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.6930363, "tipo": "frame", "indice": 334, "fps": 12.02}
+{"t": 600365.6931538, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.7107823, "tipo": "frame", "indice": 335, "fps": 12.02}
+{"t": 600365.7108987, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.7297116, "tipo": "frame", "indice": 335, "fps": 12.02}
+{"t": 600365.7298017, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.8469855, "tipo": "frame", "indice": 336, "fps": 12.02}
+{"t": 600365.8470813, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.8809344, "tipo": "frame", "indice": 337, "fps": 12.01}
+{"t": 600365.88109, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600365.9045667, "tipo": "frame", "indice": 337, "fps": 12.01}
+{"t": 600365.904685, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600366.2775248, "tipo": "frame", "indice": 337, "fps": 12.01}
+{"t": 600366.2776983, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600366.2777646, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 600366.2980933, "tipo": "frame", "indice": 341, "fps": 11.98}
+{"t": 600366.2982277, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600366.3337415, "tipo": "frame", "indice": 341, "fps": 11.98}
+{"t": 600366.3339023, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600366.5079188, "tipo": "frame", "indice": 341, "fps": 11.98}
+{"t": 600366.5080691, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600366.5301032, "tipo": "frame", "indice": 343, "fps": 11.96}
+{"t": 600366.5302428, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600366.5549557, "tipo": "frame", "indice": 344, "fps": 11.96}
+{"t": 600366.5551534, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600366.9064323, "tipo": "frame", "indice": 344, "fps": 11.96}
+{"t": 600366.9065603, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600367.1428789, "tipo": "frame", "indice": 349, "fps": 11.99}
+{"t": 600367.1429913, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600367.3865274, "tipo": "frame", "indice": 353, "fps": 12.03}
+{"t": 600367.3866365, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600367.7047665, "tipo": "frame", "indice": 357, "fps": 12.07}
+{"t": 600367.7049073, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600367.9430043, "tipo": "frame", "indice": 362, "fps": 12.11}
+{"t": 600367.9431145, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600368.1849582, "tipo": "frame", "indice": 366, "fps": 12.14}
+{"t": 600368.1850732, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600368.4887001, "tipo": "frame", "indice": 370, "fps": 12.18}
+{"t": 600368.4888045, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600368.7245004, "tipo": "frame", "indice": 375, "fps": 12.23}
+{"t": 600368.7245959, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600368.9611, "tipo": "frame", "indice": 379, "fps": 12.26}
+{"t": 600368.9612864, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600369.2816434, "tipo": "frame", "indice": 383, "fps": 12.29}
+{"t": 600369.2817453, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600369.5169017, "tipo": "frame", "indice": 388, "fps": 12.32}
+{"t": 600369.5169998, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600369.7490699, "tipo": "frame", "indice": 392, "fps": 12.36}
+{"t": 600369.7491698, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.0529602, "tipo": "frame", "indice": 396, "fps": 12.39}
+{"t": 600370.0530591, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.2863625, "tipo": "frame", "indice": 401, "fps": 12.43}
+{"t": 600370.2864631, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.3007292, "tipo": "frame", "indice": 405, "fps": 12.46}
+{"t": 600370.3008246, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.3984356, "tipo": "frame", "indice": 405, "fps": 12.46}
+{"t": 600370.3985809, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.4238461, "tipo": "frame", "indice": 406, "fps": 12.47}
+{"t": 600370.4239547, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.4389294, "tipo": "frame", "indice": 407, "fps": 12.47}
+{"t": 600370.4390571, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.5223652, "tipo": "frame", "indice": 407, "fps": 12.47}
+{"t": 600370.5224845, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.5366617, "tipo": "frame", "indice": 408, "fps": 12.48}
+{"t": 600370.5367711, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.5499447, "tipo": "frame", "indice": 409, "fps": 12.49}
+{"t": 600370.5500556, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.6347031, "tipo": "frame", "indice": 409, "fps": 12.49}
+{"t": 600370.6348404, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.6532328, "tipo": "frame", "indice": 410, "fps": 12.49}
+{"t": 600370.6533387, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.6670631, "tipo": "frame", "indice": 411, "fps": 12.5}
+{"t": 600370.6671541, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.7757417, "tipo": "frame", "indice": 411, "fps": 12.5}
+{"t": 600370.7759367, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.7903372, "tipo": "frame", "indice": 413, "fps": 12.51}
+{"t": 600370.7904291, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.8036058, "tipo": "frame", "indice": 413, "fps": 12.51}
+{"t": 600370.8037007, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.9020326, "tipo": "frame", "indice": 413, "fps": 12.51}
+{"t": 600370.9021204, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.9156586, "tipo": "frame", "indice": 415, "fps": 12.53}
+{"t": 600370.9157415, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600370.9325283, "tipo": "frame", "indice": 415, "fps": 12.53}
+{"t": 600370.9326206, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.027393, "tipo": "frame", "indice": 415, "fps": 12.53}
+{"t": 600371.0275335, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.0413657, "tipo": "frame", "indice": 417, "fps": 12.54}
+{"t": 600371.0414606, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.0567274, "tipo": "frame", "indice": 417, "fps": 12.54}
+{"t": 600371.0568313, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.1492236, "tipo": "frame", "indice": 417, "fps": 12.54}
+{"t": 600371.1493624, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.1678294, "tipo": "frame", "indice": 419, "fps": 12.56}
+{"t": 600371.1679632, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.1855382, "tipo": "frame", "indice": 419, "fps": 12.56}
+{"t": 600371.1856448, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.2722529, "tipo": "frame", "indice": 419, "fps": 12.56}
+{"t": 600371.2723556, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.28602, "tipo": "frame", "indice": 421, "fps": 12.57}
+{"t": 600371.2861041, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.3062674, "tipo": "frame", "indice": 421, "fps": 12.57}
+{"t": 600371.3064029, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.3949592, "tipo": "frame", "indice": 421, "fps": 12.57}
+{"t": 600371.3950585, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.4083114, "tipo": "frame", "indice": 423, "fps": 12.58}
+{"t": 600371.4084038, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.4224817, "tipo": "frame", "indice": 423, "fps": 12.58}
+{"t": 600371.4225799, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.5152817, "tipo": "frame", "indice": 423, "fps": 12.58}
+{"t": 600371.515377, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.5289084, "tipo": "frame", "indice": 425, "fps": 12.6}
+{"t": 600371.5289975, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.5427409, "tipo": "frame", "indice": 425, "fps": 12.6}
+{"t": 600371.5428666, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.6332163, "tipo": "frame", "indice": 425, "fps": 12.6}
+{"t": 600371.6333027, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.6474738, "tipo": "frame", "indice": 426, "fps": 12.6}
+{"t": 600371.6475646, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.6610936, "tipo": "frame", "indice": 427, "fps": 12.61}
+{"t": 600371.6611807, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.7482809, "tipo": "frame", "indice": 427, "fps": 12.61}
+{"t": 600371.7483893, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.7654673, "tipo": "frame", "indice": 428, "fps": 12.61}
+{"t": 600371.7656306, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.7816978, "tipo": "frame", "indice": 428, "fps": 12.61}
+{"t": 600371.7817867, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.8926016, "tipo": "frame", "indice": 429, "fps": 12.62}
+{"t": 600371.8926872, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.9142988, "tipo": "frame", "indice": 430, "fps": 12.62}
+{"t": 600371.9143923, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600371.9297116, "tipo": "frame", "indice": 431, "fps": 12.63}
+{"t": 600371.9298315, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.033707, "tipo": "frame", "indice": 431, "fps": 12.63}
+{"t": 600372.0338006, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.0482482, "tipo": "frame", "indice": 432, "fps": 12.63}
+{"t": 600372.048377, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.0630244, "tipo": "frame", "indice": 433, "fps": 12.64}
+{"t": 600372.0631559, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.1516689, "tipo": "frame", "indice": 433, "fps": 12.64}
+{"t": 600372.1517664, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.172067, "tipo": "frame", "indice": 434, "fps": 12.64}
+{"t": 600372.1721979, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.18857, "tipo": "frame", "indice": 435, "fps": 12.65}
+{"t": 600372.18866, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.2966583, "tipo": "frame", "indice": 435, "fps": 12.65}
+{"t": 600372.2967745, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.3101258, "tipo": "frame", "indice": 437, "fps": 12.66}
+{"t": 600372.3102163, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.3239475, "tipo": "frame", "indice": 437, "fps": 12.66}
+{"t": 600372.3240506, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.420399, "tipo": "frame", "indice": 437, "fps": 12.66}
+{"t": 600372.4205022, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.4349433, "tipo": "frame", "indice": 439, "fps": 12.67}
+{"t": 600372.4350379, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.4565544, "tipo": "frame", "indice": 439, "fps": 12.67}
+{"t": 600372.4566456, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.5459416, "tipo": "frame", "indice": 439, "fps": 12.67}
+{"t": 600372.5460342, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.5598853, "tipo": "frame", "indice": 441, "fps": 12.69}
+{"t": 600372.5599871, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.5791103, "tipo": "frame", "indice": 441, "fps": 12.69}
+{"t": 600372.5791997, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.6618308, "tipo": "frame", "indice": 441, "fps": 12.69}
+{"t": 600372.6619335, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.6763439, "tipo": "frame", "indice": 443, "fps": 12.7}
+{"t": 600372.6764446, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.6908926, "tipo": "frame", "indice": 443, "fps": 12.7}
+{"t": 600372.6909836, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.7936203, "tipo": "frame", "indice": 443, "fps": 12.7}
+{"t": 600372.7937218, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.806979, "tipo": "frame", "indice": 445, "fps": 12.71}
+{"t": 600372.8070871, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.8205231, "tipo": "frame", "indice": 445, "fps": 12.71}
+{"t": 600372.8206227, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.9068694, "tipo": "frame", "indice": 445, "fps": 12.71}
+{"t": 600372.906971, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.9250825, "tipo": "frame", "indice": 446, "fps": 12.71}
+{"t": 600372.9251941, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600372.9408086, "tipo": "frame", "indice": 447, "fps": 12.72}
+{"t": 600372.9409067, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.0403146, "tipo": "frame", "indice": 447, "fps": 12.72}
+{"t": 600373.0404246, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.0587941, "tipo": "frame", "indice": 448, "fps": 12.72}
+{"t": 600373.0588919, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.0766599, "tipo": "frame", "indice": 448, "fps": 12.72}
+{"t": 600373.0767688, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.1768243, "tipo": "frame", "indice": 449, "fps": 12.72}
+{"t": 600373.1769179, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.1951849, "tipo": "frame", "indice": 450, "fps": 12.72}
+{"t": 600373.1953001, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.2109428, "tipo": "frame", "indice": 450, "fps": 12.72}
+{"t": 600373.2111101, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.3494527, "tipo": "frame", "indice": 450, "fps": 12.72}
+{"t": 600373.3496183, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.3673224, "tipo": "frame", "indice": 451, "fps": 12.71}
+{"t": 600373.3674376, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.3835313, "tipo": "frame", "indice": 452, "fps": 12.7}
+{"t": 600373.3836461, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600373.974531, "tipo": "frame", "indice": 452, "fps": 12.7}
+{"t": 600373.9775346, "tipo": "decision", "regla": 9, "accion": "rebasar_izq", "estado": "rebasando", "razon": "condiciones de rebase cumplidas"}
+{"t": 600373.9777046, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "rebasando", "regla": 9}
+{"t": 600374.2375225, "tipo": "frame", "indice": 457, "fps": 12.64}
+{"t": 600374.2376938, "tipo": "decision", "regla": 9, "accion": "rebasar_izq", "estado": "rebasando", "razon": "condiciones de rebase cumplidas"}
+{"t": 600374.4777821, "tipo": "frame", "indice": 460, "fps": 12.63}
+{"t": 600374.4778964, "tipo": "decision", "regla": 9, "accion": "rebasar_izq", "estado": "rebasando", "razon": "condiciones de rebase cumplidas"}
+{"t": 600374.7919621, "tipo": "frame", "indice": 464, "fps": 12.65}
+{"t": 600374.7921065, "tipo": "decision", "regla": 10, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "conflicto lateral durante rebase — abortando"}
+{"t": 600374.7921708, "tipo": "transicion", "de": "rebasando", "a": "siguiendo_vehiculo", "regla": 10}
+{"t": 600374.8151189, "tipo": "frame", "indice": 468, "fps": 12.66}
+{"t": 600374.8152206, "tipo": "decision", "regla": 10, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "conflicto lateral durante rebase — abortando"}
+{"t": 600374.8305785, "tipo": "frame", "indice": 469, "fps": 12.67}
+{"t": 600374.8306953, "tipo": "decision", "regla": 10, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "conflicto lateral durante rebase — abortando"}
+{"t": 600374.9745045, "tipo": "frame", "indice": 469, "fps": 12.67}
+{"t": 600374.974665, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600374.9993146, "tipo": "frame", "indice": 471, "fps": 12.66}
+{"t": 600374.9994697, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.0255711, "tipo": "frame", "indice": 471, "fps": 12.66}
+{"t": 600375.0257855, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.1340798, "tipo": "frame", "indice": 471, "fps": 12.66}
+{"t": 600375.1342176, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.1538282, "tipo": "frame", "indice": 473, "fps": 12.66}
+{"t": 600375.1540241, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.1797841, "tipo": "frame", "indice": 473, "fps": 12.66}
+{"t": 600375.1799303, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.3194158, "tipo": "frame", "indice": 473, "fps": 12.66}
+{"t": 600375.3195309, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.3448858, "tipo": "frame", "indice": 475, "fps": 12.66}
+{"t": 600375.3449981, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.3661781, "tipo": "frame", "indice": 475, "fps": 12.66}
+{"t": 600375.3663243, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.5207502, "tipo": "frame", "indice": 476, "fps": 12.66}
+{"t": 600375.5209087, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.5405705, "tipo": "frame", "indice": 477, "fps": 12.66}
+{"t": 600375.5406868, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.5610839, "tipo": "frame", "indice": 478, "fps": 12.66}
+{"t": 600375.5611745, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.6918095, "tipo": "frame", "indice": 478, "fps": 12.66}
+{"t": 600375.6919247, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.706814, "tipo": "frame", "indice": 480, "fps": 12.66}
+{"t": 600375.7069119, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.7208824, "tipo": "frame", "indice": 480, "fps": 12.66}
+{"t": 600375.7209887, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.8309778, "tipo": "frame", "indice": 480, "fps": 12.66}
+{"t": 600375.8333997, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.8539977, "tipo": "frame", "indice": 481, "fps": 12.66}
+{"t": 600375.8541425, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600375.8692586, "tipo": "frame", "indice": 482, "fps": 12.66}
+{"t": 600375.8693759, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.0240792, "tipo": "frame", "indice": 482, "fps": 12.66}
+{"t": 600376.0242392, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.0437162, "tipo": "frame", "indice": 483, "fps": 12.66}
+{"t": 600376.0438578, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.0614285, "tipo": "frame", "indice": 484, "fps": 12.65}
+{"t": 600376.0615448, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.2003099, "tipo": "frame", "indice": 484, "fps": 12.65}
+{"t": 600376.2004904, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.2229127, "tipo": "frame", "indice": 485, "fps": 12.65}
+{"t": 600376.2230267, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.2412008, "tipo": "frame", "indice": 486, "fps": 12.64}
+{"t": 600376.241348, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.4393554, "tipo": "frame", "indice": 486, "fps": 12.64}
+{"t": 600376.4395161, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.5470098, "tipo": "frame", "indice": 487, "fps": 12.63}
+{"t": 600376.5471738, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.6409712, "tipo": "frame", "indice": 488, "fps": 12.61}
+{"t": 600376.6411467, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.8176029, "tipo": "frame", "indice": 488, "fps": 12.61}
+{"t": 600376.8177316, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.8508887, "tipo": "frame", "indice": 490, "fps": 12.56}
+{"t": 600376.8510371, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.8746754, "tipo": "frame", "indice": 490, "fps": 12.56}
+{"t": 600376.8747622, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600376.9995211, "tipo": "frame", "indice": 491, "fps": 12.56}
+{"t": 600376.9996268, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.0189148, "tipo": "frame", "indice": 492, "fps": 12.56}
+{"t": 600377.0190086, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.0326925, "tipo": "frame", "indice": 493, "fps": 12.56}
+{"t": 600377.0327993, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.1684311, "tipo": "frame", "indice": 493, "fps": 12.56}
+{"t": 600377.1685277, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.1822456, "tipo": "frame", "indice": 495, "fps": 12.57}
+{"t": 600377.1823371, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.1995937, "tipo": "frame", "indice": 495, "fps": 12.57}
+{"t": 600377.199686, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.2880625, "tipo": "frame", "indice": 495, "fps": 12.57}
+{"t": 600377.2881787, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.3028123, "tipo": "frame", "indice": 496, "fps": 12.57}
+{"t": 600377.3029465, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.3166116, "tipo": "frame", "indice": 497, "fps": 12.58}
+{"t": 600377.3167067, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.4132574, "tipo": "frame", "indice": 497, "fps": 12.58}
+{"t": 600377.4133515, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.4274527, "tipo": "frame", "indice": 498, "fps": 12.58}
+{"t": 600377.4275716, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.4410565, "tipo": "frame", "indice": 499, "fps": 12.59}
+{"t": 600377.441164, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.5552962, "tipo": "frame", "indice": 499, "fps": 12.59}
+{"t": 600377.5554023, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.5696584, "tipo": "frame", "indice": 500, "fps": 12.59}
+{"t": 600377.5697501, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.5840113, "tipo": "frame", "indice": 500, "fps": 12.59}
+{"t": 600377.5841145, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.6940318, "tipo": "frame", "indice": 501, "fps": 12.59}
+{"t": 600377.6941975, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.7237408, "tipo": "frame", "indice": 502, "fps": 12.59}
+{"t": 600377.7238789, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.7451279, "tipo": "frame", "indice": 502, "fps": 12.59}
+{"t": 600377.7452681, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.8833466, "tipo": "frame", "indice": 503, "fps": 12.59}
+{"t": 600377.8834906, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.9070705, "tipo": "frame", "indice": 504, "fps": 12.59}
+{"t": 600377.9071756, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600377.9268948, "tipo": "frame", "indice": 505, "fps": 12.59}
+{"t": 600377.9270063, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.0449878, "tipo": "frame", "indice": 505, "fps": 12.59}
+{"t": 600378.0450885, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.0610677, "tipo": "frame", "indice": 507, "fps": 12.59}
+{"t": 600378.061155, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.078916, "tipo": "frame", "indice": 507, "fps": 12.59}
+{"t": 600378.0790131, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.1940657, "tipo": "frame", "indice": 507, "fps": 12.59}
+{"t": 600378.1941556, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.2073717, "tipo": "frame", "indice": 509, "fps": 12.59}
+{"t": 600378.2074868, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.2227373, "tipo": "frame", "indice": 509, "fps": 12.59}
+{"t": 600378.2228828, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.3233909, "tipo": "frame", "indice": 509, "fps": 12.59}
+{"t": 600378.3234853, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.3375786, "tipo": "frame", "indice": 510, "fps": 12.6}
+{"t": 600378.337676, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.3515772, "tipo": "frame", "indice": 511, "fps": 12.6}
+{"t": 600378.3516902, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.4529022, "tipo": "frame", "indice": 511, "fps": 12.6}
+{"t": 600378.4530396, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.4677597, "tipo": "frame", "indice": 512, "fps": 12.6}
+{"t": 600378.4678615, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.4901798, "tipo": "frame", "indice": 513, "fps": 12.61}
+{"t": 600378.4903325, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.5979645, "tipo": "frame", "indice": 513, "fps": 12.61}
+{"t": 600378.5980599, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.6132516, "tipo": "frame", "indice": 514, "fps": 12.61}
+{"t": 600378.6133428, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.6267849, "tipo": "frame", "indice": 515, "fps": 12.61}
+{"t": 600378.6268987, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.7237345, "tipo": "frame", "indice": 515, "fps": 12.61}
+{"t": 600378.7238469, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.7404626, "tipo": "frame", "indice": 516, "fps": 12.62}
+{"t": 600378.7405558, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.754445, "tipo": "frame", "indice": 517, "fps": 12.62}
+{"t": 600378.7545387, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.8796706, "tipo": "frame", "indice": 517, "fps": 12.62}
+{"t": 600378.879779, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.895515, "tipo": "frame", "indice": 518, "fps": 12.62}
+{"t": 600378.8956124, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600378.9104848, "tipo": "frame", "indice": 518, "fps": 12.62}
+{"t": 600378.910579, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.010398, "tipo": "frame", "indice": 519, "fps": 12.62}
+{"t": 600379.0105392, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.0333284, "tipo": "frame", "indice": 520, "fps": 12.62}
+{"t": 600379.0334442, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.0521406, "tipo": "frame", "indice": 520, "fps": 12.62}
+{"t": 600379.0523084, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.1743692, "tipo": "frame", "indice": 520, "fps": 12.62}
+{"t": 600379.1744892, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.1943711, "tipo": "frame", "indice": 522, "fps": 12.62}
+{"t": 600379.1945285, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.2190542, "tipo": "frame", "indice": 522, "fps": 12.62}
+{"t": 600379.2192066, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.3310966, "tipo": "frame", "indice": 522, "fps": 12.62}
+{"t": 600379.3312531, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.345817, "tipo": "frame", "indice": 524, "fps": 12.61}
+{"t": 600379.3459386, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.3627707, "tipo": "frame", "indice": 524, "fps": 12.61}
+{"t": 600379.3629404, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.4862247, "tipo": "frame", "indice": 524, "fps": 12.61}
+{"t": 600379.486377, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.507495, "tipo": "frame", "indice": 526, "fps": 12.61}
+{"t": 600379.5076335, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.5235839, "tipo": "frame", "indice": 526, "fps": 12.61}
+{"t": 600379.5236886, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.6451287, "tipo": "frame", "indice": 526, "fps": 12.61}
+{"t": 600379.6452827, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.6657493, "tipo": "frame", "indice": 528, "fps": 12.61}
+{"t": 600379.6658456, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.6867196, "tipo": "frame", "indice": 528, "fps": 12.61}
+{"t": 600379.6868611, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.7953326, "tipo": "frame", "indice": 528, "fps": 12.61}
+{"t": 600379.7954777, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.8126832, "tipo": "frame", "indice": 530, "fps": 12.62}
+{"t": 600379.8127829, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.8327378, "tipo": "frame", "indice": 530, "fps": 12.62}
+{"t": 600379.8329493, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.9457344, "tipo": "frame", "indice": 530, "fps": 12.62}
+{"t": 600379.9459004, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.9655386, "tipo": "frame", "indice": 532, "fps": 12.62}
+{"t": 600379.9656417, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600379.984633, "tipo": "frame", "indice": 532, "fps": 12.62}
+{"t": 600379.9847982, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.1028545, "tipo": "frame", "indice": 532, "fps": 12.62}
+{"t": 600380.1029737, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.1163741, "tipo": "frame", "indice": 534, "fps": 12.62}
+{"t": 600380.1166215, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.1307931, "tipo": "frame", "indice": 534, "fps": 12.62}
+{"t": 600380.1309294, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.2490953, "tipo": "frame", "indice": 534, "fps": 12.62}
+{"t": 600380.2492166, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.2684834, "tipo": "frame", "indice": 535, "fps": 12.61}
+{"t": 600380.2703004, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.2881627, "tipo": "frame", "indice": 535, "fps": 12.61}
+{"t": 600380.2883125, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.4146915, "tipo": "frame", "indice": 536, "fps": 12.61}
+{"t": 600380.4147897, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.4412273, "tipo": "frame", "indice": 537, "fps": 12.61}
+{"t": 600380.4413267, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.466616, "tipo": "frame", "indice": 537, "fps": 12.61}
+{"t": 600380.4667215, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.6026972, "tipo": "frame", "indice": 538, "fps": 12.6}
+{"t": 600380.6028034, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.6285361, "tipo": "frame", "indice": 539, "fps": 12.6}
+{"t": 600380.6286837, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.6472253, "tipo": "frame", "indice": 539, "fps": 12.6}
+{"t": 600380.6473971, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.7835734, "tipo": "frame", "indice": 540, "fps": 12.6}
+{"t": 600380.783676, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.8074694, "tipo": "frame", "indice": 541, "fps": 12.6}
+{"t": 600380.8076153, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.8324137, "tipo": "frame", "indice": 541, "fps": 12.6}
+{"t": 600380.8326099, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.9657574, "tipo": "frame", "indice": 542, "fps": 12.59}
+{"t": 600380.9658614, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600380.9848754, "tipo": "frame", "indice": 543, "fps": 12.59}
+{"t": 600380.9861531, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.0054243, "tipo": "frame", "indice": 544, "fps": 12.59}
+{"t": 600381.0055727, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.1490275, "tipo": "frame", "indice": 544, "fps": 12.59}
+{"t": 600381.1491784, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.1680524, "tipo": "frame", "indice": 545, "fps": 12.59}
+{"t": 600381.1681739, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.1916092, "tipo": "frame", "indice": 545, "fps": 12.59}
+{"t": 600381.1917193, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.3265779, "tipo": "frame", "indice": 546, "fps": 12.58}
+{"t": 600381.3266871, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.3468885, "tipo": "frame", "indice": 547, "fps": 12.58}
+{"t": 600381.3470407, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.3682667, "tipo": "frame", "indice": 548, "fps": 12.58}
+{"t": 600381.3684378, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.4970345, "tipo": "frame", "indice": 548, "fps": 12.58}
+{"t": 600381.4972027, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.5182487, "tipo": "frame", "indice": 549, "fps": 12.58}
+{"t": 600381.5183586, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.5326471, "tipo": "frame", "indice": 550, "fps": 12.57}
+{"t": 600381.5327548, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.7852512, "tipo": "frame", "indice": 550, "fps": 12.57}
+{"t": 600381.7854072, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.8221775, "tipo": "frame", "indice": 551, "fps": 12.57}
+{"t": 600381.8222899, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600381.8887698, "tipo": "frame", "indice": 552, "fps": 12.53}
+{"t": 600381.8890593, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.0773221, "tipo": "frame", "indice": 552, "fps": 12.53}
+{"t": 600382.0774663, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.1100878, "tipo": "frame", "indice": 554, "fps": 12.52}
+{"t": 600382.1102515, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.1331732, "tipo": "frame", "indice": 554, "fps": 12.52}
+{"t": 600382.133366, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.3046316, "tipo": "frame", "indice": 554, "fps": 12.52}
+{"t": 600382.3047636, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.3262259, "tipo": "frame", "indice": 556, "fps": 12.51}
+{"t": 600382.3263559, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.3516306, "tipo": "frame", "indice": 557, "fps": 12.5}
+{"t": 600382.3517326, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.4898539, "tipo": "frame", "indice": 557, "fps": 12.5}
+{"t": 600382.4900875, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.5188981, "tipo": "frame", "indice": 559, "fps": 12.51}
+{"t": 600382.5189955, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.5412383, "tipo": "frame", "indice": 559, "fps": 12.51}
+{"t": 600382.541328, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.6684517, "tipo": "frame", "indice": 560, "fps": 12.51}
+{"t": 600382.6685864, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.6843558, "tipo": "frame", "indice": 561, "fps": 12.51}
+{"t": 600382.6844518, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.6989072, "tipo": "frame", "indice": 562, "fps": 12.52}
+{"t": 600382.6990064, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.808193, "tipo": "frame", "indice": 562, "fps": 12.52}
+{"t": 600382.8083235, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.8218219, "tipo": "frame", "indice": 564, "fps": 12.53}
+{"t": 600382.8219299, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.8464383, "tipo": "frame", "indice": 564, "fps": 12.53}
+{"t": 600382.8465359, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.9738971, "tipo": "frame", "indice": 564, "fps": 12.53}
+{"t": 600382.9740447, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600382.995783, "tipo": "frame", "indice": 566, "fps": 12.53}
+{"t": 600382.9958786, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.0108538, "tipo": "frame", "indice": 566, "fps": 12.53}
+{"t": 600383.0109635, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.1122665, "tipo": "frame", "indice": 567, "fps": 12.53}
+{"t": 600383.1124038, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.1274048, "tipo": "frame", "indice": 568, "fps": 12.53}
+{"t": 600383.1275339, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.1438922, "tipo": "frame", "indice": 568, "fps": 12.53}
+{"t": 600383.1440016, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.2464163, "tipo": "frame", "indice": 568, "fps": 12.53}
+{"t": 600383.2466292, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.2623787, "tipo": "frame", "indice": 570, "fps": 12.53}
+{"t": 600383.2624862, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.2785852, "tipo": "frame", "indice": 570, "fps": 12.53}
+{"t": 600383.2786897, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.4104695, "tipo": "frame", "indice": 570, "fps": 12.53}
+{"t": 600383.4105829, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.4317337, "tipo": "frame", "indice": 571, "fps": 12.53}
+{"t": 600383.4319482, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.4524839, "tipo": "frame", "indice": 572, "fps": 12.53}
+{"t": 600383.452659, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.5948156, "tipo": "frame", "indice": 572, "fps": 12.53}
+{"t": 600383.5950051, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.6195772, "tipo": "frame", "indice": 573, "fps": 12.53}
+{"t": 600383.6197624, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.6487474, "tipo": "frame", "indice": 573, "fps": 12.53}
+{"t": 600383.6489618, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.869789, "tipo": "frame", "indice": 574, "fps": 12.52}
+{"t": 600383.8703884, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.9161198, "tipo": "frame", "indice": 576, "fps": 12.5}
+{"t": 600383.9163654, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600383.9758735, "tipo": "frame", "indice": 576, "fps": 12.5}
+{"t": 600383.9775108, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.1831864, "tipo": "frame", "indice": 576, "fps": 12.5}
+{"t": 600384.1894033, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.2174073, "tipo": "frame", "indice": 578, "fps": 12.47}
+{"t": 600384.2175495, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.2445227, "tipo": "frame", "indice": 579, "fps": 12.47}
+{"t": 600384.2446999, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.4003777, "tipo": "frame", "indice": 579, "fps": 12.47}
+{"t": 600384.4004873, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.4242042, "tipo": "frame", "indice": 581, "fps": 12.46}
+{"t": 600384.4243727, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.4528548, "tipo": "frame", "indice": 581, "fps": 12.46}
+{"t": 600384.4529956, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.5867737, "tipo": "frame", "indice": 581, "fps": 12.46}
+{"t": 600384.5868994, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.6052348, "tipo": "frame", "indice": 583, "fps": 12.47}
+{"t": 600384.6053299, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.6196301, "tipo": "frame", "indice": 584, "fps": 12.47}
+{"t": 600384.619731, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.7318997, "tipo": "frame", "indice": 584, "fps": 12.47}
+{"t": 600384.7319973, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.7485499, "tipo": "frame", "indice": 586, "fps": 12.48}
+{"t": 600384.7486454, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.7629047, "tipo": "frame", "indice": 586, "fps": 12.48}
+{"t": 600384.7630315, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.8659327, "tipo": "frame", "indice": 586, "fps": 12.48}
+{"t": 600384.8660575, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.891528, "tipo": "frame", "indice": 587, "fps": 12.48}
+{"t": 600384.8916895, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600384.9108008, "tipo": "frame", "indice": 588, "fps": 12.48}
+{"t": 600384.9109237, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.0443841, "tipo": "frame", "indice": 588, "fps": 12.48}
+{"t": 600385.044505, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.0674752, "tipo": "frame", "indice": 589, "fps": 12.48}
+{"t": 600385.0676499, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.0906574, "tipo": "frame", "indice": 590, "fps": 12.48}
+{"t": 600385.0908199, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.261408, "tipo": "frame", "indice": 590, "fps": 12.48}
+{"t": 600385.2616042, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.289132, "tipo": "frame", "indice": 592, "fps": 12.47}
+{"t": 600385.2892559, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.3053445, "tipo": "frame", "indice": 592, "fps": 12.47}
+{"t": 600385.3055215, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.4542658, "tipo": "frame", "indice": 592, "fps": 12.47}
+{"t": 600385.4544312, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.4784156, "tipo": "frame", "indice": 594, "fps": 12.46}
+{"t": 600385.4785346, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.5055581, "tipo": "frame", "indice": 594, "fps": 12.46}
+{"t": 600385.5057339, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.6490873, "tipo": "frame", "indice": 594, "fps": 12.46}
+{"t": 600385.649437, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.6736056, "tipo": "frame", "indice": 596, "fps": 12.46}
+{"t": 600385.6737563, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.7040902, "tipo": "frame", "indice": 596, "fps": 12.46}
+{"t": 600385.7042466, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.846845, "tipo": "frame", "indice": 597, "fps": 12.46}
+{"t": 600385.847006, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.8737602, "tipo": "frame", "indice": 598, "fps": 12.46}
+{"t": 600385.874119, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600385.9030731, "tipo": "frame", "indice": 599, "fps": 12.45}
+{"t": 600385.903225, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.0230395, "tipo": "frame", "indice": 599, "fps": 12.45}
+{"t": 600386.0231969, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.0415361, "tipo": "frame", "indice": 600, "fps": 12.46}
+{"t": 600386.0416539, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.0614471, "tipo": "frame", "indice": 601, "fps": 12.46}
+{"t": 600386.0615578, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.2112172, "tipo": "frame", "indice": 601, "fps": 12.46}
+{"t": 600386.2113363, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.2302206, "tipo": "frame", "indice": 603, "fps": 12.45}
+{"t": 600386.2304954, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.2550731, "tipo": "frame", "indice": 603, "fps": 12.45}
+{"t": 600386.2552303, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.4126155, "tipo": "frame", "indice": 603, "fps": 12.45}
+{"t": 600386.4127736, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.4403834, "tipo": "frame", "indice": 605, "fps": 12.45}
+{"t": 600386.4424269, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.4717911, "tipo": "frame", "indice": 605, "fps": 12.45}
+{"t": 600386.471949, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.6464531, "tipo": "frame", "indice": 606, "fps": 12.45}
+{"t": 600386.6466497, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.6765496, "tipo": "frame", "indice": 607, "fps": 12.45}
+{"t": 600386.6767044, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.7130116, "tipo": "frame", "indice": 608, "fps": 12.44}
+{"t": 600386.7133248, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.893663, "tipo": "frame", "indice": 608, "fps": 12.44}
+{"t": 600386.8938112, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.9317246, "tipo": "frame", "indice": 610, "fps": 12.43}
+{"t": 600386.9332404, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600386.9615071, "tipo": "frame", "indice": 611, "fps": 12.43}
+{"t": 600386.9616746, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.1299048, "tipo": "frame", "indice": 611, "fps": 12.43}
+{"t": 600387.1300251, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.1444589, "tipo": "frame", "indice": 613, "fps": 12.42}
+{"t": 600387.1446341, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.1731363, "tipo": "frame", "indice": 613, "fps": 12.42}
+{"t": 600387.1733114, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.3239988, "tipo": "frame", "indice": 613, "fps": 12.42}
+{"t": 600387.3243002, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.3475423, "tipo": "frame", "indice": 615, "fps": 12.42}
+{"t": 600387.3478092, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.3750071, "tipo": "frame", "indice": 615, "fps": 12.42}
+{"t": 600387.3751797, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.5219208, "tipo": "frame", "indice": 615, "fps": 12.42}
+{"t": 600387.5220084, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.5375321, "tipo": "frame", "indice": 618, "fps": 12.42}
+{"t": 600387.5376264, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.5532888, "tipo": "frame", "indice": 618, "fps": 12.42}
+{"t": 600387.5533755, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.6569327, "tipo": "frame", "indice": 618, "fps": 12.42}
+{"t": 600387.657068, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.6746025, "tipo": "frame", "indice": 619, "fps": 12.42}
+{"t": 600387.6747654, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.6905784, "tipo": "frame", "indice": 620, "fps": 12.43}
+{"t": 600387.6906877, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.80025, "tipo": "frame", "indice": 620, "fps": 12.43}
+{"t": 600387.8003752, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.8252261, "tipo": "frame", "indice": 621, "fps": 12.43}
+{"t": 600387.8253266, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.8451562, "tipo": "frame", "indice": 621, "fps": 12.43}
+{"t": 600387.8452905, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600387.9678763, "tipo": "frame", "indice": 622, "fps": 12.42}
+{"t": 600387.9680357, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.0027773, "tipo": "frame", "indice": 623, "fps": 12.42}
+{"t": 600388.002972, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.0228458, "tipo": "frame", "indice": 623, "fps": 12.42}
+{"t": 600388.0229761, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.178761, "tipo": "frame", "indice": 624, "fps": 12.42}
+{"t": 600388.1789233, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.2061775, "tipo": "frame", "indice": 625, "fps": 12.42}
+{"t": 600388.2063272, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.2347547, "tipo": "frame", "indice": 626, "fps": 12.42}
+{"t": 600388.2349218, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.3829949, "tipo": "frame", "indice": 626, "fps": 12.42}
+{"t": 600388.3830988, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.3986269, "tipo": "frame", "indice": 628, "fps": 12.42}
+{"t": 600388.3987366, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.4255921, "tipo": "frame", "indice": 628, "fps": 12.42}
+{"t": 600388.4283498, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.5519397, "tipo": "frame", "indice": 628, "fps": 12.42}
+{"t": 600388.5520899, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.5701681, "tipo": "frame", "indice": 630, "fps": 12.42}
+{"t": 600388.5702755, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.5968939, "tipo": "frame", "indice": 630, "fps": 12.42}
+{"t": 600388.5970389, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.7078747, "tipo": "frame", "indice": 630, "fps": 12.42}
+{"t": 600388.7080222, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.7284805, "tipo": "frame", "indice": 632, "fps": 12.41}
+{"t": 600388.7285739, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.7511803, "tipo": "frame", "indice": 632, "fps": 12.41}
+{"t": 600388.7512811, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.8499975, "tipo": "frame", "indice": 632, "fps": 12.41}
+{"t": 600388.8501926, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.8696333, "tipo": "frame", "indice": 633, "fps": 12.41}
+{"t": 600388.8697291, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600388.8929621, "tipo": "frame", "indice": 634, "fps": 12.41}
+{"t": 600388.8930809, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.046513, "tipo": "frame", "indice": 634, "fps": 12.41}
+{"t": 600389.0468784, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.0678349, "tipo": "frame", "indice": 635, "fps": 12.41}
+{"t": 600389.0680323, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.117371, "tipo": "frame", "indice": 636, "fps": 12.4}
+{"t": 600389.1174719, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.2911875, "tipo": "frame", "indice": 636, "fps": 12.4}
+{"t": 600389.291335, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.3189819, "tipo": "frame", "indice": 638, "fps": 12.39}
+{"t": 600389.319137, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.3473186, "tipo": "frame", "indice": 638, "fps": 12.39}
+{"t": 600389.3474761, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.4858289, "tipo": "frame", "indice": 638, "fps": 12.39}
+{"t": 600389.4859765, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.4992742, "tipo": "frame", "indice": 640, "fps": 12.38}
+{"t": 600389.4993726, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.5126611, "tipo": "frame", "indice": 640, "fps": 12.38}
+{"t": 600389.5128731, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.6473053, "tipo": "frame", "indice": 640, "fps": 12.38}
+{"t": 600389.6474633, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.6587201, "tipo": "frame", "indice": 641, "fps": 12.38}
+{"t": 600389.6588138, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.6764716, "tipo": "frame", "indice": 641, "fps": 12.38}
+{"t": 600389.6765732, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.8058653, "tipo": "frame", "indice": 642, "fps": 12.37}
+{"t": 600389.8060565, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.8255849, "tipo": "frame", "indice": 643, "fps": 12.37}
+{"t": 600389.8257247, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600389.8423796, "tipo": "frame", "indice": 643, "fps": 12.37}
+{"t": 600389.8425481, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.0023013, "tipo": "frame", "indice": 643, "fps": 12.37}
+{"t": 600390.0024338, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.0207226, "tipo": "frame", "indice": 645, "fps": 12.37}
+{"t": 600390.0208783, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.0375611, "tipo": "frame", "indice": 646, "fps": 12.37}
+{"t": 600390.0376635, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.1907066, "tipo": "frame", "indice": 646, "fps": 12.37}
+{"t": 600390.1909063, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.2075605, "tipo": "frame", "indice": 648, "fps": 12.37}
+{"t": 600390.2077016, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.2264484, "tipo": "frame", "indice": 648, "fps": 12.37}
+{"t": 600390.2265979, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600390.5355116, "tipo": "frame", "indice": 648, "fps": 12.37}
+{"t": 600390.5356528, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.5356975, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "conduciendo_normal", "regla": 12}
+{"t": 600390.5479248, "tipo": "frame", "indice": 652, "fps": 12.37}
+{"t": 600390.5480715, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.5669894, "tipo": "frame", "indice": 652, "fps": 12.37}
+{"t": 600390.5671349, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.6768543, "tipo": "frame", "indice": 653, "fps": 12.37}
+{"t": 600390.6769552, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.6932233, "tipo": "frame", "indice": 654, "fps": 12.37}
+{"t": 600390.6933502, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.7141048, "tipo": "frame", "indice": 654, "fps": 12.37}
+{"t": 600390.7143488, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.8619835, "tipo": "frame", "indice": 654, "fps": 12.37}
+{"t": 600390.8621537, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.8819357, "tipo": "frame", "indice": 656, "fps": 12.37}
+{"t": 600390.8820892, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600390.9007241, "tipo": "frame", "indice": 656, "fps": 12.37}
+{"t": 600390.9008477, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.0343508, "tipo": "frame", "indice": 657, "fps": 12.37}
+{"t": 600391.0345182, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.0529748, "tipo": "frame", "indice": 658, "fps": 12.37}
+{"t": 600391.0531825, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.0717352, "tipo": "frame", "indice": 659, "fps": 12.37}
+{"t": 600391.0718976, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.2252082, "tipo": "frame", "indice": 659, "fps": 12.37}
+{"t": 600391.2253776, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.2406672, "tipo": "frame", "indice": 661, "fps": 12.37}
+{"t": 600391.2407876, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.2560581, "tipo": "frame", "indice": 661, "fps": 12.37}
+{"t": 600391.2561719, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.3959041, "tipo": "frame", "indice": 661, "fps": 12.37}
+{"t": 600391.3961293, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.419127, "tipo": "frame", "indice": 662, "fps": 12.36}
+{"t": 600391.4192703, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.4413033, "tipo": "frame", "indice": 663, "fps": 12.36}
+{"t": 600391.4414131, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.5783141, "tipo": "frame", "indice": 663, "fps": 12.36}
+{"t": 600391.5784274, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.5978819, "tipo": "frame", "indice": 664, "fps": 12.36}
+{"t": 600391.5979786, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.6161586, "tipo": "frame", "indice": 665, "fps": 12.36}
+{"t": 600391.6170855, "tipo": "decision", "regla": 12, "accion": "mantener", "estado": "conduciendo_normal", "razon": "sin condiciones especiales"}
+{"t": 600391.9635559, "tipo": "frame", "indice": 665, "fps": 12.36}
+{"t": 600391.9636999, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600391.9637566, "tipo": "transicion", "de": "conduciendo_normal", "a": "siguiendo_vehiculo", "regla": 8}
+{"t": 600392.0385723, "tipo": "frame", "indice": 668, "fps": 12.35}
+{"t": 600392.0386673, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.0607111, "tipo": "frame", "indice": 669, "fps": 12.34}
+{"t": 600392.060856, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.2135492, "tipo": "frame", "indice": 669, "fps": 12.34}
+{"t": 600392.2136841, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.2450204, "tipo": "frame", "indice": 671, "fps": 12.33}
+{"t": 600392.2451718, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.2800443, "tipo": "frame", "indice": 671, "fps": 12.33}
+{"t": 600392.2801394, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.4109348, "tipo": "frame", "indice": 672, "fps": 12.33}
+{"t": 600392.4111019, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.4390048, "tipo": "frame", "indice": 673, "fps": 12.33}
+{"t": 600392.4391066, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.4617348, "tipo": "frame", "indice": 673, "fps": 12.33}
+{"t": 600392.4618792, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.5839426, "tipo": "frame", "indice": 674, "fps": 12.32}
+{"t": 600392.5840441, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.6177362, "tipo": "frame", "indice": 675, "fps": 12.32}
+{"t": 600392.6178915, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.6440201, "tipo": "frame", "indice": 675, "fps": 12.32}
+{"t": 600392.6441127, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.7685489, "tipo": "frame", "indice": 676, "fps": 12.32}
+{"t": 600392.7686768, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.7943126, "tipo": "frame", "indice": 677, "fps": 12.32}
+{"t": 600392.7944615, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.8243876, "tipo": "frame", "indice": 677, "fps": 12.32}
+{"t": 600392.8246535, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600392.9734442, "tipo": "frame", "indice": 678, "fps": 12.32}
+{"t": 600392.9736053, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.0076765, "tipo": "frame", "indice": 679, "fps": 12.31}
+{"t": 600393.0078052, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.0336017, "tipo": "frame", "indice": 680, "fps": 12.31}
+{"t": 600393.0337489, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.1937409, "tipo": "frame", "indice": 680, "fps": 12.31}
+{"t": 600393.1940395, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.2324329, "tipo": "frame", "indice": 682, "fps": 12.31}
+{"t": 600393.232594, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.2657818, "tipo": "frame", "indice": 682, "fps": 12.31}
+{"t": 600393.2658748, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.4577567, "tipo": "frame", "indice": 683, "fps": 12.31}
+{"t": 600393.4578829, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.4954947, "tipo": "frame", "indice": 685, "fps": 12.31}
+{"t": 600393.4956704, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.5243465, "tipo": "frame", "indice": 685, "fps": 12.31}
+{"t": 600393.5246235, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.6845259, "tipo": "frame", "indice": 686, "fps": 12.31}
+{"t": 600393.6846604, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.7050329, "tipo": "frame", "indice": 688, "fps": 12.31}
+{"t": 600393.7052077, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.7356884, "tipo": "frame", "indice": 688, "fps": 12.31}
+{"t": 600393.7358383, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.8786788, "tipo": "frame", "indice": 688, "fps": 12.31}
+{"t": 600393.8790598, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.9094597, "tipo": "frame", "indice": 690, "fps": 12.3}
+{"t": 600393.9097555, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600393.9397053, "tipo": "frame", "indice": 690, "fps": 12.3}
+{"t": 600393.9398355, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.0877609, "tipo": "frame", "indice": 691, "fps": 12.3}
+{"t": 600394.0879194, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.109196, "tipo": "frame", "indice": 693, "fps": 12.31}
+{"t": 600394.1093645, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.1291577, "tipo": "frame", "indice": 693, "fps": 12.31}
+{"t": 600394.1292612, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.2595422, "tipo": "frame", "indice": 693, "fps": 12.31}
+{"t": 600394.2596999, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.288845, "tipo": "frame", "indice": 694, "fps": 12.3}
+{"t": 600394.2889489, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.3188579, "tipo": "frame", "indice": 695, "fps": 12.3}
+{"t": 600394.319018, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.4392364, "tipo": "frame", "indice": 695, "fps": 12.3}
+{"t": 600394.4393512, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.4627051, "tipo": "frame", "indice": 697, "fps": 12.3}
+{"t": 600394.4675069, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.4920472, "tipo": "frame", "indice": 697, "fps": 12.3}
+{"t": 600394.4921862, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.6281927, "tipo": "frame", "indice": 698, "fps": 12.31}
+{"t": 600394.6286687, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.6556042, "tipo": "frame", "indice": 699, "fps": 12.31}
+{"t": 600394.6557847, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.6812036, "tipo": "frame", "indice": 699, "fps": 12.31}
+{"t": 600394.6813661, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.8130209, "tipo": "frame", "indice": 700, "fps": 12.3}
+{"t": 600394.8131433, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.9024406, "tipo": "frame", "indice": 701, "fps": 12.3}
+{"t": 600394.9025858, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600394.9314841, "tipo": "frame", "indice": 702, "fps": 12.29}
+{"t": 600394.9316207, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.1062358, "tipo": "frame", "indice": 702, "fps": 12.29}
+{"t": 600395.1063884, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.1380459, "tipo": "frame", "indice": 703, "fps": 12.29}
+{"t": 600395.1381808, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.1947892, "tipo": "frame", "indice": 704, "fps": 12.28}
+{"t": 600395.1949604, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.3508139, "tipo": "frame", "indice": 704, "fps": 12.28}
+{"t": 600395.3509729, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.3773158, "tipo": "frame", "indice": 706, "fps": 12.26}
+{"t": 600395.37746, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.4048727, "tipo": "frame", "indice": 706, "fps": 12.26}
+{"t": 600395.4049829, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.5483674, "tipo": "frame", "indice": 706, "fps": 12.26}
+{"t": 600395.5485006, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.5816084, "tipo": "frame", "indice": 708, "fps": 12.26}
+{"t": 600395.5818185, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.6116666, "tipo": "frame", "indice": 708, "fps": 12.26}
+{"t": 600395.6118338, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.7701916, "tipo": "frame", "indice": 708, "fps": 12.26}
+{"t": 600395.7704605, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.8031093, "tipo": "frame", "indice": 710, "fps": 12.25}
+{"t": 600395.8033678, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600395.8345043, "tipo": "frame", "indice": 710, "fps": 12.25}
+{"t": 600395.8346534, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600396.0019457, "tipo": "frame", "indice": 711, "fps": 12.25}
+{"t": 600396.0021076, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600396.034183, "tipo": "frame", "indice": 712, "fps": 12.24}
+{"t": 600396.0343596, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600396.0626025, "tipo": "frame", "indice": 713, "fps": 12.24}
+{"t": 600396.0627934, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600398.3628096, "tipo": "frame", "indice": 713, "fps": 12.24}
+{"t": 600398.3630144, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600398.5112193, "tipo": "frame", "indice": 715, "fps": 12.21}
+{"t": 600398.5114883, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600398.6765141, "tipo": "frame", "indice": 716, "fps": 11.8}
+{"t": 600398.6803408, "tipo": "decision", "regla": 8, "accion": "frenar_suave", "estado": "siguiendo_vehiculo", "razon": "vehículo en frente cercano"}
+{"t": 600400.4338637, "tipo": "frame", "indice": 716, "fps": 11.8}
+{"t": 600400.4633324, "tipo": "decision", "regla": 9, "accion": "rebasar_izq", "estado": "rebasando", "razon": "condiciones de rebase cumplidas"}
+{"t": 600400.4637487, "tipo": "transicion", "de": "siguiendo_vehiculo", "a": "rebasando", "regla": 9}
+{"t": 600401.2440567, "tipo": "frame", "indice": 719, "fps": 11.62}
+{"t": 600401.244663, "tipo": "decision", "regla": 9, "accion": "rebasar_izq", "estado": "rebasando", "razon": "condiciones de rebase cumplidas"}
+{"t": 600402.0898343, "tipo": "frame", "indice": 720, "fps": 11.37}
+{"t": 600402.0905162, "tipo": "decision", "regla": 9, "accion": "rebasar_izq", "estado": "rebasando", "razon": "condiciones de rebase cumplidas"}
+{"t": 600407.4525844, "tipo": "seguridad", "msg": "paro de emergencia activado"}
+{"t": 600408.1326313, "tipo": "frame", "indice": 722, "fps": 11.25}
+{"t": 600408.1332982, "tipo": "decision", "regla": 1, "accion": "alto_total", "estado": "paro_emergencia", "razon": "paro manual activado"}
+{"t": 600408.1335991, "tipo": "transicion", "de": "rebasando", "a": "paro_emergencia", "regla": 1}

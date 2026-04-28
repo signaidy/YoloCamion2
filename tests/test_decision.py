@@ -81,6 +81,27 @@ def test_regla4_semaforo_rojo():
     assert r.estado_nuevo == EstadoFSM.DETENIDO_SEMAFORO
 
 
+def test_regla4_semaforo_rojo_sticky():
+    """Un solo frame sin detección no debe salir de DETENIDO_SEMAFORO."""
+    fsm = FSMDecision()
+    # Llegar a DETENIDO_SEMAFORO
+    _decidir_n(fsm, _escena(semaforo_visible=EstadoSemaforo.ROJO), _N_FRAMES_OCUPADO)
+    # Un frame sin semáforo visible
+    r = fsm.decidir(_escena(semaforo_visible=None))
+    # Debe mantenerse en DETENIDO_SEMAFORO por stickiness
+    assert r.regla == 4
+    assert r.estado_nuevo == EstadoFSM.DETENIDO_SEMAFORO
+
+
+def test_regla4_semaforo_rojo_sale_tras_libre():
+    """Después de _N_FRAMES_LIBRE frames sin semáforo, debe salir."""
+    fsm = FSMDecision()
+    _decidir_n(fsm, _escena(semaforo_visible=EstadoSemaforo.ROJO), _N_FRAMES_OCUPADO)
+    r = _decidir_n(fsm, _escena(semaforo_visible=None), _N_FRAMES_LIBRE)
+    assert r.regla != 4
+    assert r.estado_nuevo != EstadoFSM.DETENIDO_SEMAFORO
+
+
 # ── Regla 5: semáforo amarillo ───────────────────────────────────────────────
 
 def test_regla5_semaforo_amarillo():
@@ -148,6 +169,25 @@ def test_regla8_sigue_vehiculo():
     assert r.estado_nuevo == EstadoFSM.SIGUIENDO_VEHICULO
 
 
+def test_regla8_sticky_un_frame_sin_deteccion_no_sale():
+    """Un solo frame sin vehículo adelante no debe salir de SIGUIENDO_VEHICULO."""
+    fsm = FSMDecision()
+    # Llegar a SIGUIENDO_VEHICULO con TTC alto (MANTENER)
+    _decidir_n(fsm, _escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=10.0), _N_FRAMES_OCUPADO)
+    assert fsm.estado_actual == EstadoFSM.SIGUIENDO_VEHICULO
+    # Un frame sin detección
+    r = fsm.decidir(_escena(frente_cercano_ocupado=False))
+    assert r.estado_nuevo == EstadoFSM.SIGUIENDO_VEHICULO
+
+
+def test_regla8_sticky_sale_tras_frames_libre():
+    """Después de _N_FRAMES_LIBRE frames sin vehículo, debe salir de SIGUIENDO_VEHICULO."""
+    fsm = FSMDecision()
+    _decidir_n(fsm, _escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=10.0), _N_FRAMES_OCUPADO)
+    r = _decidir_n(fsm, _escena(frente_cercano_ocupado=False), _N_FRAMES_LIBRE)
+    assert r.estado_nuevo != EstadoFSM.SIGUIENDO_VEHICULO
+
+
 # ── Regla 9: iniciar rebase (requiere TTC bajo, R9b) ────────────────────────
 
 def test_regla9_rebase_cuando_condiciones_cumplidas():
@@ -200,11 +240,11 @@ def test_regla11_semaforo_verde_frente_libre():
 
 # ── Regla 12: default ────────────────────────────────────────────────────────
 
-def test_regla12_default_mantener():
+def test_regla12_default_acelerar():
     fsm = FSMDecision()
     r = fsm.decidir(_escena())
     assert r.regla == 12
-    assert r.accion == Accion.MANTENER
+    assert r.accion == Accion.ACELERAR
     assert r.estado_nuevo == EstadoFSM.CONDUCIENDO_NORMAL
 
 
@@ -267,6 +307,28 @@ def test_regla35_no_se_dispara_si_ttc_entre_freno_fuerte_y_freno_suave():
         ttc_minimo_frente_s=(_TTC_FRENO_FUERTE + _TTC_FRENO_SUAVE) / 2,  # ~2.25s
     )
     r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO)
+    assert r.regla != 35
+
+
+def test_regla35_sticky_mantiene_freno_mientras_ttc_bajo_freno_suave():
+    """Estando en FRENANDO_PREVENTIVO, un TTC entre 1.5s y 3.0s mantiene el freno (stickiness)."""
+    fsm = FSMDecision()
+    # Entrar a FRENANDO_PREVENTIVO con TTC crítico
+    fsm.decidir(_escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=0.8))
+    assert fsm.estado_actual == EstadoFSM.FRENANDO_PREVENTIVO
+    # TTC sube a zona intermedia (entre _TTC_FRENO_FUERTE y _TTC_FRENO_SUAVE)
+    ttc_intermedio = (_TTC_FRENO_FUERTE + _TTC_FRENO_SUAVE) / 2  # ~2.25s
+    r = fsm.decidir(_escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=ttc_intermedio))
+    assert r.regla == 35  # debe mantenerse frenando
+    assert r.estado_nuevo == EstadoFSM.FRENANDO_PREVENTIVO
+
+
+def test_regla35_sticky_sale_cuando_ttc_supera_freno_suave():
+    """Cuando TTC >= _TTC_FRENO_SUAVE (3s), sale de FRENANDO_PREVENTIVO."""
+    fsm = FSMDecision()
+    fsm.decidir(_escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=0.8))
+    # TTC sube por encima de _TTC_FRENO_SUAVE
+    r = fsm.decidir(_escena(frente_cercano_ocupado=False, ttc_minimo_frente_s=5.0))
     assert r.regla != 35
 
 
