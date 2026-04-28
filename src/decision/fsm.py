@@ -13,7 +13,7 @@ import time
 from dataclasses import dataclass, field
 from typing import Optional
 
-from src.tipos import Accion, EstadoEscena, EstadoSemaforo
+from src.tipos import Accion, EstadoEscena, EstadoSemaforo, SetpointControl
 from src.decision.estado import EstadoFSM
 
 _N_FRAMES_OCUPADO = 4   # frames consecutivos para declarar "ocupado" (mss ~5-10 FPS → ~0.5-0.8s)
@@ -48,12 +48,41 @@ class _Contador:
         return self.n_negativos >= umbral
 
 
+# Mapa Accion -> setpoint base. La Capa 3 (PID) consume estos valores como
+# objetivos continuos; el PID se encarga de suavizarlos. La desviacion del
+# volante se sobreescribe en el bucle del piloto con la salida del detector
+# de carriles, salvo para acciones con giro intencional (REBASAR_*).
+_SETPOINTS: dict[Accion, SetpointControl] = {
+    Accion.MANTENER:      SetpointControl(velocidad_objetivo_norm=0.30, freno_objetivo=0.0,  desviacion_volante=0.0),
+    Accion.ACELERAR:      SetpointControl(velocidad_objetivo_norm=0.60, freno_objetivo=0.0,  desviacion_volante=0.0),
+    Accion.FRENAR_SUAVE:  SetpointControl(velocidad_objetivo_norm=0.0,  freno_objetivo=0.40, desviacion_volante=0.0),
+    Accion.FRENAR_FUERTE: SetpointControl(velocidad_objetivo_norm=0.0,  freno_objetivo=0.80, desviacion_volante=0.0),
+    Accion.ALTO_TOTAL:    SetpointControl(velocidad_objetivo_norm=0.0,  freno_objetivo=1.00, desviacion_volante=0.0),
+    Accion.GIRAR_IZQ:     SetpointControl(velocidad_objetivo_norm=0.20, freno_objetivo=0.0,  desviacion_volante=-0.5),
+    Accion.GIRAR_DER:     SetpointControl(velocidad_objetivo_norm=0.20, freno_objetivo=0.0,  desviacion_volante=0.5),
+    Accion.REBASAR_IZQ:   SetpointControl(velocidad_objetivo_norm=0.80, freno_objetivo=0.0,  desviacion_volante=-0.3),
+    Accion.REBASAR_DER:   SetpointControl(velocidad_objetivo_norm=0.80, freno_objetivo=0.0,  desviacion_volante=0.3),
+    Accion.ESPERAR:       SetpointControl(velocidad_objetivo_norm=0.0,  freno_objetivo=0.0,  desviacion_volante=0.0),
+}
+
+
+def _setpoint_para(accion: Accion) -> SetpointControl:
+    """Devuelve copia del setpoint base de una accion (mutable downstream)."""
+    base = _SETPOINTS.get(accion, SetpointControl())
+    return SetpointControl(
+        velocidad_objetivo_norm=base.velocidad_objetivo_norm,
+        freno_objetivo=base.freno_objetivo,
+        desviacion_volante=base.desviacion_volante,
+    )
+
+
 @dataclass
 class ResultadoDecision:
     accion: Accion
     estado_nuevo: EstadoFSM
     regla: int
     razon: str
+    setpoint: SetpointControl = field(default_factory=SetpointControl)
 
 
 class FSMDecision:
@@ -84,6 +113,7 @@ class FSMDecision:
     def decidir(self, escena: EstadoEscena) -> ResultadoDecision:
         self._actualizar_contadores(escena)
         resultado = self._evaluar_reglas(escena)
+        resultado.setpoint = _setpoint_para(resultado.accion)
         self._estado = resultado.estado_nuevo
         return resultado
 

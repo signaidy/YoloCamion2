@@ -327,3 +327,74 @@ def test_regla9b_si_rebasa_cuando_ttc_es_bajo_y_condiciones_ok():
     r = fsm.decidir(escena)
     assert r.regla == 9
     assert r.accion == Accion.REBASAR_IZQ
+
+
+# ── ResultadoDecision lleva SetpointControl (Fase 2.2) ─────────────────────
+
+
+def test_resultado_decision_incluye_setpoint_para_pid():
+    """ResultadoDecision debe traer un SetpointControl listo para los PIDs."""
+    fsm = FSMDecision()
+    r = fsm.decidir(_escena())   # default -> R12 MANTENER
+    assert r.setpoint is not None
+    assert 0.0 <= r.setpoint.velocidad_objetivo_norm <= 1.0
+    assert 0.0 <= r.setpoint.freno_objetivo <= 1.0
+    assert -1.0 <= r.setpoint.desviacion_volante <= 1.0
+
+
+def test_setpoint_acelerar_es_velocidad_alta_sin_freno():
+    fsm = FSMDecision()
+    fsm._c_frente_cercano.n_negativos = _N_FRAMES_LIBRE
+    fsm._c_semaforo_verde.n_positivos = _N_FRAMES_OCUPADO
+    r = fsm.decidir(_escena(semaforo_visible=EstadoSemaforo.VERDE))
+    assert r.accion == Accion.ACELERAR
+    assert r.setpoint.velocidad_objetivo_norm >= 0.5
+    assert r.setpoint.freno_objetivo == 0.0
+
+
+def test_setpoint_alto_total_es_freno_completo_sin_velocidad():
+    fsm = FSMDecision()
+    fsm.activar_paro_manual()
+    r = fsm.decidir(_escena())
+    assert r.accion == Accion.ALTO_TOTAL
+    assert r.setpoint.freno_objetivo >= 0.9
+    assert r.setpoint.velocidad_objetivo_norm == 0.0
+
+
+def test_setpoint_frenar_fuerte_aplica_freno_alto():
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=0.8,
+    )
+    r = fsm.decidir(escena)
+    assert r.accion == Accion.FRENAR_FUERTE
+    assert r.setpoint.freno_objetivo >= 0.7
+    assert r.setpoint.velocidad_objetivo_norm == 0.0
+
+
+def test_setpoint_frenar_suave_aplica_freno_moderado():
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=2.0,
+    )
+    r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO)
+    assert r.accion == Accion.FRENAR_SUAVE
+    assert 0.2 <= r.setpoint.freno_objetivo < 0.7
+    assert r.setpoint.velocidad_objetivo_norm == 0.0
+
+
+def test_setpoint_rebase_lleva_desviacion_de_volante_a_la_izquierda():
+    fsm = FSMDecision()
+    _decidir_n(fsm, _escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=2.5),
+                _N_FRAMES_OCUPADO)
+    fsm._t_siguiendo_desde = time.monotonic() - 9.0
+    fsm._c_espejo_izq.n_negativos = _N_FRAMES_LIBRE + 1
+    r = fsm.decidir(_escena(
+        frente_cercano_ocupado=True,
+        espejo_izq_ocupado=False,
+        ttc_minimo_frente_s=2.5,
+    ))
+    assert r.accion == Accion.REBASAR_IZQ
+    assert r.setpoint.desviacion_volante < 0   # negativo = izquierda
