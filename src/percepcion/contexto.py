@@ -1,3 +1,4 @@
+import math
 from collections import deque
 from pathlib import Path
 from typing import Optional
@@ -7,6 +8,7 @@ import numpy as np
 import yaml
 
 from src.tipos import Clase, EstadoEscena, EstadoSemaforo, Region, Seguimiento
+from src.percepcion.fisica import EstimadorFisicaVisual
 from src.percepcion.semaforo import clasificar_semaforo
 
 _NOMBRE_A_REGION = {
@@ -53,21 +55,34 @@ def _intersecta(caja: tuple, roi: tuple) -> bool:
 
 
 class AnalizadorContexto:
-    """Convierte una lista de Seguimiento en EstadoEscena usando ROIs configurables."""
+    """Convierte una lista de Seguimiento en EstadoEscena usando ROIs configurables.
+
+    Si se inyecta un EstimadorFisicaVisual, cada Seguimiento queda anotado
+    con su FisicaVisual (TTC y velocidad relativa por escalado de bbox), y el
+    EstadoEscena reporta el TTC minimo de los vehiculos en frente cercano o
+    lejano + el id del vehiculo critico.
+    """
 
     def __init__(
         self,
         rois: Optional[dict[Region, tuple]] = None,
         ventana_confianza: int = 10,
+        estimador_fisica: Optional[EstimadorFisicaVisual] = None,
     ):
         self._rois = rois or _ROI_DEFAULT
         self._historial_tracks: deque[int] = deque(maxlen=ventana_confianza)
+        self._estimador_fisica = estimador_fisica
 
     def analizar(
         self,
         seguimientos: list[Seguimiento],
         imagen: Optional[np.ndarray] = None,
+        timestamp: Optional[float] = None,
     ) -> EstadoEscena:
+        ts = timestamp if timestamp is not None else time.monotonic()
+        if self._estimador_fisica is not None:
+            self._estimador_fisica.actualizar(seguimientos, ts)
+
         frente_cercano = False
         frente_lejano = False
         peaton_riesgo = False
@@ -82,6 +97,9 @@ class AnalizadorContexto:
         roi_ed = self._rois[Region.ESPEJO_DER]
         roi_li = self._rois[Region.LATERAL_IZQ]
         roi_ld = self._rois[Region.LATERAL_DER]
+
+        ttc_min = math.inf
+        id_critico: Optional[int] = None
 
         for seg in seguimientos:
             caja = seg.caja
@@ -102,6 +120,7 @@ class AnalizadorContexto:
                     peaton_riesgo = True
 
             elif seg.clase in (Clase.VEHICULO, Clase.MOTOCICLETA):
+                en_frente = _intersecta(caja, roi_fc) or _intersecta(caja, roi_fl)
                 if _intersecta(caja, roi_fc) and seg.area >= _AREA_MIN_FRENTE:
                     frente_cercano = True
                 if _intersecta(caja, roi_fl):
@@ -110,6 +129,14 @@ class AnalizadorContexto:
                     espejo_izq = True
                 if _intersecta(caja, roi_ed) and seg.edad >= 3 and seg.area >= _AREA_MIN_ESPEJO:
                     espejo_der = True
+
+                # TTC minimo solo cuenta vehiculos en zona frontal: el riesgo
+                # de colision frontal es lo que dispara FRENAR_FUERTE (R3.5).
+                if en_frente and seg.fisica is not None:
+                    ttc = seg.fisica.ttc_segundos
+                    if ttc < ttc_min:
+                        ttc_min = ttc
+                        id_critico = seg.id_seguimiento
 
         n_tracks = len(seguimientos)
         self._historial_tracks.append(n_tracks)
@@ -128,5 +155,7 @@ class AnalizadorContexto:
             espejo_der_ocupado=espejo_der,
             vehiculos_totales=n_tracks,
             confianza_percepcion=confianza,
-            timestamp=time.monotonic(),
+            timestamp=ts,
+            ttc_minimo_frente_s=ttc_min,
+            vehiculo_critico_id=id_critico,
         )
