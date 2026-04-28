@@ -1,9 +1,18 @@
+import math
 import time
 import pytest
 
 from src.tipos import Accion, EstadoEscena, EstadoSemaforo
 from src.decision.estado import EstadoFSM
-from src.decision.fsm import FSMDecision, _N_FRAMES_OCUPADO, _N_FRAMES_LIBRE, _T_ESPERA_ALTO
+from src.decision.fsm import (
+    FSMDecision,
+    _N_FRAMES_OCUPADO,
+    _N_FRAMES_LIBRE,
+    _T_ESPERA_ALTO,
+    _TTC_FRENO_FUERTE,
+    _TTC_FRENO_SUAVE,
+    _TTC_REBASE_OK,
+)
 
 
 def _escena(**kwargs) -> EstadoEscena:
@@ -122,22 +131,31 @@ def test_regla7_cruza_tras_espera(monkeypatch):
     assert r.estado_nuevo == EstadoFSM.CRUZANDO
 
 
-# ── Regla 8: seguir vehículo ─────────────────────────────────────────────────
+# ── Regla 8: seguir vehículo (con TTC en zona de freno) ─────────────────────
 
 def test_regla8_sigue_vehiculo():
+    """R8 con TTC bajo (en zona de freno) -> FRENAR_SUAVE.
+
+    Tras la refinacion R8b: la accion depende del TTC. Sin TTC poblado
+    (default inf) el FSM solo MANTIENE distancia. Para frenar suave hace
+    falta evidencia visual de aproximacion (TTC < _TTC_FRENO_SUAVE).
+    """
     fsm = FSMDecision()
-    r = _decidir_n(fsm, _escena(frente_cercano_ocupado=True), _N_FRAMES_OCUPADO)
+    escena = _escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=2.0)
+    r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO)
     assert r.regla == 8
     assert r.accion == Accion.FRENAR_SUAVE
     assert r.estado_nuevo == EstadoFSM.SIGUIENDO_VEHICULO
 
 
-# ── Regla 9: iniciar rebase ──────────────────────────────────────────────────
+# ── Regla 9: iniciar rebase (requiere TTC bajo, R9b) ────────────────────────
 
 def test_regla9_rebase_cuando_condiciones_cumplidas():
+    """R9 ahora requiere ademas TTC frontal < _TTC_REBASE_OK (R9b)."""
     fsm = FSMDecision()
-    # Establecer estado SIGUIENDO_VEHICULO
-    _decidir_n(fsm, _escena(frente_cercano_ocupado=True), _N_FRAMES_OCUPADO)
+    # Establecer estado SIGUIENDO_VEHICULO con TTC en zona de freno
+    _decidir_n(fsm, _escena(frente_cercano_ocupado=True, ttc_minimo_frente_s=2.5),
+                _N_FRAMES_OCUPADO)
     assert fsm.estado_actual == EstadoFSM.SIGUIENDO_VEHICULO
 
     # Simular que ya llevamos suficiente tiempo siguiendo (> _T_MIN_SIGUIENDO)
@@ -145,7 +163,11 @@ def test_regla9_rebase_cuando_condiciones_cumplidas():
     # Espejo izquierdo libre por suficientes frames
     fsm._c_espejo_izq.n_negativos = _N_FRAMES_LIBRE + 1
 
-    r = fsm.decidir(_escena(frente_cercano_ocupado=True, espejo_izq_ocupado=False))
+    r = fsm.decidir(_escena(
+        frente_cercano_ocupado=True,
+        espejo_izq_ocupado=False,
+        ttc_minimo_frente_s=2.5,   # < _TTC_REBASE_OK -> rebasar conviene
+    ))
     assert r.regla == 9
     assert r.accion == Accion.REBASAR_IZQ
     assert r.estado_nuevo == EstadoFSM.REBASANDO
@@ -198,3 +220,110 @@ def test_paro_manual_tiene_maxima_prioridad():
     ))
     assert r.regla == 1
     assert r.estado_nuevo == EstadoFSM.PARO_EMERGENCIA
+
+
+# ── Reglas TTC (Fase 2.1) ────────────────────────────────────────────────────
+
+
+def test_regla35_ttc_critico_dispara_freno_fuerte():
+    """TTC < _TTC_FRENO_FUERTE en frente -> R3.5 FRENAR_FUERTE inmediato (sin histeresis)."""
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=_TTC_FRENO_FUERTE - 0.2,   # 1.3s p.ej.
+        vehiculo_critico_id=99,
+    )
+    r = fsm.decidir(escena)
+    assert r.regla == 35
+    assert r.accion == Accion.FRENAR_FUERTE
+    assert r.estado_nuevo == EstadoFSM.FRENANDO_PREVENTIVO
+    assert "ttc" in r.razon.lower() or "TTC" in r.razon
+
+
+def test_regla35_tiene_prioridad_sobre_seguir_vehiculo():
+    """Aunque frente este ocupado por varios frames (R8 candidata), R3.5 gana si TTC critico."""
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=0.8,   # critico
+    )
+    r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO + 1)
+    assert r.regla == 35
+
+
+def test_regla35_no_se_dispara_si_ttc_es_alto():
+    """TTC infinito = no critico, R3.5 no debe disparar."""
+    fsm = FSMDecision()
+    escena = _escena(frente_cercano_ocupado=False, ttc_minimo_frente_s=math.inf)
+    r = fsm.decidir(escena)
+    assert r.regla != 35
+
+
+def test_regla35_no_se_dispara_si_ttc_entre_freno_fuerte_y_freno_suave():
+    """TTC en zona intermedia debe ir a R8b, no a R3.5."""
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=(_TTC_FRENO_FUERTE + _TTC_FRENO_SUAVE) / 2,  # ~2.25s
+    )
+    r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO)
+    assert r.regla != 35
+
+
+def test_regla8b_frente_ocupado_y_ttc_intermedio_frena_suave():
+    """R8 con TTC entre _TTC_FRENO_FUERTE y _TTC_FRENO_SUAVE -> FRENAR_SUAVE."""
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=2.5,   # entre 1.5 y 3.0
+    )
+    r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO)
+    assert r.regla == 8
+    assert r.accion == Accion.FRENAR_SUAVE
+    assert r.estado_nuevo == EstadoFSM.SIGUIENDO_VEHICULO
+
+
+def test_regla8b_frente_ocupado_pero_ttc_alto_solo_mantiene():
+    """Si frente ocupado pero TTC > _TTC_FRENO_SUAVE: vamos a velocidad similar, MANTENER."""
+    fsm = FSMDecision()
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        ttc_minimo_frente_s=10.0,   # muy alto
+    )
+    r = _decidir_n(fsm, escena, _N_FRAMES_OCUPADO)
+    assert r.accion == Accion.MANTENER
+    assert r.estado_nuevo == EstadoFSM.SIGUIENDO_VEHICULO
+
+
+def test_regla9b_no_rebasa_si_ttc_alto():
+    """Si TTC frontal > _TTC_REBASE_OK, el de adelante avanza igual o mas: NO rebasar."""
+    fsm = FSMDecision()
+    _decidir_n(fsm, _escena(frente_cercano_ocupado=True), _N_FRAMES_OCUPADO)
+    fsm._t_siguiendo_desde = time.monotonic() - 9.0
+    fsm._c_espejo_izq.n_negativos = _N_FRAMES_LIBRE + 1
+
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        espejo_izq_ocupado=False,
+        ttc_minimo_frente_s=_TTC_REBASE_OK + 1.0,   # frente avanza, no hay urgencia
+    )
+    r = fsm.decidir(escena)
+    assert r.regla != 9
+    assert r.accion != Accion.REBASAR_IZQ
+
+
+def test_regla9b_si_rebasa_cuando_ttc_es_bajo_y_condiciones_ok():
+    """Si TTC frontal < _TTC_REBASE_OK Y siguiendo > _T_MIN_SIGUIENDO Y espejo izq libre: rebasar."""
+    fsm = FSMDecision()
+    _decidir_n(fsm, _escena(frente_cercano_ocupado=True), _N_FRAMES_OCUPADO)
+    fsm._t_siguiendo_desde = time.monotonic() - 9.0
+    fsm._c_espejo_izq.n_negativos = _N_FRAMES_LIBRE + 1
+
+    escena = _escena(
+        frente_cercano_ocupado=True,
+        espejo_izq_ocupado=False,
+        ttc_minimo_frente_s=_TTC_REBASE_OK - 1.0,   # frente lento -> conviene rebasar
+    )
+    r = fsm.decidir(escena)
+    assert r.regla == 9
+    assert r.accion == Accion.REBASAR_IZQ

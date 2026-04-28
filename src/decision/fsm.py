@@ -1,8 +1,14 @@
-"""Máquina de estados de decisión con 12 reglas priorizadas.
+"""Máquina de estados de decisión con 12 reglas priorizadas + reglas TTC.
 
 Las reglas se evalúan en orden; la primera coincidencia gana.
 Toda transición emite la razón y el número de regla en el log.
+
+Reglas TTC (Fase 2.1):
+  R3.5  TTC frontal < _TTC_FRENO_FUERTE  -> FRENAR_FUERTE inmediato
+  R8b   refina R8: si TTC entre umbrales -> FRENAR_SUAVE; si alto -> MANTENER
+  R9b   refina R9 rebase: solo si TTC frontal < _TTC_REBASE_OK
 """
+import math
 import time
 from dataclasses import dataclass, field
 from typing import Optional
@@ -14,6 +20,11 @@ _N_FRAMES_OCUPADO = 4   # frames consecutivos para declarar "ocupado" (mss ~5-10
 _N_FRAMES_LIBRE   = 10  # frames consecutivos para declarar "libre"  (mss → ~1-2s sin detección)
 _T_ESPERA_ALTO    = 2.0  # segundos de parada completa antes de cruzar
 _T_MIN_SIGUIENDO  = 8.0  # segundos mínimos siguiendo antes de evaluar rebase
+
+# Umbrales de TTC visual (Fase 2.1, calibrar en pista en Fase 5)
+_TTC_FRENO_FUERTE = 1.5  # s; < esto -> FRENAR_FUERTE inmediato (R3.5)
+_TTC_FRENO_SUAVE  = 3.0  # s; entre _TTC_FRENO_FUERTE y esto -> FRENAR_SUAVE (R8b)
+_TTC_REBASE_OK    = 4.0  # s; > esto -> el frente avanza, no rebasar (R9b)
 
 
 @dataclass
@@ -113,6 +124,17 @@ class FSMDecision:
                 3, "peatón detectado en zona de riesgo"
             )
 
+        # Regla 3.5 — TTC visual crítico en frente: frenar fuerte de inmediato
+        # Sin histeresis: el TTC ya integra varios frames vía EstimadorFisicaVisual.
+        ttc = escena.ttc_minimo_frente_s
+        if ttc < _TTC_FRENO_FUERTE:
+            id_str = (f" id={escena.vehiculo_critico_id}"
+                      if escena.vehiculo_critico_id is not None else "")
+            return ResultadoDecision(
+                Accion.FRENAR_FUERTE, EstadoFSM.FRENANDO_PREVENTIVO,
+                35, f"TTC frontal {ttc:.2f}s < {_TTC_FRENO_FUERTE}s{id_str}"
+            )
+
         # Regla 4 — Semáforo rojo → detenerse (RF-07)
         if self._c_semaforo_rojo.esta_activo():
             return ResultadoDecision(
@@ -174,23 +196,33 @@ class FSMDecision:
                 10, "conflicto lateral durante rebase — abortando"
             )
 
-        # Regla 9 — Siguiendo >_T_MIN_SIGUIENDO s + espejo izq libre → iniciar rebase (RF-09)
-        # Evaluado ANTES de R8 para que pueda disparar cuando las condiciones son correctas
+        # Regla 9 — Siguiendo >_T_MIN_SIGUIENDO s + espejo izq libre + TTC bajo → iniciar rebase (RF-09)
+        # Evaluado ANTES de R8 para que pueda disparar cuando las condiciones son correctas.
+        # Refinamiento R9b: rebasar solo cuando el frente realmente nos demora
+        # (TTC < _TTC_REBASE_OK). Si TTC alto, vamos a velocidad similar; rebasar
+        # seria gratuito y peligroso.
         if (self._estado == EstadoFSM.SIGUIENDO_VEHICULO
                 and self._t_siguiendo_desde is not None
                 and (time.monotonic() - self._t_siguiendo_desde) >= _T_MIN_SIGUIENDO
                 and self._c_espejo_izq.esta_inactivo()
-                and not escena.espejo_izq_ocupado):
+                and not escena.espejo_izq_ocupado
+                and ttc < _TTC_REBASE_OK):
             return ResultadoDecision(
                 Accion.REBASAR_IZQ, EstadoFSM.REBASANDO,
-                9, "condiciones de rebase cumplidas"
+                9, f"condiciones de rebase cumplidas (TTC={ttc:.2f}s)"
             )
 
-        # Regla 8 — Frente cercano ocupado → seguir vehículo
+        # Regla 8 — Frente cercano ocupado → tres tiers segun TTC visual (R8b)
         if self._c_frente_cercano.esta_activo() and self._estado != EstadoFSM.REBASANDO:
+            if ttc < _TTC_FRENO_SUAVE:
+                return ResultadoDecision(
+                    Accion.FRENAR_SUAVE, EstadoFSM.SIGUIENDO_VEHICULO,
+                    8, f"frente ocupado, TTC={ttc:.2f}s en zona de freno"
+                )
+            # TTC alto (incluido inf): vamos a velocidad similar -> mantener
             return ResultadoDecision(
-                Accion.FRENAR_SUAVE, EstadoFSM.SIGUIENDO_VEHICULO,
-                8, "vehículo en frente cercano"
+                Accion.MANTENER, EstadoFSM.SIGUIENDO_VEHICULO,
+                8, f"frente ocupado pero TTC={ttc:.2f}s alto, manteniendo distancia"
             )
 
         # Regla 11 — Semáforo verde y frente libre → avanzar (RF-06)
