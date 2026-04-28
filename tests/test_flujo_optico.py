@@ -8,6 +8,7 @@ import pytest
 
 from src.percepcion.flujo_optico import (
     EstimadorFlujoOptico,
+    EstimadorFlujoOpticoLK,
     promediar_flujo_en_caja,
 )
 
@@ -118,3 +119,72 @@ def test_reset_limpia_frame_anterior():
     flujo = est.calcular(f2, timestamp=0.5)
     # Sin frame previo -> flujo cero
     assert np.allclose(flujo, 0.0)
+
+
+# ── Tests del backend Lucas-Kanade disperso ─────────────────────────────────
+
+
+def _frame_con_textura(h: int = 360, w: int = 640) -> np.ndarray:
+    """Frame con textura aleatoria para que Shi-Tomasi encuentre puntos."""
+    img = np.random.randint(0, 255, (h, w, 3), dtype=np.uint8)
+    return img
+
+
+def test_lk_primer_frame_devuelve_flujo_cero():
+    est = EstimadorFlujoOpticoLK()
+    flujo = est.calcular(_frame_con_textura(), timestamp=0.0)
+    assert flujo.shape[2] == 2
+    assert np.allclose(flujo, 0.0)
+
+
+def test_lk_desplazamiento_horizontal_genera_u_positivo():
+    """Frame que se desplaza a la derecha debe producir u>0 en los puntos."""
+    est = EstimadorFlujoOpticoLK()
+    base = _frame_con_textura()
+    # f2 = base desplazada 12 px a la derecha (np.roll)
+    f2 = np.roll(base, 12, axis=1)
+    est.calcular(base, timestamp=0.0)
+    flujo = est.calcular(f2, timestamp=0.5)        # 0.5s -> 24 px/s
+
+    # Tomar el promedio de celdas no-cero (LK es disperso)
+    u, v = promediar_flujo_en_caja(flujo, (0, 0, flujo.shape[1], flujo.shape[0]))
+    assert u > 5.0, f"u_medio={u} debio ser positivo"
+
+
+def test_lk_con_roi_ignora_fuera_del_roi():
+    est = EstimadorFlujoOpticoLK(roi=(100, 100, 540, 260))
+    base = _frame_con_textura()
+    f2 = np.roll(base, 8, axis=1)
+    est.calcular(base, timestamp=0.0)
+    flujo = est.calcular(f2, timestamp=0.5)
+
+    # Fuera del ROI: cero
+    u, v = promediar_flujo_en_caja(flujo, (10, 10, 90, 90))
+    assert u == pytest.approx(0.0)
+    assert v == pytest.approx(0.0)
+
+
+def test_lk_reset_re_siembra_puntos():
+    est = EstimadorFlujoOpticoLK()
+    base = _frame_con_textura()
+    est.calcular(base, timestamp=0.0)
+    est.reset()
+    flujo = est.calcular(base, timestamp=0.5)
+    assert np.allclose(flujo, 0.0)
+
+
+def test_promediar_ignora_ceros_de_un_mapa_disperso():
+    """Mapa con un solo punto no-cero: el promedio debe ser ese punto, no /N."""
+    flujo = np.zeros((100, 100, 2), dtype=np.float32)
+    flujo[50, 50] = (10.0, 5.0)
+    u, v = promediar_flujo_en_caja(flujo, (0, 0, 100, 100), ignorar_ceros=True)
+    assert u == pytest.approx(10.0)
+    assert v == pytest.approx(5.0)
+
+
+def test_promediar_sin_ignorar_ceros_promedia_todo_el_area():
+    flujo = np.zeros((100, 100, 2), dtype=np.float32)
+    flujo[50, 50] = (10.0, 5.0)
+    u, v = promediar_flujo_en_caja(flujo, (0, 0, 100, 100), ignorar_ceros=False)
+    # 10/(100*100) = 0.001
+    assert u == pytest.approx(0.001, abs=1e-4)

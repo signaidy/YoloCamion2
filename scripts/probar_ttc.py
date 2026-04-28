@@ -25,7 +25,11 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.fuente.video import FuenteVideo
 from src.percepcion.contexto import AnalizadorContexto, cargar_rois_yaml
 from src.percepcion.fisica import EstimadorFisicaVisual
-from src.percepcion.flujo_optico import EstimadorFlujoOptico, promediar_flujo_en_caja
+from src.percepcion.flujo_optico import (
+    EstimadorFlujoOptico,
+    EstimadorFlujoOpticoLK,
+    promediar_flujo_en_caja,
+)
 from src.percepcion.tracker import Tracker
 from src.tipos import Region
 
@@ -74,6 +78,8 @@ def main():
     parser.add_argument("--salida", default="datos/evidencia/ttc_smoke.mp4")
     parser.add_argument("--mostrar", action="store_true",
                         help="Mostrar ventana en vivo (requiere display).")
+    parser.add_argument("--flujo", choices=["lk", "denso"], default="lk",
+                        help="Backend de flujo optico (default lk; denso es ~40x mas lento).")
     args = parser.parse_args()
 
     rois = cargar_rois_yaml(args.rois) if Path(args.rois).exists() else None
@@ -101,8 +107,11 @@ def main():
             min(fc[0], fl[0]), min(fc[1], fl[1]),
             max(fc[2], fl[2]), max(fc[3], fl[3]),
         )
-    log.info("ROI flujo optico: %s", roi_flujo)
-    estimador_flujo = EstimadorFlujoOptico(roi=roi_flujo)
+    log.info("ROI flujo optico: %s (backend=%s)", roi_flujo, args.flujo)
+    if args.flujo == "lk":
+        estimador_flujo = EstimadorFlujoOpticoLK(roi=roi_flujo)
+    else:
+        estimador_flujo = EstimadorFlujoOptico(roi=roi_flujo)
 
     salida_path = Path(args.salida)
     salida_path.parent.mkdir(parents=True, exist_ok=True)
