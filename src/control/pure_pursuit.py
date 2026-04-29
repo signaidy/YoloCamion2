@@ -104,10 +104,10 @@ class PurePursuitVisual:
     def _estimar_curvatura(self, mascara: np.ndarray, alto: int, ancho: int) -> float:
         """
         Curvatura ∈ [0, 1] basada en la diferencia horizontal entre el
-        centroide cercano (fila 75%) y el lejano (fila 60%).
+        centroide cercano (fila 80%) y el lejano (fila 65%).
         """
-        y_cerca = int(alto * 0.75)
-        y_lejos = int(alto * 0.60)
+        y_cerca = int(alto * 0.80)
+        y_lejos = int(alto * 0.65)
 
         x_cerca = self._centroide_con_bias(mascara, y_cerca, ancho)
         x_lejos = self._centroide_con_bias(mascara, y_lejos, ancho)

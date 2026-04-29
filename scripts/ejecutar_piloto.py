@@ -285,9 +285,10 @@ def main():
             da_mask = da_mask_cache.copy()
             ll_mask = ll_mask_cache
 
-            # Enmascarar zona superior (55%): el espejo retrovisor ocupa hasta
-            # el 55% en altura. El área verde real (carretera) está en el 65-85%.
-            _fila_roi = int(da_mask.shape[0] * 0.55)
+            # Enmascarar zona superior (60%): espejos virtuales ocupan hasta y≈55%.
+            # Margen extra de 5% evita que variaciones de ángulo/resolución los expongan.
+            # La carretera útil está en el 65-85% de la imagen.
+            _fila_roi = int(da_mask.shape[0] * 0.60)
             da_mask[:_fila_roi, :] = 0
 
             # Pure Pursuit: bias derecho + look-ahead dinámico
