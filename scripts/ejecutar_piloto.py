@@ -247,7 +247,7 @@ def main():
 
         # EMA de la desviación lateral del carril.
         # alpha=0.30: la señal Pure Pursuit ya es estable; más inercia retrasaría la respuesta en curvas.
-        _ALPHA_EMA_CARRIL = 0.30
+        _ALPHA_EMA_CARRIL = 0.18   # menos alpha = más inercia = amortigua oscilación
         desv_ema: float = 0.0
 
         from src.decision.estado import EstadoFSM

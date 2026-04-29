@@ -36,7 +36,7 @@ class ConfigPID:
 
 # Defaults calibrados para ETS2 Volvo FH16 (ajustables en config/default.yaml)
 # Calibracion final en pista en Fase 5.
-_CFG_VOLANTE_DEFAULT  = ConfigPID(kp=0.65, ki=0.015, kd=0.12)
+_CFG_VOLANTE_DEFAULT  = ConfigPID(kp=0.50, ki=0.010, kd=0.10)
 _CFG_VELOCIDAD_DEFAULT = ConfigPID(kp=0.65, ki=0.05, kd=0.04)
 
 _FRENO_EMERGENCIA = 0.9   # umbral del setpoint para bypass total (cancela PID acel.)
