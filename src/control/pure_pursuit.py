@@ -35,6 +35,12 @@ class PurePursuitVisual:
         """Último look-ahead point calculado; None si el carril estaba perdido."""
         return self._ultimo_punto
 
+    # Barrido adaptativo: si la fila primaria no tiene verde, baja en pasos de 40px
+    # hasta un máximo de _FILA_MAX. Permite funcionar tanto en autopista (72%)
+    # como en ciudad/tráfico (fallback hasta 90%).
+    _FILA_MAX = 0.90
+    _SWEEP_PX = 40
+
     def calcular_giro(self, mascara_camino: np.ndarray) -> tuple[float, bool]:
         """
         Calcula el error de dirección a partir de la máscara del área manejable.
@@ -50,18 +56,25 @@ class PurePursuitVisual:
         curvatura = self._estimar_curvatura(mascara_camino, alto, ancho)
         fila_base = int(alto * (self._FILA_LEJOS + curvatura * (self._FILA_CERCA - self._FILA_LEJOS)))
 
-        # Suavizado: 5 filas con pesos gaussianos, separadas 10 px
         offsets = [-20, -10,  0, 10, 20]
         pesos   = [ 0.10, 0.20, 0.40, 0.20, 0.10]
+        fila_max = int(alto * self._FILA_MAX)
 
-        x_sum = 0.0
-        w_sum = 0.0
-        for off, peso in zip(offsets, pesos):
-            y = max(0, min(fila_base + off, alto - 1))
-            x = self._centroide_con_bias(mascara_camino, y, ancho)
-            if x is not None:
-                x_sum += x * peso
-                w_sum += peso
+        # Barrido: intenta fila_base; si no hay verde, baja _SWEEP_PX y reintenta
+        x_sum, w_sum, fila_usada = 0.0, 0.0, fila_base
+        fila_try = fila_base
+        while fila_try <= fila_max:
+            xs, ws = 0.0, 0.0
+            for off, peso in zip(offsets, pesos):
+                y = max(0, min(fila_try + off, alto - 1))
+                x = self._centroide_con_bias(mascara_camino, y, ancho)
+                if x is not None:
+                    xs += x * peso
+                    ws += peso
+            if ws > 0.0:
+                x_sum, w_sum, fila_usada = xs, ws, fila_try
+                break
+            fila_try += self._SWEEP_PX
 
         if w_sum == 0.0:
             self._ultimo_punto = None
@@ -69,7 +82,7 @@ class PurePursuitVisual:
             return self._ultimo_error, True
 
         x_obj = x_sum / w_sum
-        self._ultimo_punto = (int(round(x_obj)), fila_base)
+        self._ultimo_punto = (int(round(x_obj)), fila_usada)
 
         dx = x_camion - x_obj
         error = float(np.clip(dx / (ancho * self._ESCALA_ERROR), -1.0, 1.0))
