@@ -16,6 +16,7 @@ import time
 from pathlib import Path
 
 import yaml
+import numpy as np
 
 # Asegurar que src/ está en el path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -28,7 +29,8 @@ from src.fuente.buffer import FuenteConBuffer
 from src.fuente.ventana import FuenteVentana, buscar_ventana
 from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
-from src.percepcion.carriles import DetectorCarriles
+from src.percepcion.yolop_inference import InferenciaYOLOP
+from src.control.pure_pursuit import PurePursuitVisual
 from src.percepcion.fisica import EstimadorFisicaVisual
 from src.percepcion.flujo_optico import EstimadorFlujoOpticoLK
 from src.percepcion.velocidad_propia import EstimadorVelocidadPropia
@@ -178,7 +180,8 @@ def main():
     estimador_fisica = EstimadorFisicaVisual()
     contexto = AnalizadorContexto(rois=rois, estimador_fisica=estimador_fisica)
     fsm = FSMDecision()
-    detector_carriles = DetectorCarriles()
+    yolop = InferenciaYOLOP()
+    pure_pursuit = PurePursuitVisual()
     controlador = construir_controlador(cfg)
 
     # Capa pure-vision para velocidad propia (RNF-07): flujo optico LK
@@ -212,8 +215,9 @@ def main():
     )
 
     try:
-        logger.info("Cargando modelo YOLO...")
+        logger.info("Cargando modelos YOLO...")
         tracker.cargar()
+        yolop.cargar()
 
         # Warmup: pre-compila kernels CUDA para que el primer frame real sea rápido
         # Sin esto, la primera inferencia tarda ~3s y el watchdog dispararía
@@ -237,7 +241,7 @@ def main():
         # EMA de la desviación lateral del carril.
         # alpha=0.50: respuesta más rápida en curvas; el deque interno de DetectorCarriles
         # (4 frames) ya aporta suavizado base, así que no necesitamos más inercia aquí.
-        _ALPHA_EMA_CARRIL = 0.50
+        _ALPHA_EMA_CARRIL = 0.30
         desv_ema: float = 0.0
 
         from src.decision.estado import EstadoFSM
@@ -267,17 +271,14 @@ def main():
                 time.sleep(0.005)
                 continue
 
-            # ── Detección de carril (cada frame — rápida ~3ms) ───────────────
-            carril = detector_carriles.detectar(cuadro.imagen)
+            # ── Detección de carril (cada frame) ───────────────
+            _, da_mask, ll_mask = yolop.procesar_frame(cuadro.imagen)
 
-            # Actualizar EMA de desviación: cuando no hay detección confiable,
-            # dejamos que la EMA decaiga hacia 0 para no aplicar una corrección
-            # obsoleta (el camión quizás ya se centró solo).
-            if carril.confianza >= 0.5:
-                desv_ema = (_ALPHA_EMA_CARRIL * carril.desviacion
-                            + (1.0 - _ALPHA_EMA_CARRIL) * desv_ema)
-            else:
-                desv_ema *= 0.85  # decaimiento rápido sin señal confiable
+            # Pure Pursuit: bias derecho + look-ahead dinámico
+            giro_pure_pursuit, carril_perdido = pure_pursuit.calcular_giro(da_mask)
+
+            # EMA de suavizado (alpha=0.30 — señal ya más estable que antes)
+            desv_ema = (_ALPHA_EMA_CARRIL * giro_pure_pursuit + (1.0 - _ALPHA_EMA_CARRIL) * desv_ema)
 
             # ── Velocidad propia visual (pure-vision, RNF-07) ────────────────
             flujo_lk = estimador_flujo.calcular(cuadro.imagen, cuadro.timestamp)
@@ -302,37 +303,41 @@ def main():
                 desviacion_volante=resultado.setpoint.desviacion_volante,
             )
 
-            # Override de carril:
-            #  - confianza >= 0.85: solo cuando se detecta la línea derecha (o ambas).
-            #    La detección solo-izquierda (conf=0.50) es poco fiable en tráfico
-            #    denso y produce giros erróneos al confundir luces/vehículos con líneas.
-            #  - abs(desv_ema) > 0.06: zona muerta ligeramente más sensible que el
-            #    deque interno (0.07) para que correcciones pequeñas no se pierdan.
-            #  - velocidad > 0.05: evitar bucle muerto cuando el camión está parado.
+            # Override de carril: activo en estados de conducción normal
+            # (sin bloqueo por velocidad — el estimador de flujo tiene ruido estático)
             if (resultado.accion not in _ACCIONES_CON_GIRO
-                    and resultado.estado_nuevo in _ESTADOS_CARRIL
-                    and carril.confianza >= 0.85
-                    and abs(desv_ema) > 0.06
-                    and velocidad_actual_norm > 0.05):
-                desv = float(max(-1.0, min(1.0, desv_ema)))
-                setpoint.desviacion_volante = desv
+                    and resultado.estado_nuevo in _ESTADOS_CARRIL):
+                setpoint.desviacion_volante = float(np.clip(desv_ema, -1.0, 1.0))
+
+            # Reducir velocidad cuando el carril se pierde por oclusión
+            if carril_perdido and resultado.estado_nuevo in _ESTADOS_CARRIL:
+                setpoint.velocidad_objetivo_norm *= 0.40
 
             if args.debug_carril and n_frame % 30 == 0:
                 logger.info(
-                    "CARRIL desv=%+.3f ema=%+.3f conf=%.2f izq=%s der=%s vol=%+.2f vel=%.2f",
-                    carril.desviacion, desv_ema, carril.confianza,
-                    "✓" if carril.linea_izq_detectada else "✗",
-                    "✓" if carril.linea_der_detectada else "✗",
+                    "CARRIL (YOLOP) desv_pp=%+.3f ema=%+.3f vol=%+.2f vel=%.2f",
+                    giro_pure_pursuit, desv_ema,
                     setpoint.desviacion_volante, velocidad_actual_norm,
                 )
 
             if args.debug_carril_img and n_frame % 60 == 0:
                 import cv2 as _cv2
                 from pathlib import Path as _Path
-                dbg = detector_carriles.debug_frame(cuadro.imagen)
-                ruta_dbg = _Path(cfg["registro"]["ruta_base"]) / f"debug_carril_{n_frame:06d}.jpg"
+                # Crear imagen de debug combinando mascara verde sobre el frame
+                dbg = cuadro.imagen.copy()
+                mask_color = np.zeros_like(dbg)
+                mask_color[da_mask > 0] = (0, 255, 0) # Verde para drivable area
+                mask_color[ll_mask > 0] = (0, 0, 255) # Rojo para lane lines
+                dbg = _cv2.addWeighted(dbg, 0.7, mask_color, 0.3, 0)
+                
+                # Dibujar look-ahead point
+                punto = pure_pursuit.ultimo_punto_debug
+                if punto:
+                    _cv2.circle(dbg, punto, 10, (255, 255, 0), -1)
+                    
+                ruta_dbg = _Path(cfg["registro"]["ruta_base"]) / f"debug_yolop_{n_frame:06d}.jpg"
                 _cv2.imwrite(str(ruta_dbg), dbg)
-                logger.info("Debug imagen guardada: %s", ruta_dbg)
+                logger.info("Debug imagen YOLOP guardada: %s", ruta_dbg)
 
             if isinstance(controlador, ControladorGamepadPID):
                 controlador.aplicar(setpoint)
