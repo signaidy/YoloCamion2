@@ -285,9 +285,9 @@ def main():
             da_mask = da_mask_cache.copy()
             ll_mask = ll_mask_cache
 
-            # Enmascarar zona superior (35%): elimina espejos, señales y cielo
-            # que YOLOP detecta como área manejable incorrectamente.
-            _fila_roi = int(da_mask.shape[0] * 0.35)
+            # Enmascarar zona superior (55%): el espejo retrovisor ocupa hasta
+            # el 55% en altura. El área verde real (carretera) está en el 65-85%.
+            _fila_roi = int(da_mask.shape[0] * 0.55)
             da_mask[:_fila_roi, :] = 0
 
             # Pure Pursuit: bias derecho + look-ahead dinámico
