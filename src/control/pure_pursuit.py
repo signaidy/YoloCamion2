@@ -19,10 +19,10 @@ class PurePursuitVisual:
 
     _DECAY = 0.85          # factor de decaimiento por frame cuando carril perdido
     _BIAS_FRAC = 0.20      # fracción izquierda del área verde que se descarta
-    _FILA_LEJOS = 0.65     # fila relativa para look-ahead en recta (por debajo de máscara 55%)
-    _FILA_CERCA = 0.75     # fila relativa para look-ahead en curva (más cerca)
+    _FILA_LEJOS = 0.83     # fila relativa para look-ahead en recta (zona asfalto cercano)
+    _FILA_CERCA = 0.91     # fila relativa para look-ahead en curva (aún más cercano)
     _CURVATURA_SCALE = 6.0 # factor de amplificación de la curvatura cruda
-    _ESCALA_ERROR = 0.35   # divisor de normalización (fracción del ancho)
+    _ESCALA_ERROR = 0.50   # divisor más ancho: look-ahead cercano = carril más ancho en px
 
     def __init__(self) -> None:
         self._ultimo_error: float = 0.0
@@ -104,10 +104,10 @@ class PurePursuitVisual:
     def _estimar_curvatura(self, mascara: np.ndarray, alto: int, ancho: int) -> float:
         """
         Curvatura ∈ [0, 1] basada en la diferencia horizontal entre el
-        centroide cercano (fila 80%) y el lejano (fila 65%).
+        centroide cercano (fila 90%) y el lejano (fila 83%).
         """
-        y_cerca = int(alto * 0.80)
-        y_lejos = int(alto * 0.65)
+        y_cerca = int(alto * 0.90)
+        y_lejos = int(alto * 0.83)
 
         x_cerca = self._centroide_con_bias(mascara, y_cerca, ancho)
         x_lejos = self._centroide_con_bias(mascara, y_lejos, ancho)

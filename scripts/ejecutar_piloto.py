@@ -321,10 +321,10 @@ def main():
             )
 
             # Override de carril: activo en estados de conducción normal
-            # Zona muerta ±0.05: ignora micro-correcciones en recta.
+            # Zona muerta ±0.02: look-ahead cercano → errores pequeños = correcciones reales.
             if (resultado.accion not in _ACCIONES_CON_GIRO
                     and resultado.estado_nuevo in _ESTADOS_CARRIL):
-                desv_out = 0.0 if abs(desv_ema) < 0.05 else float(np.clip(desv_ema, -1.0, 1.0))
+                desv_out = 0.0 if abs(desv_ema) < 0.02 else float(np.clip(desv_ema, -1.0, 1.0))
                 setpoint.desviacion_volante = desv_out
 
             # Reducir velocidad cuando el carril se pierde por oclusión
