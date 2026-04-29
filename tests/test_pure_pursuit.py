@@ -29,15 +29,15 @@ def test_decaimiento_memoria_tras_perder_carril():
     assert error_2 == pytest.approx(error_1 * 0.85, rel=0.05)
 
 
-def test_via_ancha_bias_derecho_genera_error_negativo():
-    """Vía de ancho completo (dos carriles): bias sitúa objetivo en carril derecho."""
+def test_via_ancha_sin_sesgo_error_cercano_a_cero():
+    """Vía simétrica (ancho completo): sin sesgo, centroide ≈ centro → error ≈ 0."""
     pp = PurePursuitVisual()
     m = np.zeros((480, 640), dtype=np.uint8)
-    m[100:480, 0:640] = 1            # toda la vía visible
+    m[100:480, 0:640] = 1            # área verde simétrica
     error, perdido = pp.calcular_giro(m)
     assert not perdido
-    # Target cae a la derecha del centro → dx < 0 → error < 0 → PID gira derecha
-    assert error < -0.10
+    # Sin sesgo, centroide = 319 (x_camion=320) → error ≈ 0
+    assert abs(error) < 0.05
 
 
 def test_area_solo_izquierda_error_positivo():

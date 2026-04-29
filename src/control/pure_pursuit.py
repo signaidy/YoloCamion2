@@ -18,7 +18,7 @@ class PurePursuitVisual:
     """
 
     _DECAY = 0.85          # factor de decaimiento por frame cuando carril perdido
-    _BIAS_FRAC = 0.20      # fracción izquierda del área verde que se descarta
+    _BIAS_FRAC = 0.00      # sin sesgo: centroide del área verde completa
     _FILA_LEJOS = 0.72     # recta: zona media donde carretera lejana está clara sin espejos
     _FILA_CERCA = 0.85     # curva: más cerca pero no al ras del asfalto
     _CURVATURA_SCALE = 6.0 # factor de amplificación de la curvatura cruda
