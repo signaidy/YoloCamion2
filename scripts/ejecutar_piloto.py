@@ -225,6 +225,7 @@ def main():
         import numpy as _np
         _frame_dummy = _np.zeros((1080, 1920, 3), dtype=_np.uint8)
         tracker.rastrear(_frame_dummy)
+        yolop.procesar_frame(_frame_dummy)
         logger.info("Warmup completado — CUDA listo")
 
         fuente.iniciar()
@@ -233,6 +234,7 @@ def main():
         primer_frame = True
         estado_anterior = fsm.estado_actual
         n_frame = 0
+        seguimientos = []    # se actualiza cada YOLO_CADA frames
         # Cache del último resultado YOLO/FSM — se actualiza cada YOLO_CADA frames
         YOLO_CADA = 3        # YOLO cada 3 frames → ~10 FPS detección, ~30 FPS carril
         yolo_contador = 0
