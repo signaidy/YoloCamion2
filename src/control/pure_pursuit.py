@@ -18,7 +18,7 @@ class PurePursuitVisual:
     """
 
     _DECAY = 0.85          # factor de decaimiento por frame cuando carril perdido
-    _BIAS_FRAC = 0.30      # fracción izquierda del área verde que se descarta
+    _BIAS_FRAC = 0.20      # fracción izquierda del área verde que se descarta
     _FILA_LEJOS = 0.38     # fila relativa para look-ahead en recta (más lejos)
     _FILA_CERCA = 0.65     # fila relativa para look-ahead en curva (más cerca)
     _CURVATURA_SCALE = 6.0 # factor de amplificación de la curvatura cruda

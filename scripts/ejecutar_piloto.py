@@ -239,6 +239,11 @@ def main():
         YOLO_CADA = 3        # YOLO cada 3 frames → ~10 FPS detección, ~30 FPS carril
         yolo_contador = 0
         resultado_cache = None
+        # Cache de YOLOP — corre cada 2 frames para reducir latencia (~5 Hz → ~15 Hz)
+        YOLOP_CADA = 2
+        yolop_contador_carril = 0
+        da_mask_cache: np.ndarray | None = None
+        ll_mask_cache: np.ndarray | None = None
 
         # EMA de la desviación lateral del carril.
         # alpha=0.30: la señal Pure Pursuit ya es estable; más inercia retrasaría la respuesta en curvas.
@@ -272,8 +277,18 @@ def main():
                 time.sleep(0.005)
                 continue
 
-            # ── Detección de carril (cada frame) ───────────────
-            _, da_mask, ll_mask = yolop.procesar_frame(cuadro.imagen)
+            # ── Detección de carril (cada YOLOP_CADA frames — inferencia ~100ms) ──
+            yolop_contador_carril += 1
+            if yolop_contador_carril >= YOLOP_CADA or da_mask_cache is None:
+                yolop_contador_carril = 0
+                _, da_mask_cache, ll_mask_cache = yolop.procesar_frame(cuadro.imagen)
+            da_mask = da_mask_cache.copy()
+            ll_mask = ll_mask_cache
+
+            # Enmascarar zona superior (35%): elimina espejos, señales y cielo
+            # que YOLOP detecta como área manejable incorrectamente.
+            _fila_roi = int(da_mask.shape[0] * 0.35)
+            da_mask[:_fila_roi, :] = 0
 
             # Pure Pursuit: bias derecho + look-ahead dinámico
             giro_pure_pursuit, carril_perdido = pure_pursuit.calcular_giro(da_mask)
@@ -305,10 +320,11 @@ def main():
             )
 
             # Override de carril: activo en estados de conducción normal
-            # (sin bloqueo por velocidad — el estimador de flujo tiene ruido estático)
+            # Zona muerta ±0.05: ignora micro-correcciones en recta.
             if (resultado.accion not in _ACCIONES_CON_GIRO
                     and resultado.estado_nuevo in _ESTADOS_CARRIL):
-                setpoint.desviacion_volante = float(np.clip(desv_ema, -1.0, 1.0))
+                desv_out = 0.0 if abs(desv_ema) < 0.05 else float(np.clip(desv_ema, -1.0, 1.0))
+                setpoint.desviacion_volante = desv_out
 
             # Reducir velocidad cuando el carril se pierde por oclusión
             if carril_perdido and resultado.estado_nuevo in _ESTADOS_CARRIL:
