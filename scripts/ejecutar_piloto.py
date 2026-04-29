@@ -239,8 +239,7 @@ def main():
         resultado_cache = None
 
         # EMA de la desviación lateral del carril.
-        # alpha=0.50: respuesta más rápida en curvas; el deque interno de DetectorCarriles
-        # (4 frames) ya aporta suavizado base, así que no necesitamos más inercia aquí.
+        # alpha=0.30: la señal Pure Pursuit ya es estable; más inercia retrasaría la respuesta en curvas.
         _ALPHA_EMA_CARRIL = 0.30
         desv_ema: float = 0.0
 
