@@ -4,17 +4,17 @@ import numpy as np
 
 class PurePursuitVisual:
     """
-    Controlador Pure Pursuit visual con bias de carril derecho y look-ahead dinámico.
+    Controlador Pure Pursuit visual con look-ahead dinámico y detección por ll_mask.
 
-    Mejoras respecto a la versión anterior:
-    - Bias derecho: solo considera el 70% derecho del área manejable para no
-      apuntar a la línea central en autopistas de dos carriles.
-    - Look-ahead dinámico: fila de anticipación se acorta en curvas y se alarga
-      en rectas, medido por la curvatura del propio área manejable.
-    - Suavizado multi-fila: promedia 5 filas con pesos gaussianos para reducir
-      el ruido puntual de la máscara.
-    - Recuperación con memoria: cuando se pierde el carril devuelve el último
-      error multiplicado por 0.85 (decaimiento) en vez de devolver 0.0.
+    Fuentes de señal (en orden de prioridad):
+    - Nivel 1: ll_mask (líneas pintadas). Calcula el centro exacto del carril
+      actual como (borde_izq + borde_der) / 2. Funciona para vías de 1-3 carriles.
+    - Nivel 2: centroide de da_mask con barrido adaptativo (fallback).
+    - Nivel 3: último error × 0.85 (memoria con decaimiento) cuando ambas fallan.
+
+    Look-ahead dinámico: la fila de anticipación se acorta en curvas y se alarga
+    en rectas, medido por la diferencia de centroides entre fila 72% y 85%.
+    Suavizado multi-fila: promedia 5 filas con pesos gaussianos.
     """
 
     _DECAY = 0.85          # factor de decaimiento por frame cuando carril perdido
@@ -105,7 +105,7 @@ class PurePursuitVisual:
 
     def _centroide_con_bias(self, mascara: np.ndarray, fila_y: int, ancho: int) -> int | None:
         """
-        Centroide del 70% derecho del área manejable en la fila dada.
+        Centroide del área manejable en la fila dada (_BIAS_FRAC=0.00 → centroide completo).
         Retorna None si no hay píxeles.
         """
         fila = mascara[fila_y, :]
