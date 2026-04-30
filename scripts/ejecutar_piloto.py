@@ -246,8 +246,10 @@ def main():
         ll_mask_cache: np.ndarray | None = None
 
         # EMA de la desviación lateral del carril.
-        # alpha=0.30: la señal Pure Pursuit ya es estable; más inercia retrasaría la respuesta en curvas.
-        _ALPHA_EMA_CARRIL = 0.18   # menos alpha = más inercia = amortigua oscilación
+        # Reducido a 0.12 (desde 0.18): el rate-limit en calcular_giro ya contiene los
+        # saltos de detección; el EMA ahora añade una capa de suavizado adicional sin
+        # retrasar demasiado las correcciones reales en curva.
+        _ALPHA_EMA_CARRIL = 0.12
         desv_ema: float = 0.0
 
         from src.decision.estado import EstadoFSM
@@ -323,10 +325,10 @@ def main():
             )
 
             # Override de carril: activo en estados de conducción normal
-            # Zona muerta ±0.02: look-ahead cercano → errores pequeños = correcciones reales.
+            # Zona muerta ±0.05: suprime micro-correcciones por ruido de detección.
             if (resultado.accion not in _ACCIONES_CON_GIRO
                     and resultado.estado_nuevo in _ESTADOS_CARRIL):
-                desv_out = 0.0 if abs(desv_ema) < 0.02 else float(np.clip(desv_ema, -1.0, 1.0))
+                desv_out = 0.0 if abs(desv_ema) < 0.05 else float(np.clip(desv_ema, -1.0, 1.0))
                 setpoint.desviacion_volante = desv_out
 
             # Reducir velocidad cuando el carril se pierde por oclusión

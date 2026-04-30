@@ -29,15 +29,20 @@ def test_decaimiento_memoria_tras_perder_carril():
     assert error_2 == pytest.approx(error_1 * 0.85, rel=0.05)
 
 
-def test_via_ancha_sin_sesgo_error_cercano_a_cero():
-    """Vía simétrica (ancho completo): sin sesgo, centroide ≈ centro → error ≈ 0."""
+def test_via_ancha_con_sesgo_derecho_error_negativo():
+    """Vía simétrica con _BIAS_FRAC=0.30: centroide desplazado a la derecha → error < 0 (girar derecha).
+
+    _BIAS_FRAC=0.30 modela conducción europea (carril derecho): en vías bidireccionales
+    donde da_mask cubre ambos carriles, el centroide de la mitad derecha del área verde
+    corresponde al carril del conductor, no a la línea central.
+    """
     pp = PurePursuitVisual()
     m = np.zeros((480, 640), dtype=np.uint8)
     m[100:480, 0:640] = 1            # área verde simétrica
     error, perdido = pp.calcular_giro(m)
     assert not perdido
-    # Sin sesgo, centroide = 319 (x_camion=320) → error ≈ 0
-    assert abs(error) < 0.05
+    # Con BIAS_FRAC=0.30, centroide queda a la derecha de x_camion → error negativo
+    assert error < -0.10
 
 
 def test_area_solo_izquierda_error_positivo():

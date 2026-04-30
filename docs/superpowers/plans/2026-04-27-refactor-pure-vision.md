@@ -19,9 +19,10 @@ Capa 1 Percepción
   ✅ src/fuente/{pantalla,ventana,buffer}.py     dxcam→mss fallback OK
   ✅ src/percepcion/tracker.py                   YOLO.track con ByteTrack (IDs persistentes + edad)
   ✅ src/percepcion/contexto.py                  6 ROI cargadas de regiones_interes.yaml
-  ✅ src/percepcion/carriles.py                  brillo+Hough día/noche con CLAHE
+  ⚠️ src/percepcion/carriles.py                  brillo+Hough día/noche con CLAHE (A DEPRECAR/REEMPLAZAR)
   ✅ src/percepcion/semaforo.py                  clasificador color
-  ❌ TTC / Optical Flow / Bbox-scaling           NO EXISTE  ← punto de partida del plan
+  ❌ Inferencia YOLOP / Segmentación             NO EXISTE  ← punto de partida del plan
+  ❌ TTC / Optical Flow / Bbox-scaling           NO EXISTE
 
 Capa 2 Planificación
   ✅ src/decision/fsm.py                         12 reglas, histéresis, timers, prioridades
@@ -32,6 +33,7 @@ Capa 3 Ejecución
   ✅ src/control/gamepad.py                      vgamepad pasthrough sin PID
   ⚠️ src/control/teclado.py                      pydirectinput PWM — A DEPRECAR
   ❌ src/control/pid.py                          NO EXISTE
+  ❌ src/control/pure_pursuit.py                 NO EXISTE
   ❌ Map Acción→ComandoControl                   _MAPA_ACCION en ejecutar_piloto.py con valores fijos
                                                  (debe ser setpoint para PID, no salida directa)
 
@@ -53,11 +55,25 @@ Esperar al benchmark FPS de la Tarea 1.6 antes de evaluar subir a 960.
 ### D3 — RESUELTA: NO borrar `src/control/teclado.py`
 Conservar como fallback. En la Tarea 3.5 solo se marca como DEPRECATED (docstring + WARN al iniciar), sin eliminar el archivo.
 
+### D4 — RESUELTA (2026-04-28): Migrar Percepción a YOLOP + Volante a Pure Pursuit
+El control del camión en curvas se mejorará adoptando un modelo panóptico (YOLOP) para obtener la segmentación del área manejable (Drivable Area) y líneas de carril, reemplazando el OpenCV clásico. Esto se combinará con un control *Pure Pursuit* (mirada a futuro) para un giro suave del volante.
+
 ---
 
-## FASE 1 — Capa de Percepción: Física Visual (TTC + Flujo Óptico + Bbox Scaling)
+## FASE 1 — Capa de Percepción: YOLOP y Física Visual (TTC + Flujo Óptico)
 
-Punto de partida explícitamente pedido por el usuario.
+Punto de partida modificado a petición del usuario para incluir anticipación en curvas.
+
+### Tarea 1.0 — Inferencia Panóptica con YOLOP
+
+**Archivos nuevos:**
+- `src/percepcion/yolop_inference.py`
+- `tests/test_yolop.py`
+
+**Lógica:**
+- Descargar o cargar el modelo pre-entrenado de YOLOP (ONNX recomendado por velocidad).
+- Procesar cada frame para extraer las tres salidas: `vehiculos` (Bounding Boxes), `area_manejable` (segmentación) y `mascara_carriles`.
+- Reemplazar el uso del detector clásico de OpenCV por las salidas de YOLOP en el pipeline de percepción.
 
 ### Tarea 1.1 — Tipos para Física Visual
 
@@ -200,14 +216,25 @@ PIDController(kp, ki, kd, limite=1.0)
 
 Tests TDD: respuesta proporcional pura, saturación min/max, anti-windup por clamping, reset.
 
+### Tarea 3.1.5 — Controlador `PurePursuit` (Punto de Anticipación)
+
+**Archivos nuevos:**
+- `src/control/pure_pursuit.py`
+- `tests/test_pure_pursuit.py`
+
+**Lógica:**
+- Toma la máscara de `area_manejable` o `mascara_carriles` de YOLOP.
+- Calcula el "Look-ahead point" (Punto de anticipación) a cierta distancia frente al camión.
+- Calcula el ángulo de giro necesario para que la nariz del camión apunte a ese punto.
+
 ### Tarea 3.2 — `ControladorGamepadPID` (reemplaza el actual `gamepad.py`)
 
 **Archivos:**
 - Modificar: `src/control/gamepad.py` → renombrar internamente o crear `src/control/gamepad_pid.py` y mantener el viejo como fallback `gamepad_directo.py`.
 - Test: `tests/test_gamepad_pid.py` con `vgamepad.VX360Gamepad` mockeado.
 
-Tres PIDs:
-- `pid_volante`: setpoint = 0 (centrado), medición = `desviacion_volante` (signo: <0 izq, >0 der). Salida → `left_joystick_float.x_value_float`.
+Tres PIDs / Controladores:
+- `control_volante`: Usa el `PurePursuit` controller integrado con un PID suave para generar el comando del joystick izquierdo hacia el punto de fuga. Salida → `left_joystick_float.x_value_float`.
 - `pid_velocidad`: setpoint = `velocidad_objetivo_norm` (0–1), medición = **velocidad estimada visualmente** (ver Tarea 3.3). Salida positiva → `right_trigger`; negativa → `left_trigger` con coeficiente menor (freno suave).
 - Freno de emergencia (`freno_objetivo ≥ 0.9`): bypass PID, `left_trigger` directo a 255 y reset de los integrales.
 

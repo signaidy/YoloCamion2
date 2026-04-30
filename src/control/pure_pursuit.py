@@ -18,12 +18,20 @@ class PurePursuitVisual:
     """
 
     _DECAY = 0.85          # factor de decaimiento por frame cuando carril perdido
-    _BIAS_FRAC = 0.00      # sin sesgo: centroide del área verde completa
+    _BIAS_FRAC = 0.30      # sesgo derecho: en vías bidireccionales da_mask cubre ambos
+                           # carriles y el centroide cae en la línea central; con 0.30
+                           # usamos la mediana del 70% derecho del área verde, que
+                           # corresponde al carril derecho (conducción europea)
     _FILA_LEJOS = 0.72     # recta: zona media donde carretera lejana está clara sin espejos
     _FILA_CERCA = 0.85     # curva: más cerca pero no al ras del asfalto
     _CURVATURA_SCALE = 6.0 # factor de amplificación de la curvatura cruda
     _ESCALA_ERROR = 0.40   # normalización intermedia (look-ahead a distancia media)
-    _MIN_LL_PIXELES = 15   # píxeles mínimos por lado en ll_mask para activar nivel 1
+    _MIN_LL_PIXELES = 8    # píxeles mínimos por lado en ll_mask para activar nivel 1
+    _MAX_DELTA = 0.28      # máximo cambio de error por llamada — suprime saltos de detección YOLOP
+    _MIN_SIMETRIA = 0.08   # fracción mínima del lado minoritario de da_mask; por debajo se
+                           # considera obstrucción estructural (pilar, paso inferior, valla) y
+                           # se usa memoria con decaimiento en lugar de un centroide falso
+    _MIN_PX_SIMETRIA = 300 # píxeles totales mínimos en da_mask para evaluar asimetría
 
     def __init__(self) -> None:
         self._ultimo_error: float = 0.0
@@ -69,10 +77,20 @@ class PurePursuitVisual:
                 self._ultimo_punto = (int(round(centro_ll)), fila_base)
                 dx = x_camion - centro_ll
                 error = float(np.clip(dx / (ancho * self._ESCALA_ERROR), -1.0, 1.0))
+                error = self._ultimo_error + float(np.clip(
+                    error - self._ultimo_error, -self._MAX_DELTA, self._MAX_DELTA
+                ))
                 self._ultimo_error = error
                 return error, False
 
         # Nivel 2: centroide da_mask con barrido adaptativo
+        # Guardia de obstrucción: pilar de paso inferior, valla o puente bloquean
+        # un lado del frame → da_mask unilateral → centroide ficticio → choque.
+        if self._obstruccion_detectada(mascara_camino, ancho):
+            self._ultimo_punto = None
+            self._ultimo_error *= self._DECAY
+            return self._ultimo_error, True
+
         x_sum, w_sum, fila_usada = 0.0, 0.0, fila_base
         fila_try = fila_base
         while fila_try <= fila_max:
@@ -98,10 +116,30 @@ class PurePursuitVisual:
 
         dx = x_camion - x_obj
         error = float(np.clip(dx / (ancho * self._ESCALA_ERROR), -1.0, 1.0))
+        error = self._ultimo_error + float(np.clip(
+            error - self._ultimo_error, -self._MAX_DELTA, self._MAX_DELTA
+        ))
         self._ultimo_error = error
         return error, False
 
     # ── Helpers privados ───────────────────────────────────────────────────────
+
+    def _obstruccion_detectada(self, mascara: np.ndarray, ancho: int) -> bool:
+        """True cuando da_mask está muy concentrada en un solo lado del frame.
+
+        Un pilar de paso inferior o valla lateral bloquea un lado completo:
+        prácticamente cero píxeles izquierda (o derecha) con abundancia en el otro.
+        En ese caso el centroide estaría sesgado hasta el extremo → sería peor
+        que ignorar la lectura y usar la memoria con decaimiento.
+        """
+        mitad = ancho // 2
+        px_izq = int(np.count_nonzero(mascara[:, :mitad]))
+        px_der = int(np.count_nonzero(mascara[:, mitad:]))
+        total = px_izq + px_der
+        if total < self._MIN_PX_SIMETRIA:
+            return False   # máscara casi vacía → se trata como carril perdido normal
+        menor = min(px_izq, px_der)
+        return (menor / total) < self._MIN_SIMETRIA
 
     def _centroide_con_bias(self, mascara: np.ndarray, fila_y: int, ancho: int) -> int | None:
         """
@@ -123,8 +161,10 @@ class PurePursuitVisual:
         x_bias = x_min + int(ancho_area * self._BIAS_FRAC)
         indices_der = indices[indices >= x_bias]
         if len(indices_der) == 0:
-            return int(np.mean(indices))
-        return int(np.mean(indices_der))
+            return int(np.median(indices))
+        # Mediana en lugar de media: más robusta al arcén/carril de salida que
+        # infla da_mask hacia la derecha, desplazando la media lejos del carril real.
+        return int(np.median(indices_der))
 
     def _estimar_curvatura(self, mascara: np.ndarray, alto: int, ancho: int) -> float:
         """
@@ -173,4 +213,11 @@ class PurePursuitVisual:
             return None
         borde_izq = int(np.max(pixeles_izq))
         borde_der = int(np.min(pixeles_der))
+        # Validar ancho del carril: un carril válido ocupa 3–44 % del ancho del frame
+        # en la distancia de anticipación. Un ancho mayor indica que borde_der tomó
+        # la línea continua del arcén o carril de salida, no el borde real del carril.
+        ancho_frame = ll_mask.shape[1]
+        lane_width = borde_der - borde_izq
+        if not (40 <= lane_width <= int(ancho_frame * 0.44)):
+            return None
         return (borde_izq + borde_der) / 2.0
