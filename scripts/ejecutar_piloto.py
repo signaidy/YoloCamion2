@@ -290,9 +290,11 @@ def main():
             # La carretera útil está en el 65-85% de la imagen.
             _fila_roi = int(da_mask.shape[0] * 0.60)
             da_mask[:_fila_roi, :] = 0
+            ll_mask_roi = ll_mask.copy()
+            ll_mask_roi[:_fila_roi, :] = 0
 
-            # Pure Pursuit: bias derecho + look-ahead dinámico
-            giro_pure_pursuit, carril_perdido = pure_pursuit.calcular_giro(da_mask)
+            # Pure Pursuit: ll_mask (nivel 1) con fallback a da_mask (nivel 2)
+            giro_pure_pursuit, carril_perdido = pure_pursuit.calcular_giro(da_mask, ll_mask_roi)
 
             # EMA de suavizado (alpha=0.30 — señal ya más estable que antes)
             desv_ema = (_ALPHA_EMA_CARRIL * giro_pure_pursuit + (1.0 - _ALPHA_EMA_CARRIL) * desv_ema)
