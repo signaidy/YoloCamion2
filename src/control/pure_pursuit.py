@@ -23,6 +23,7 @@ class PurePursuitVisual:
     _FILA_CERCA = 0.85     # curva: más cerca pero no al ras del asfalto
     _CURVATURA_SCALE = 6.0 # factor de amplificación de la curvatura cruda
     _ESCALA_ERROR = 0.40   # normalización intermedia (look-ahead a distancia media)
+    _MIN_LL_PIXELES = 15   # píxeles mínimos por lado en ll_mask para activar nivel 1
 
     def __init__(self) -> None:
         self._ultimo_error: float = 0.0
@@ -41,7 +42,7 @@ class PurePursuitVisual:
     _FILA_MAX = 0.90
     _SWEEP_PX = 40
 
-    def calcular_giro(self, mascara_camino: np.ndarray) -> tuple[float, bool]:
+    def calcular_giro(self, mascara_camino: np.ndarray, ll_mask: np.ndarray | None = None) -> tuple[float, bool]:
         """
         Calcula el error de dirección a partir de la máscara del área manejable.
 
@@ -60,7 +61,18 @@ class PurePursuitVisual:
         pesos   = [ 0.10, 0.20, 0.40, 0.20, 0.10]
         fila_max = int(alto * self._FILA_MAX)
 
-        # Barrido: intenta fila_base; si no hay verde, baja _SWEEP_PX y reintenta
+        # Nivel 1: ll_mask — bordes pintados del carril actual
+        if ll_mask is not None:
+            filas_ll = [max(0, min(fila_base + off, alto - 1)) for off in offsets]
+            centro_ll = self._centro_desde_ll(ll_mask, filas_ll, x_camion)
+            if centro_ll is not None:
+                self._ultimo_punto = (int(round(centro_ll)), fila_base)
+                dx = x_camion - centro_ll
+                error = float(np.clip(dx / (ancho * self._ESCALA_ERROR), -1.0, 1.0))
+                self._ultimo_error = error
+                return error, False
+
+        # Nivel 2: centroide da_mask con barrido adaptativo
         x_sum, w_sum, fila_usada = 0.0, 0.0, fila_base
         fila_try = fila_base
         while fila_try <= fila_max:
@@ -129,3 +141,36 @@ class PurePursuitVisual:
             return 0.0
 
         return float(np.clip(abs(x_cerca - x_lejos) / ancho * self._CURVATURA_SCALE, 0.0, 1.0))
+
+    def _centro_desde_ll(
+        self,
+        ll_mask: np.ndarray,
+        filas: list[int],
+        x_camion: int,
+    ) -> float | None:
+        """
+        Centro geométrico del carril actual desde ll_mask.
+
+        Acumula píxeles de las filas dadas, los separa en izquierda/derecha
+        respecto a x_camion (= frame center) y retorna (max_izq + min_der) / 2.
+        En vías de N carriles, max_izq y min_der son siempre los bordes del
+        carril actual (los más cercanos al camión), no los de los carriles vecinos.
+        Retorna None si algún lado tiene menos de _MIN_LL_PIXELES píxeles.
+        """
+        pixeles_izq: list[int] = []
+        pixeles_der: list[int] = []
+        alto = ll_mask.shape[0]
+        for fila_y in filas:
+            if fila_y < 0 or fila_y >= alto:
+                continue
+            indices = np.where(ll_mask[fila_y, :] > 0)[0]
+            for x in indices:
+                if x < x_camion:
+                    pixeles_izq.append(int(x))
+                else:
+                    pixeles_der.append(int(x))
+        if len(pixeles_izq) < self._MIN_LL_PIXELES or len(pixeles_der) < self._MIN_LL_PIXELES:
+            return None
+        borde_izq = int(np.max(pixeles_izq))
+        borde_der = int(np.min(pixeles_der))
+        return (borde_izq + borde_der) / 2.0
