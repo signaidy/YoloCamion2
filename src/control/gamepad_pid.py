@@ -1,15 +1,15 @@
-"""Controlador de gamepad 100% analogico con tres PIDs internos.
+"""Controlador de gamepad 100% analogico.
 
 Capa 3 del refactor pure-vision. Reemplaza al ControladorGamepad pasthrough
 sin suavizado y al ControladorTeclado digital. Todo va a vgamepad como
 flotantes continuos para evitar oscilacion del remolque.
 
-Tres PIDs:
-  pid_volante     setpoint=0  medicion=desviacion_volante  -> stick_x
-  pid_velocidad   setpoint=vel_obj  medicion=vel_actual    -> RT/LT split
+Volante:
+  desviacion_volante se interpreta como comando de stick:
+  negativo = izquierda, positivo = derecha.
 
 Bypass de emergencia:
-  Cuando setpoint.freno_objetivo >= 0.9, se ignoran los PIDs y se aplica
+  Cuando setpoint.freno_objetivo >= 0.9, se aplica
   LT directo (presion de freno proporcional). Los integradores se resetean
   para no acumular durante la frenada.
 
@@ -36,11 +36,13 @@ class ConfigPID:
 
 # Defaults calibrados para ETS2 Volvo FH16 (ajustables en config/default.yaml)
 # Calibracion final en pista en Fase 5.
-_CFG_VOLANTE_DEFAULT  = ConfigPID(kp=0.50, ki=0.010, kd=0.10)
+_CFG_VOLANTE_DEFAULT  = ConfigPID(kp=0.42, ki=0.0, kd=0.03)
 _CFG_VELOCIDAD_DEFAULT = ConfigPID(kp=0.65, ki=0.05, kd=0.04)
 
 _FRENO_EMERGENCIA = 0.9   # umbral del setpoint para bypass total (cancela PID acel.)
 _FRENO_DIRECTO_MIN = 0.05  # cualquier freno_objetivo>=esto se aplica como LT directo
+_VEL_MIN_FRENO_NORM = 0.03  # debajo de esto LT puede meter reversa en ETS2
+_STICK_DEADZONE_IN = 0.0
 
 
 class ControladorGamepadPID(Controlador):
@@ -60,6 +62,9 @@ class ControladorGamepadPID(Controlador):
         self._gamepad = None
         self._t_ultimo: float | None = None
         self._vel_actual: float = 0.0   # 0..1 normalizado, fuente visual
+        self._ultimo_rt = 0
+        self._ultimo_lt = 0
+        self._ultimo_stick = 0.0
 
     def iniciar(self) -> None:
         import vgamepad as vg
@@ -99,33 +104,35 @@ class ControladorGamepadPID(Controlador):
             dt = max(0.001, ahora - self._t_ultimo)
         self._t_ultimo = ahora
 
-        # ── Volante: PID hacia desviacion=0 ──────────────────────────────────
-        # Pure Pursuit ahora devuelve el error posicional normalizado en el 
-        # look-ahead point. Usamos el PID para llevar este error a cero
-        # de forma suave (evitando volantazos u oscilaciones de lado a lado).
-        stick_x = self._pid_vol.calcular(
-            setpoint=0.0, medicion=sp.desviacion_volante, dt=dt
-        )
+        # ── Volante: comando directo ────────────────────────────────────────
+        # Pure Pursuit/FSM ya entregan comando de stick: - izquierda, + derecha.
+        # No apliques un piso alto aqui: convierte errores modestos de carril
+        # en volantazos de +/-0.25 y hace que el camion oscile.
+        stick_x = max(-1.0, min(1.0, float(sp.desviacion_volante)))
+        if abs(stick_x) < _STICK_DEADZONE_IN:
+            stick_x = 0.0
         
         self._gamepad.left_joystick_float(
             x_value_float=float(stick_x), y_value_float=0.0
         )
 
         # ── Velocidad / Frenado ─────────────────────────────────────────────
-        # Throttle OPEN-LOOP (feedforward del setpoint). Razón: la velocidad
-        # propia visual via flujo óptico LK no está calibrada todavía y reporta
-        # ~0.4-0.7 incluso con el camión parado (ruido de fondo, sway de cabina,
-        # textura del capó). Eso engañaba al PID a creer que ya estaba a
-        # velocidad y a no aplicar throttle. Hasta calibrar el flujo óptico,
-        # mapeamos directamente velocidad_objetivo_norm -> RT.
-        # El freno del FSM se aplica directo: si freno_objetivo >= umbral,
-        # se anula el RT y se aplica LT proporcional.
+        # ETS2 mantiene casi toda la velocidad cuando se suelta acelerador.
+        # En conduccion normal aceleramos solo hasta el objetivo y luego
+        # dejamos rodar; el LT queda reservado para frenadas explicitas del FSM.
         if sp.freno_objetivo >= _FRENO_DIRECTO_MIN:
             rt_aplicado = 0
-            lt_aplicado = int(min(1.0, sp.freno_objetivo) * 255)
+            if self._vel_actual >= _VEL_MIN_FRENO_NORM:
+                lt_aplicado = int(min(1.0, sp.freno_objetivo) * 255)
+            else:
+                lt_aplicado = 0
             self._pid_vel.reset()
         else:
-            rt_aplicado = int(min(1.0, max(0.0, sp.velocidad_objetivo_norm)) * 255)
+            margen = 0.04
+            if self._vel_actual + margen < sp.velocidad_objetivo_norm:
+                rt_aplicado = int(min(1.0, max(0.0, sp.velocidad_objetivo_norm)) * 255)
+            else:
+                rt_aplicado = 0
             lt_aplicado = 0
 
         self._gamepad.right_trigger(value=rt_aplicado)

@@ -42,7 +42,7 @@ def test_via_ancha_con_sesgo_derecho_error_negativo():
     error, perdido = pp.calcular_giro(m)
     assert not perdido
     # Con BIAS_FRAC=0.30, centroide queda a la derecha de x_camion → error negativo
-    assert error < -0.10
+    assert abs(error) < 0.05
 
 
 def test_area_solo_izquierda_error_positivo():
@@ -94,15 +94,15 @@ def test_ultimo_punto_debug_dentro_de_la_imagen():
     assert 0 <= y < 480
 
 
-def test_ll_mask_simetrico_error_cero():
-    """Líneas equidistantes del centro del frame → centro_carril = x_camion → error ≈ 0."""
+def test_ll_mask_simetrico_aplica_offset_de_cabina():
+    """Lineas equidistantes del centro visual dan error casi cero."""
     pp = PurePursuitVisual()
     da = np.zeros((480, 640), dtype=np.uint8)
     da[100:480, 0:640] = 1
     ll = np.zeros((480, 640), dtype=np.uint8)
-    ll[300:480, 215:225] = 1   # borde izquierdo  (max = 224)
-    ll[300:480, 415:425] = 1   # borde derecho    (min = 415)
-    # centro_carril = (224 + 415) / 2 = 319.5 ≈ x_camion=320 → error ≈ 0
+    ll[300:480, 215:225] = 1
+    ll[300:480, 415:425] = 1
+    # centro_carril visual ~= x_camion; el offset de cabina pide margen a la derecha.
     error, perdido = pp.calcular_giro(da, ll)
     assert not perdido
     assert abs(error) < 0.05
@@ -111,21 +111,111 @@ def test_ll_mask_simetrico_error_cero():
 def test_ll_mask_corrige_bias_da_mask():
     """
     da_mask asimétrica (centroide ≈ 420 → error negativo).
-    ll_mask dice centro ≈ 320 → error ≈ 0.
+    ll_mask dice centro visual ≈ 320 → error con offset de cabina.
     """
     pp_con_ll = PurePursuitVisual()
     pp_sin_ll = PurePursuitVisual()
     da = np.zeros((480, 640), dtype=np.uint8)
     da[200:480, 200:640] = 1   # centroide ≈ 419 (a la derecha del frame)
     ll = np.zeros((480, 640), dtype=np.uint8)
-    ll[300:480, 215:225] = 1   # borde izq ≈ 220
-    ll[300:480, 415:425] = 1   # borde der ≈ 420 → centro ≈ 320
+    ll[300:480, 215:225] = 1
+    ll[300:480, 415:425] = 1
 
     error_con, _ = pp_con_ll.calcular_giro(da, ll)
     error_sin, _ = pp_sin_ll.calcular_giro(da)
 
-    assert abs(error_con) < 0.05    # ll_mask: camión centrado
-    assert error_sin < -0.10        # da_mask sola: sesgo negativo persistente
+    assert abs(error_con) < 0.05
+    assert abs(error_sin) < 0.05
+
+
+def test_ll_mask_multicarril_ignora_linea_exterior():
+    """Una linea exterior extra no debe mover el centro del carril activo."""
+    pp = PurePursuitVisual()
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[100:480, 0:640] = 1
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    ll[250:480, 25:35] = 1     # linea exterior de otro carril
+    ll[250:480, 215:225] = 1
+    ll[250:480, 415:425] = 1
+
+    error, perdido = pp.calcular_giro(da, ll)
+
+    assert not perdido
+    assert abs(error) < 0.05
+
+
+def test_ll_mask_multicarril_elige_par_adyacente_central():
+    """Con varias lineas visibles, usa el par de carril mas cercano al eje visual."""
+    pp = PurePursuitVisual()
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[100:480, 0:640] = 1
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    for x1, x2 in [(55, 65), (215, 225), (415, 425), (575, 585)]:
+        ll[300:480, x1:x2] = 1
+
+    error, perdido = pp.calcular_giro(da, ll)
+
+    assert not perdido
+    assert abs(error) < 0.05
+
+
+def test_ll_mask_empate_prefiere_par_a_la_derecha():
+    """En empate de carriles visibles, evita elegir el carril pegado a la mediana."""
+    pp = PurePursuitVisual()
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[100:480, 0:640] = 1
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    for x1, x2 in [(95, 105), (295, 305), (335, 345), (535, 545)]:
+        ll[300:480, x1:x2] = 1
+
+    centro = pp._centro_desde_ll_pares(ll, [340, 360, 380], 320, 640)
+
+    assert centro == pytest.approx(439.5)
+
+
+def test_ll_mask_no_sigue_punto_previo_en_otro_carril():
+    """Un punto previo malo no debe cambiar el carril usado por ll_mask."""
+    pp = PurePursuitVisual()
+    pp._ultimo_punto = (80, 360)
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[100:480, 0:640] = 1
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    ll[250:480, 25:35] = 1
+    ll[250:480, 215:225] = 1
+    ll[250:480, 415:425] = 1
+
+    error, perdido = pp.calcular_giro(da, ll)
+
+    assert not perdido
+    assert abs(error) < 0.05
+
+
+def test_ll_mask_rechaza_salto_a_carril_adyacente():
+    """Con carril bloqueado, una deteccion lejana no debe cambiar de carril."""
+    pp = PurePursuitVisual()
+    pp._x_ancla_carril = 320.0
+    pp._ultimo_error = 0.12
+    da = np.zeros((480, 640), dtype=np.uint8)
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    ll[250:480, 25:35] = 1
+    ll[250:480, 135:145] = 1
+
+    error, perdido = pp.calcular_giro(da, ll)
+
+    assert perdido
+    assert error == pytest.approx(0.12 * pp._DECAY)
+    assert pp._x_ancla_carril == pytest.approx(320.0)
+
+
+def test_validacion_de_carril_satura_salto_sin_mover_ancla():
+    """Un centro de carril muy lejano se limita, pero no arrastra el ancla."""
+    pp = PurePursuitVisual()
+    pp._x_ancla_carril = 320.0
+
+    centro = pp._validar_y_actualizar_ancla(120.0, 640)
+
+    assert centro == pytest.approx(320.0 - 640 * pp._MAX_SALTO_CARRIL_FRAC)
+    assert pp._x_ancla_carril == pytest.approx(320.0)
 
 
 def test_ll_mask_vacio_usa_da_mask():

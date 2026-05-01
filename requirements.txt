@@ -1,11 +1,27 @@
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch>=2.2.0
+torchvision>=0.17.0
 ultralytics>=8.3.0
 opencv-python>=4.9.0
-dxcam>=0.0.5
 numpy>=1.26.0
-pandas>=2.2.0
 pyyaml>=6.0
-yt-dlp>=2024.1.1
+# YOLOP (torch hub) transitive dependencies
+prefetch_generator>=1.0.1
+tqdm>=4.66.0
+yacs>=0.1.8
+matplotlib>=3.9.0
+Pillow>=10.0.0
+scipy>=1.13.0
+tensorboardX>=2.6.0
+seaborn>=0.13.0
+imageio>=2.34.0
+scikit-learn>=1.5.0
+mss>=9.0.0
+dxcam>=0.0.5
 vgamepad>=0.1.0
 pydirectinput>=1.0.4
+pynput>=1.7.0
+pandas>=2.2.0
+yt-dlp>=2024.1.1
 pytest>=8.0.0
 pytest-mock>=3.12.0

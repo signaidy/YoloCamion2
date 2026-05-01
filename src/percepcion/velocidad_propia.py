@@ -22,6 +22,7 @@ _FRANJA_Y_INI = 0.78
 _FRANJA_Y_FIN = 0.97
 _FRANJA_X_INI = 0.30
 _FRANJA_X_FIN = 0.70
+_MIN_MUESTRAS_FLUJO = 30
 
 
 class EstimadorVelocidadPropia:
@@ -56,7 +57,7 @@ class EstimadorVelocidadPropia:
 
         v_comp = franja[..., 1]
         mascara = v_comp != 0
-        if mascara.any():
+        if int(np.count_nonzero(mascara)) >= _MIN_MUESTRAS_FLUJO:
             magnitud_media = float(np.abs(v_comp[mascara]).mean())
         else:
             magnitud_media = 0.0

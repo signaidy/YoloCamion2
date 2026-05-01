@@ -17,6 +17,11 @@ datos/modelos/*.onnx
 datos/evidencia/**/*.mp4
 datos/evidencia/**/*.avi
 
+# Evidencia generada en ejecución
+datos/evidencia/sesion_*.jsonl
+datos/evidencia/debug_*.jpg
+datos/evidencia/debug_*.png
+
 # IDE
 .vscode/
 .idea/

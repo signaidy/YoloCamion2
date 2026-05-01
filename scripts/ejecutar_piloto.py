@@ -29,11 +29,11 @@ from src.fuente.buffer import FuenteConBuffer
 from src.fuente.ventana import FuenteVentana, buscar_ventana
 from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
+from src.percepcion.carriles import DetectorCarriles
 from src.percepcion.yolop_inference import InferenciaYOLOP
 from src.control.pure_pursuit import PurePursuitVisual
 from src.percepcion.fisica import EstimadorFisicaVisual
-from src.percepcion.flujo_optico import EstimadorFlujoOpticoLK
-from src.percepcion.velocidad_propia import EstimadorVelocidadPropia
+from src.percepcion.velocidad_dashboard import EstimadorVelocidadDashboard
 from src.registro import GrabadorVideo, LoggerJSONL, MetricasSesion
 from src.seguridad import MonitorSeguridad
 from src.tipos import Accion, ComandoControl, SetpointControl
@@ -52,6 +52,12 @@ _ACCIONES_CON_GIRO: frozenset[Accion] = frozenset({
     Accion.REBASAR_IZQ, Accion.REBASAR_DER,
 })
 
+_MIN_PIXELES_LL_YOLOP = 800
+_MIN_PIXELES_LL_LADO_YOLOP = 250
+_ZONA_MUERTA_CARRIL_PP = 0.015
+_GANANCIA_CARRIL_PP = 1.45
+_LIMITE_COMANDO_DA = 0.25
+
 
 def _setpoint_a_comando(sp: SetpointControl) -> ComandoControl:
     """Adaptador: SetpointControl -> ComandoControl para controladores no-PID."""
@@ -63,14 +69,32 @@ def _setpoint_a_comando(sp: SetpointControl) -> ComandoControl:
     )
 
 
-def _roi_franja_inferior(w: int, h: int) -> tuple[int, int, int, int]:
-    """ROI para flujo optico de velocidad propia: franja inferior central."""
-    return (
-        int(round(0.30 * w)),
-        int(round(0.78 * h)),
-        int(round(0.70 * w)),
-        int(round(0.97 * h)),
+def _ll_yolop_valida(ll_mask_roi: np.ndarray) -> tuple[bool, int, int, int]:
+    """Valida que YOLOP vea marcas suficientes a ambos lados del camion."""
+    alto, ancho = ll_mask_roi.shape
+    total_full = int(np.count_nonzero(ll_mask_roi))
+    y0 = int(round(alto * 0.66))
+    y1 = int(round(alto * 0.92))
+    x_ref = ancho // 2
+    half = int(round(ancho * 0.24))
+    x0 = max(0, x_ref - half)
+    x2 = min(ancho, x_ref + half)
+
+    roi = ll_mask_roi[y0:y1, x0:x2]
+    xs = np.nonzero(roi)[1]
+    total = int(xs.size)
+    if total == 0:
+        return False, total_full, 0, 0
+
+    x_split = x_ref - x0
+    pix_izq = int(np.count_nonzero(xs < x_split))
+    pix_der = int(np.count_nonzero(xs >= x_split))
+    valida = (
+        total >= _MIN_PIXELES_LL_YOLOP
+        and pix_izq >= _MIN_PIXELES_LL_LADO_YOLOP
+        and pix_der >= _MIN_PIXELES_LL_LADO_YOLOP
     )
+    return valida, total_full, pix_izq, pix_der
 
 
 def cargar_config(ruta: str) -> dict:
@@ -145,6 +169,8 @@ def main():
                         help="Mostrar estado del carril cada 30 frames para calibración")
     parser.add_argument("--debug-carril-img", action="store_true",
                         help="Guardar imagen de debug con líneas detectadas cada 60 frames")
+    parser.add_argument("--debug-yolop", action="store_true",
+                        help="Guardar imagen compuesta cada 60 frames: entrada del modelo | máscaras superpuestas")
     args = parser.parse_args()
 
     cfg = cargar_config(args.config)
@@ -180,21 +206,22 @@ def main():
     estimador_fisica = EstimadorFisicaVisual()
     contexto = AnalizadorContexto(rois=rois, estimador_fisica=estimador_fisica)
     fsm = FSMDecision()
-    yolop = InferenciaYOLOP()
+    yolop = InferenciaYOLOP(
+        imgsz=cfg["modelo"]["imgsz"],
+        device=cfg["modelo"]["device"],
+    )
     pure_pursuit = PurePursuitVisual()
     controlador = construir_controlador(cfg)
 
-    # Capa pure-vision para velocidad propia (RNF-07): flujo optico LK
-    # restringido a franja inferior central, normalizado a [0, 1].
-    escalar = cfg["fuente"].get("escalar_a") or [1920, 1080]
-    w_capt, h_capt = int(escalar[0]), int(escalar[1])
-    cfg_velprop = cfg.get("velocidad_propia", {}) or {}
-    estimador_flujo = EstimadorFlujoOpticoLK(roi=_roi_franja_inferior(w_capt, h_capt))
-    estimador_velocidad = EstimadorVelocidadPropia(
-        factor_calibracion=float(cfg_velprop.get("factor_calibracion", 0.01)),
-        alpha_ema=float(cfg_velprop.get("alpha_ema", 0.3)),
+    # Velocidad propia desde el HUD. Es mas fiable que flujo optico para detectar
+    # 0 km/h; en ETS2, aplicar LT parado engrana reversa.
+    cfg_vel_dash = cfg.get("velocidad_dashboard", {}) or {}
+    estimador_velocidad = EstimadorVelocidadDashboard(
+        max_kmh_norm=float(cfg_vel_dash.get("max_kmh_norm", 90.0)),
+        retener_frames=int(cfg_vel_dash.get("retener_frames", 15)),
     )
     velocidad_actual_norm = 0.0
+    velocidad_actual_kmh: int | None = None
     metricas = MetricasSesion()
     log = LoggerJSONL(cfg["registro"]["ruta_base"])
     grabar = cfg["registro"]["grabar_video"] and not args.sin_video
@@ -219,13 +246,16 @@ def main():
         tracker.cargar()
         yolop.cargar()
 
-        # Warmup: pre-compila kernels CUDA para que el primer frame real sea rápido
-        # Sin esto, la primera inferencia tarda ~3s y el watchdog dispararía
-        logger.info("Warmup YOLO (compilando kernels CUDA)...")
+        # Warmup: pre-compila kernels CUDA para que el primer frame real sea rápido.
+        # Se ejecutan 3 pasadas para asegurar que todos los caminos CUDA están compilados.
+        logger.info("Warmup YOLO (compilando kernels CUDA — puede tardar 60s en arranque en frío)...")
         import numpy as _np
         _frame_dummy = _np.zeros((1080, 1920, 3), dtype=_np.uint8)
-        tracker.rastrear(_frame_dummy)
-        yolop.procesar_frame(_frame_dummy)
+        for _ in range(3):
+            tracker.rastrear(_frame_dummy)
+            _, _da, _ll = yolop.procesar_frame(_frame_dummy)
+            _pp = PurePursuitVisual()
+            _pp.calcular_giro(_da, _ll)
         logger.info("Warmup completado — CUDA listo")
 
         fuente.iniciar()
@@ -246,16 +276,18 @@ def main():
         ll_mask_cache: np.ndarray | None = None
 
         # EMA de la desviación lateral del carril.
-        # Reducido a 0.12 (desde 0.18): el rate-limit en calcular_giro ya contiene los
-        # saltos de detección; el EMA ahora añade una capa de suavizado adicional sin
-        # retrasar demasiado las correcciones reales en curva.
-        _ALPHA_EMA_CARRIL = 0.12
+        # EMA rapida: con gamepad sin deadzone fisica, el piloto puede corregir
+        # temprano; demasiada memoria retrasa la salida hasta estar cerca del muro.
+        _ALPHA_EMA_CARRIL = 0.45
         desv_ema: float = 0.0
 
         from src.decision.estado import EstadoFSM
         _ESTADOS_CARRIL = (
             EstadoFSM.CONDUCIENDO_NORMAL,
             EstadoFSM.SIGUIENDO_VEHICULO,
+            EstadoFSM.FRENANDO_PREVENTIVO,
+            EstadoFSM.APROXIMANDO_ALTO,
+            EstadoFSM.APROXIMANDO_SEMAFORO,
             EstadoFSM.RECUPERACION,
         )
 
@@ -294,16 +326,31 @@ def main():
             da_mask[:_fila_roi, :] = 0
             ll_mask_roi = ll_mask.copy()
             ll_mask_roi[:_fila_roi, :] = 0
+            ll_yolop_valida, pixeles_ll_yolop, pixeles_ll_izq, pixeles_ll_der = _ll_yolop_valida(ll_mask_roi)
 
-            # Pure Pursuit: ll_mask (nivel 1) con fallback a da_mask (nivel 2)
+            # Pure Pursuit: ll_mask (nivel 1) → da_mask centroide (nivel 2) → decay (nivel 3).
+            # No usamos el detector clásico de brillo como respaldo: su ROI no tiene en cuenta
+            # el offset de cámara (_BIAS_CAM_PX=80), lo que produce un sesgo sistemático a la
+            # derecha que hace que el camión se estrelle contra la barrera derecha.
             giro_pure_pursuit, carril_perdido = pure_pursuit.calcular_giro(da_mask, ll_mask_roi)
+            fuente_carril = "ll" if ll_yolop_valida else ("da" if not carril_perdido else "decay")
+            detalle_carril = ""
+            comando_carril_directo: float | None = None
 
-            # EMA de suavizado (alpha=0.30 — señal ya más estable que antes)
+            # EMA de suavizado rapido: PurePursuit ya limita saltos grandes.
             desv_ema = (_ALPHA_EMA_CARRIL * giro_pure_pursuit + (1.0 - _ALPHA_EMA_CARRIL) * desv_ema)
 
-            # ── Velocidad propia visual (pure-vision, RNF-07) ────────────────
-            flujo_lk = estimador_flujo.calcular(cuadro.imagen, cuadro.timestamp)
-            velocidad_actual_norm = estimador_velocidad.estimar(flujo_lk)
+            # Cuando el camión está casi parado el volante no produce corrección
+            # lateral efectiva y la EMA acumula sesgo que dispara un sobreimpulso
+            # al retomar la marcha. Por debajo de 5 km/h se decae la EMA a la
+            # mitad por frame para mantener la memoria pequeña.
+            if velocidad_actual_kmh is not None and velocidad_actual_kmh <= 5:
+                desv_ema *= 0.5
+
+            # ── Velocidad propia desde HUD ──────────────────────────────────
+            lectura_velocidad = estimador_velocidad.estimar(cuadro.imagen)
+            velocidad_actual_norm = lectura_velocidad.norm
+            velocidad_actual_kmh = lectura_velocidad.kmh
             if isinstance(controlador, ControladorGamepadPID):
                 controlador.actualizar_velocidad_actual(velocidad_actual_norm)
 
@@ -324,22 +371,53 @@ def main():
                 desviacion_volante=resultado.setpoint.desviacion_volante,
             )
 
-            # Override de carril: activo en estados de conducción normal
-            # Zona muerta ±0.05: suprime micro-correcciones por ruido de detección.
+            # Override de carril: activo mientras el camion sigue avanzando.
+            # Incluso al aproximarse a alto/semaforo debe mantenerse centrado;
+            # solo los estados detenidos dejan el volante al FSM.
+            # Zona muerta pequena: corrige deriva antes de acercarse a la linea.
             if (resultado.accion not in _ACCIONES_CON_GIRO
                     and resultado.estado_nuevo in _ESTADOS_CARRIL):
-                desv_out = 0.0 if abs(desv_ema) < 0.05 else float(np.clip(desv_ema, -1.0, 1.0))
-                setpoint.desviacion_volante = desv_out
+                if comando_carril_directo is not None:
+                    setpoint.desviacion_volante = comando_carril_directo
+                else:
+                    desv_out = 0.0 if abs(desv_ema) < _ZONA_MUERTA_CARRIL_PP else float(
+                        np.clip(desv_ema * _GANANCIA_CARRIL_PP, -1.0, 1.0)
+                    )
+                    if fuente_carril == "da":
+                        desv_out = float(np.clip(desv_out, -_LIMITE_COMANDO_DA, _LIMITE_COMANDO_DA))
+                    # PurePursuit: positivo = objetivo a la izquierda, negativo = derecha.
+                    # SetpointControl/gamepad: negativo = stick izquierda, positivo = derecha.
+                    setpoint.desviacion_volante = -desv_out
 
-            # Reducir velocidad cuando el carril se pierde por oclusión
+            # Reducir velocidad solo cuando todo falla (nivel 3: decay puro).
+            # Braking solo por encima de 15 km/h para que el camión pueda arrancar.
+            _VEL_FRENO_DECAY = 0.17  # ~15 km/h a 90 km/h max
             if carril_perdido and resultado.estado_nuevo in _ESTADOS_CARRIL:
-                setpoint.velocidad_objetivo_norm *= 0.40
+                setpoint.velocidad_objetivo_norm *= 0.50
+                if velocidad_actual_norm >= _VEL_FRENO_DECAY:
+                    setpoint.freno_objetivo = max(setpoint.freno_objetivo, 0.10)
+
+            if resultado.estado_nuevo in _ESTADOS_CARRIL:
+                curva = max(abs(giro_pure_pursuit), abs(desv_ema), pure_pursuit.ultima_curvatura_debug)
+                setpoint.velocidad_objetivo_norm *= 0.80
+                if curva > 0.06:
+                    escala_curva = float(np.interp(curva, [0.06, 0.45], [0.85, 0.35]))
+                    setpoint.velocidad_objetivo_norm *= escala_curva
+                if curva > 0.12:
+                    if velocidad_actual_norm >= _VEL_FRENO_DECAY:
+                        freno_curva = 0.06 if curva < 0.25 else 0.10
+                        setpoint.freno_objetivo = max(setpoint.freno_objetivo, freno_curva)
 
             if args.debug_carril and n_frame % 30 == 0:
                 logger.info(
-                    "CARRIL (YOLOP) desv_pp=%+.3f ema=%+.3f vol=%+.2f vel=%.2f",
+                    "CARRIL (%s%s) desv_pp=%+.3f ema=%+.3f curv=%.2f stick_obj=%+.2f vel=%.2f kmh=%s ll_px=%d/%d/%d",
+                    fuente_carril,
+                    detalle_carril,
                     giro_pure_pursuit, desv_ema,
+                    pure_pursuit.ultima_curvatura_debug,
                     setpoint.desviacion_volante, velocidad_actual_norm,
+                    "-" if velocidad_actual_kmh is None else str(velocidad_actual_kmh),
+                    pixeles_ll_yolop, pixeles_ll_izq, pixeles_ll_der,
                 )
 
             if args.debug_carril_img and n_frame % 60 == 0:
@@ -351,18 +429,86 @@ def main():
                 mask_color[da_mask > 0] = (0, 255, 0) # Verde para drivable area
                 mask_color[ll_mask > 0] = (0, 0, 255) # Rojo para lane lines
                 dbg = _cv2.addWeighted(dbg, 0.7, mask_color, 0.3, 0)
-                
+
                 # Dibujar look-ahead point
                 punto = pure_pursuit.ultimo_punto_debug
                 if punto:
                     _cv2.circle(dbg, punto, 10, (255, 255, 0), -1)
-                    
+
                 ruta_dbg = _Path(cfg["registro"]["ruta_base"]) / f"debug_yolop_{n_frame:06d}.jpg"
                 _cv2.imwrite(str(ruta_dbg), dbg)
                 logger.info("Debug imagen YOLOP guardada: %s", ruta_dbg)
 
+            if args.debug_yolop and n_frame % 60 == 0:
+                import cv2 as _cv2
+                from pathlib import Path as _Path
+                _H = 486  # altura del panel; ancho proporcional a 16:9
+
+                # Panel izquierdo: frame original capturado (lo que el piloto ve)
+                orig = _cv2.resize(cuadro.imagen, (_H * 16 // 9, _H))
+                _cv2.putText(orig, "CAPTURA ORIGINAL", (8, 22),
+                             _cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+
+                # Panel central: entrada real del modelo (CLAHE + sharpened + letterbox)
+                entrada = yolop.ultima_imagen_debug
+                if entrada is not None:
+                    # Escalar manteniendo el cuadrado letterbox visible
+                    entrada = _cv2.resize(entrada, (_H, _H))
+                    _cv2.putText(entrada, "ENTRADA MODELO (CLAHE+sharp+LB)", (8, 22),
+                                 _cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
+                else:
+                    entrada = np.zeros((_H, _H, 3), dtype=np.uint8)
+
+                # Panel derecho: máscaras + look-ahead sobre frame original
+                mascaras = cuadro.imagen.copy()
+                mc = np.zeros_like(mascaras)
+                mc[da_mask > 0] = (0, 200, 0)   # verde = drivable area
+                mc[ll_mask > 0] = (0, 80, 255)  # naranja-rojo = lane lines
+                mascaras = _cv2.addWeighted(mascaras, 0.65, mc, 0.35, 0)
+                punto = pure_pursuit.ultimo_punto_debug
+                if punto:
+                    _cv2.circle(mascaras, punto, 12, (0, 255, 255), -1)
+                    _cv2.circle(mascaras, punto, 12, (0, 0, 0), 2)
+                # Anotar error de carril actual
+                _cv2.putText(mascaras,
+                             f"src={fuente_carril} ll={pixeles_ll_yolop}/{pixeles_ll_izq}/{pixeles_ll_der} err={giro_pure_pursuit:+.3f} ema={desv_ema:+.3f} cmd={setpoint.desviacion_volante:+.3f} kmh={velocidad_actual_kmh if velocidad_actual_kmh is not None else '-'} curv={pure_pursuit.ultima_curvatura_debug:.2f}{detalle_carril}",
+                             (8, 22), _cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
+                _cv2.putText(mascaras, "MASCARAS + LOOK-AHEAD", (8, 48),
+                             _cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+                mascaras = _cv2.resize(mascaras, (_H * 16 // 9, _H))
+
+                # Separadores verticales de 4px
+                sep = np.full((_H, 4, 3), 60, dtype=np.uint8)
+                compuesto = np.hstack([orig, sep, entrada, sep, mascaras])
+
+                ruta_cmp = _Path(cfg["registro"]["ruta_base"]) / f"debug_modelo_{n_frame:06d}.jpg"
+                _cv2.imwrite(str(ruta_cmp), compuesto, [_cv2.IMWRITE_JPEG_QUALITY, 90])
+                logger.info("Debug modelo guardado: %s", ruta_cmp)
+
             if isinstance(controlador, ControladorGamepadPID):
                 controlador.aplicar(setpoint)
+                if args.debug_carril and n_frame % 30 == 0:
+                    rt_aplicado, lt_aplicado, stick_aplicado = controlador.ultimo_comando_aplicado
+                    logger.info(
+                        "GAMEPAD aplicado rt=%d lt=%d stick=%+.2f",
+                        rt_aplicado, lt_aplicado, stick_aplicado,
+                    )
+                    log.evento("carril_control", {
+                        "frame": n_frame,
+                        "fuente": fuente_carril,
+                        "detalle": detalle_carril.strip(),
+                        "err": round(float(giro_pure_pursuit), 4),
+                        "ema": round(float(desv_ema), 4),
+                        "cmd": round(float(setpoint.desviacion_volante), 4),
+                        "stick": round(float(stick_aplicado), 4),
+                        "kmh": velocidad_actual_kmh,
+                        "rt": int(rt_aplicado),
+                        "lt": int(lt_aplicado),
+                        "ll_total": int(pixeles_ll_yolop),
+                        "ll_izq": int(pixeles_ll_izq),
+                        "ll_der": int(pixeles_ll_der),
+                        "perdido": bool(carril_perdido),
+                    })
             else:
                 controlador.aplicar(_setpoint_a_comando(setpoint))
 

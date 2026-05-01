@@ -98,3 +98,14 @@ def test_flujo_disperso_ignora_celdas_cero():
     flujo[900:910, 900:910, 1] = 100.0
     v = est.estimar(flujo)
     assert v > 0.0
+
+
+def test_flujo_disperso_con_muy_pocas_muestras_se_toma_como_parado():
+    """Ruido de pocos puntos no debe impedir arrancar desde cero."""
+    est = EstimadorVelocidadPropia(factor_calibracion=0.01, alpha_ema=1.0)
+    flujo = np.zeros((1080, 1920, 2), dtype=np.float32)
+    flujo[900:905, 900:905, 1] = 100.0
+
+    v = est.estimar(flujo)
+
+    assert v == pytest.approx(0.0)
