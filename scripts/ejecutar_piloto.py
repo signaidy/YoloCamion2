@@ -31,6 +31,7 @@ from src.percepcion import AnalizadorContexto, Tracker
 from src.percepcion.contexto import cargar_rois_yaml
 from src.percepcion.carriles import DetectorCarriles
 from src.percepcion.yolop_inference import InferenciaYOLOP
+from src.percepcion.analisis_carriles import AnalizadorCarriles, superponer_carriles
 from src.control.pure_pursuit import PurePursuitVisual
 from src.percepcion.fisica import EstimadorFisicaVisual
 from src.percepcion.velocidad_dashboard import EstimadorVelocidadDashboard
@@ -171,6 +172,8 @@ def main():
                         help="Guardar imagen de debug con líneas detectadas cada 60 frames")
     parser.add_argument("--debug-yolop", action="store_true",
                         help="Guardar imagen compuesta cada 60 frames: entrada del modelo | máscaras superpuestas")
+    parser.add_argument("--debug-clasif-carriles", action="store_true",
+                        help="Guardar imagen con clasificación de carriles (ego/contrario/mismo) cada 60 frames")
     args = parser.parse_args()
 
     cfg = cargar_config(args.config)
@@ -210,6 +213,7 @@ def main():
         imgsz=cfg["modelo"]["imgsz"],
         device=cfg["modelo"]["device"],
     )
+    analizador_carriles = AnalizadorCarriles(usar_suavizado=True)
     pure_pursuit = PurePursuitVisual()
     controlador = construir_controlador(cfg)
 
@@ -327,6 +331,11 @@ def main():
             ll_mask_roi = ll_mask.copy()
             ll_mask_roi[:_fila_roi, :] = 0
             ll_yolop_valida, pixeles_ll_yolop, pixeles_ll_izq, pixeles_ll_der = _ll_yolop_valida(ll_mask_roi)
+
+            # Clasificación de carriles (ego / contrario / mismo sentido).
+            # Disponible para futuras decisiones del FSM o el control;
+            # de momento solo se visualiza con --debug-clasif-carriles.
+            carriles_clasif = analizador_carriles.analizar(ll_mask, da_mask)
 
             # Pure Pursuit: ll_mask (nivel 1) → da_mask centroide (nivel 2) → decay (nivel 3).
             # No usamos el detector clásico de brillo como respaldo: su ROI no tiene en cuenta
@@ -484,6 +493,24 @@ def main():
                 ruta_cmp = _Path(cfg["registro"]["ruta_base"]) / f"debug_modelo_{n_frame:06d}.jpg"
                 _cv2.imwrite(str(ruta_cmp), compuesto, [_cv2.IMWRITE_JPEG_QUALITY, 90])
                 logger.info("Debug modelo guardado: %s", ruta_cmp)
+
+            if args.debug_clasif_carriles and n_frame % 60 == 0:
+                import cv2 as _cv2
+                from pathlib import Path as _Path
+                clasif_img = superponer_carriles(
+                    cuadro.imagen,
+                    carriles_clasif,
+                    area_mask=da_mask,
+                    fps=cuadro.fps_instantaneo,
+                    frame_idx=n_frame,
+                )
+                ruta_clasif = _Path(cfg["registro"]["ruta_base"]) / f"debug_carriles_{n_frame:06d}.jpg"
+                _cv2.imwrite(str(ruta_clasif), clasif_img, [_cv2.IMWRITE_JPEG_QUALITY, 90])
+                logger.info(
+                    "Debug clasificación carriles guardado: %s | estado=%s offset=%s",
+                    ruta_clasif, carriles_clasif.estado,
+                    f"{carriles_clasif.offset_px:+.0f}px" if carriles_clasif.offset_px is not None else "-",
+                )
 
             if isinstance(controlador, ControladorGamepadPID):
                 controlador.aplicar(setpoint)
