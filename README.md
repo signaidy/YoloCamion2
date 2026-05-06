@@ -1,24 +1,49 @@
-# Conducción autónoma visual en ETS2 con YOLO26
+# Conducción autónoma visual en ETS2
 
 Proyecto Final — Universidad del Istmo (Guatemala)
+
+Este repositorio contiene un piloto visual para **Euro Truck Simulator 2** basado en:
+
+- **YOLO11n** para detección y tracking de objetos.
+- **YOLOP** para segmentación de carriles y área manejable.
+- **Pure Pursuit visual** para seguimiento de carril.
+- **OCR del velocímetro del HUD** con OpenCV y un banco de prototipos reales.
+- **FSM + PID sobre gamepad virtual** para acelerar, frenar y girar.
+
+## Estado actual
+
+Actualmente el sistema puede:
+
+- mantener carril en autopista usando `ll_mask` de YOLOP con fallback a `da_mask`
+- seguir vehículos y frenar según TTC visual
+- respetar semáforos y señales de alto con histéresis
+- leer la velocidad desde el HUD del camión sin depender de telemetría interna
+- capturar desde video, pantalla completa o ventana específica
+- generar artefactos de debug para analizar carril, OCR y decisiones
+
+Limitaciones actuales:
+
+- **no** sigue todavía la ruta completa del GPS/minimapa
+- está calibrado principalmente para **ETS2 en 1920x1080**
+- las maniobras complejas de salidas, intersecciones y cambios de carril guiados por ruta siguen pendientes
+- la lectura del velocímetro depende del HUD visible y del banco de prototipos configurado
 
 ## Requisitos previos
 
 | Requisito | Versión mínima | Notas |
 | --------- | ------------- | ----- |
 | Python | 3.11+ | Probado en 3.14 |
-| GPU NVIDIA | — | CUDA 12.6+ recomendado |
-| Driver NVIDIA | 525+ | Driver 596+ recomendado |
-| [ViGEmBus](https://github.com/nefarius/ViGEmBus/releases/latest) | 1.22+ | **Requerido para gamepad virtual** — instalar antes que vgamepad |
+| GPU NVIDIA | — | CUDA recomendado para inferencia en vivo |
+| Driver NVIDIA | 525+ | 596+ recomendado |
+| [ViGEmBus](https://github.com/nefarius/ViGEmBus/releases/latest) | 1.22+ | Requerido para gamepad virtual |
 | Euro Truck Simulator 2 | — | Resolución 1920×1080 recomendada |
 
-> **ViGEmBus** es un driver de Windows para gamepads virtuales. Sin él `vgamepad` falla al iniciar.
-> Descargar e instalar `ViGEmBus_Setup_x64.msi` desde el link de arriba, luego reiniciar.
+> Sin `ViGEmBus`, `vgamepad` no puede exponer el control virtual al juego.
 
 ## Instalación
 
 ```bat
-:: 1. Clonar y entrar al directorio
+:: 1. Clonar y entrar al repo
 git clone <repo>
 cd YoloCamion
 
@@ -26,15 +51,11 @@ cd YoloCamion
 python -m venv venv
 venv\Scripts\activate
 
-:: 3. Instalar PyTorch con CUDA 12.6 (primero, antes que requirements.txt)
-pip install torch torchvision --force-reinstall --index-url https://download.pytorch.org/whl/cu126
-
-:: 4. Instalar el resto de dependencias
+:: 3. Instalar dependencias
 pip install -r requirements.txt
 ```
 
-> Si tu driver soporta otra versión de CUDA, reemplaza `cu126` por `cu124`, `cu128`, etc.
-> Verifica con: `nvidia-smi` → busca "CUDA Version" en la esquina superior derecha.
+`requirements.txt` ya incluye el índice de PyTorch para `cu126`. Si tu entorno usa otra versión de CUDA, puedes instalar `torch` y `torchvision` manualmente antes de `requirements.txt`.
 
 ### Verificar instalación
 
@@ -42,72 +63,125 @@ pip install -r requirements.txt
 python -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"
 ```
 
-Debe mostrar algo como: `2.11.0+cu126 | CUDA: True`
+Lo importante es que `CUDA: True` aparezca en una máquina con GPU configurada.
 
-## Pesos del modelo
+## Modelos y archivos esperados
 
-### YOLO (detección de objetos)
+### Detección de objetos
 
-Colocar el archivo de pesos en `datos/modelos/yolo26n.pt`.
-La ruta se configura en `config/default.yaml` bajo `modelo.pesos`.
+La configuración por defecto espera los pesos en:
 
-### YOLOP (carriles y área manejable)
+```text
+datos/modelos/yolo11n.pt
+```
 
-Se descarga automáticamente desde Torch Hub en la primera ejecución (~500 MB).
-Se guarda en `%USERPROFILE%\.cache\torch\hub\`.
+La ruta se controla desde `config/default.yaml`.
 
-## Ejecutar
+### Segmentación de carril
+
+YOLOP se descarga automáticamente desde `torch.hub` en la primera ejecución.
+
+### OCR del velocímetro
+
+El lector usa un banco de prototipos reales por defecto:
+
+```text
+config/velocidad_dashboard_prototypes.json
+```
+
+Ese banco se puede extender con muestras nuevas tomadas de `datos/evidencia/velocidad_componentes/`.
+
+## Ejecución
 
 ```bat
-:: Activar entorno (si no está activo)
+:: Activar entorno
 venv\Scripts\activate
 
-:: Ejecución básica (captura la pantalla con dxcam/mss)
+:: Ejecución básica
 python scripts/ejecutar_piloto.py
 
-:: Con countdown de 5 segundos para cambiar al juego
+:: Countdown para cambiar al juego
 python scripts/ejecutar_piloto.py --delay 5
 
-:: Sin grabar video (más rápido, útil en pruebas)
+:: Sin grabación MP4
 python scripts/ejecutar_piloto.py --delay 5 --sin-video
 ```
 
-### Opciones de debug
+### Fuentes soportadas
 
 ```bat
-:: Imprimir error de carril por consola cada 30 frames
-python scripts/ejecutar_piloto.py --debug-carril
-
-:: Guardar imagen de máscaras YOLOP cada 60 frames en datos/evidencia/
-python scripts/ejecutar_piloto.py --debug-carril-img
-
-:: Guardar imagen compuesta: captura original | entrada del modelo | máscaras + look-ahead
-python scripts/ejecutar_piloto.py --debug-yolop
-
-:: Todo junto con delay
-python scripts/ejecutar_piloto.py --delay 5 --sin-video --debug-yolop
-```
-
-Las imágenes de debug se guardan en `datos/evidencia/debug_modelo_XXXXXX.jpg`.
-
-### Cambiar fuente de video
-
-```bat
-:: Usar archivo de video en lugar de captura en vivo
+:: Video grabado
 python scripts/ejecutar_piloto.py --fuente video
 
-:: Captura de pantalla completa (en vez de ventana específica)
+:: Pantalla completa / región de monitor
 python scripts/ejecutar_piloto.py --fuente pantalla
 
-:: Captura por ventana aunque ETS2 quede tapado (puede lavar contraste en DirectX)
+:: Ventana de ETS2
 python scripts/ejecutar_piloto.py --fuente ventana
 ```
 
-### Otras opciones
+`pantalla` usa `dxcam` con fallback a `mss`. `ventana` usa captura por ventana y puede ser útil cuando el juego no está en primer plano.
+
+### Control
+
+En `config/default.yaml` el modo por defecto es:
+
+```yaml
+control:
+  tipo: "gamepad"
+```
+
+También existen `nulo` y `teclado` para pruebas.
+
+## Debug y evidencia
+
+### Flags útiles
 
 ```bat
-python scripts/ejecutar_piloto.py --help
+:: Log de carril cada 30 frames
+python scripts/ejecutar_piloto.py --debug-carril
+
+:: Guardar overlay simple de YOLOP
+python scripts/ejecutar_piloto.py --debug-carril-img
+
+:: Guardar panel compuesto del modelo + ROI del velocímetro + dumps OCR
+python scripts/ejecutar_piloto.py --debug-yolop
+
+:: Guardar clasificación de carriles ego / mismo sentido / contrario
+python scripts/ejecutar_piloto.py --debug-clasif-carriles
 ```
+
+### Archivos generados
+
+En `datos/evidencia/` el sistema puede producir:
+
+- `sesion_*.jsonl`: log estructurado de frames, decisiones y eventos
+- `debug_yolop_*.jpg`: overlay simple de máscaras sobre el frame
+- `debug_modelo_*.jpg`: panel compuesto con captura, entrada del modelo y máscaras
+- `debug_vel_roi_*.jpg`: ROI ampliada del velocímetro con componentes detectados
+- `debug_carriles_*.jpg`: visualización de clasificación/offset de carril
+- `grabacion_*.mp4`: grabación completa si `registro.grabar_video=true`
+
+Con `--debug-yolop` y `velocidad_dashboard.dump_componentes_dir` habilitado, también se guardan crops de dígitos en:
+
+```text
+datos/evidencia/velocidad_componentes/
+```
+
+Estos artefactos están ignorados por git para mantener el repo limpio.
+
+## Banco de prototipos del velocímetro
+
+Para extender el OCR con muestras reales:
+
+```bat
+python scripts/registrar_prototipos_velocidad.py ^
+  --output config/velocidad_dashboard_prototypes.json ^
+  --sample 3=datos/evidencia/velocidad_componentes/vel_comp_000060_0.png ^
+  --sample 1=datos/evidencia/velocidad_componentes/vel_comp_000180_0.png
+```
+
+Cada muestra debe ser un crop monocromático del dígito ya segmentado.
 
 ## Tests
 
@@ -116,24 +190,47 @@ venv\Scripts\activate
 pytest
 ```
 
+Si quieres correr solo los tests más ligados al estado actual del piloto:
+
+```bat
+pytest tests/test_pure_pursuit.py ^
+       tests/test_velocidad_dashboard.py ^
+       tests/test_carril_speed_policy.py ^
+       tests/test_carril_steering_policy.py ^
+       tests/test_velocidad_feedback_policy.py
+```
+
 ## Estructura
 
 ```text
 YoloCamion/
 ├── config/
-│   ├── default.yaml          # Configuración principal (modelo, fuente, control)
-│   └── regiones_interes.yaml # ROI calibradas para detección
+│   ├── default.yaml
+│   ├── regiones_interes.yaml
+│   └── velocidad_dashboard_prototypes.json
 ├── datos/
-│   ├── modelos/              # Pesos YOLO (yolo26n.pt)
-│   ├── videos/               # Videos de prueba
-│   └── evidencia/            # Salida: video grabado + imágenes de debug
+│   ├── modelos/
+│   ├── videos/
+│   └── evidencia/
 ├── scripts/
-│   └── ejecutar_piloto.py    # Punto de entrada principal
+│   ├── ejecutar_piloto.py
+│   └── registrar_prototipos_velocidad.py
 ├── src/
-│   ├── control/              # PID, Pure Pursuit, gamepad
-│   ├── decision/             # FSM de conducción
-│   ├── fuente/               # Captura de pantalla/video
-│   ├── percepcion/           # YOLO, YOLOP, tracker, flujo óptico
-│   └── registro/             # Logger, grabador de video
+│   ├── control/
+│   ├── decision/
+│   ├── fuente/
+│   ├── percepcion/
+│   ├── registro/
+│   └── seguridad/
 └── tests/
 ```
+
+## Siguiente paso lógico
+
+La siguiente capacidad grande pendiente es una capa de navegación por ruta:
+
+- leer minimapa / GPS del HUD
+- decidir carril objetivo antes de salidas o cruces
+- ejecutar maniobras guiadas por ruta, no solo seguimiento local de carril
+
+Hoy el piloto está más cerca de un **autopilot visual de autopista** que de un conductor completo de ruta.
