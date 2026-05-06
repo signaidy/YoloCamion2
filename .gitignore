@@ -21,6 +21,12 @@ datos/evidencia/**/*.avi
 datos/evidencia/sesion_*.jsonl
 datos/evidencia/debug_*.jpg
 datos/evidencia/debug_*.png
+datos/evidencia/velocidad_componentes/
+
+# Evidencia local útil para calibración/depuración (no versionar)
+datos/evidencia/debug_carriles_*.jpg
+datos/evidencia/debug_yolop_*.jpg
+datos/evidencia/debug_vel_roi_*.jpg
 
 # IDE
 .vscode/

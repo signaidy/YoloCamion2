@@ -18,11 +18,21 @@ from pathlib import Path
 import yaml
 import numpy as np
 
+try:
+    from pynput.keyboard import Controller as _KeyboardController
+    _keyboard_ctrl = _KeyboardController()
+except Exception:
+    _keyboard_ctrl = None
+
 # Asegurar que src/ está en el path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.control import ControladorGamepad, ControladorNulo, ControladorTeclado
+from src.control.carril_steering_policy import comando_direccion_por_carril
+from src.control.carril_speed_policy import limites_velocidad_por_carril
+from src.control.velocidad_feedback_policy import velocidad_feedback_para_control
 from src.control.gamepad_pid import ControladorGamepadPID
+from src.control.velocidad_fail_safe import limites_por_velocidad_desconocida
 from src.decision import FSMDecision
 from src.fuente import FuentePantalla, FuenteVideo
 from src.fuente.buffer import FuenteConBuffer
@@ -55,11 +65,6 @@ _ACCIONES_CON_GIRO: frozenset[Accion] = frozenset({
 
 _MIN_PIXELES_LL_YOLOP = 800
 _MIN_PIXELES_LL_LADO_YOLOP = 250
-_ZONA_MUERTA_CARRIL_PP = 0.015
-_GANANCIA_CARRIL_PP = 1.45
-_LIMITE_COMANDO_DA = 0.25
-
-
 def _setpoint_a_comando(sp: SetpointControl) -> ComandoControl:
     """Adaptador: SetpointControl -> ComandoControl para controladores no-PID."""
     return ComandoControl(
@@ -74,10 +79,12 @@ def _ll_yolop_valida(ll_mask_roi: np.ndarray) -> tuple[bool, int, int, int]:
     """Valida que YOLOP vea marcas suficientes a ambos lados del camion."""
     alto, ancho = ll_mask_roi.shape
     total_full = int(np.count_nonzero(ll_mask_roi))
-    y0 = int(round(alto * 0.66))
-    y1 = int(round(alto * 0.92))
+    # Las marcas de carril detectadas por YOLOP aparecen en filas 25–55% del frame.
+    # El rango anterior (66–92%) estaba por debajo de donde las líneas son visibles.
+    y0 = int(round(alto * 0.35))
+    y1 = int(round(alto * 0.62))
     x_ref = ancho // 2
-    half = int(round(ancho * 0.24))
+    half = int(round(ancho * 0.30))
     x0 = max(0, x_ref - half)
     x2 = min(ancho, x_ref + half)
 
@@ -94,6 +101,7 @@ def _ll_yolop_valida(ll_mask_roi: np.ndarray) -> tuple[bool, int, int, int]:
         total >= _MIN_PIXELES_LL_YOLOP
         and pix_izq >= _MIN_PIXELES_LL_LADO_YOLOP
         and pix_der >= _MIN_PIXELES_LL_LADO_YOLOP
+        and max(pix_izq, pix_der) / min(pix_izq, pix_der) <= 3.0
     )
     return valida, total_full, pix_izq, pix_der
 
@@ -176,6 +184,9 @@ def main():
                         help="Guardar imagen con clasificación de carriles (ego/contrario/mismo) cada 60 frames")
     args = parser.parse_args()
 
+    if args.debug_yolop:
+        logging.getLogger("src.percepcion.velocidad_dashboard").setLevel(logging.DEBUG)
+
     cfg = cargar_config(args.config)
 
     # Sobreescrituras de CLI
@@ -223,6 +234,7 @@ def main():
     estimador_velocidad = EstimadorVelocidadDashboard(
         max_kmh_norm=float(cfg_vel_dash.get("max_kmh_norm", 90.0)),
         retener_frames=int(cfg_vel_dash.get("retener_frames", 15)),
+        prototypes_path=cfg_vel_dash.get("prototypes_path"),
     )
     velocidad_actual_norm = 0.0
     velocidad_actual_kmh: int | None = None
@@ -282,8 +294,15 @@ def main():
         # EMA de la desviación lateral del carril.
         # EMA rapida: con gamepad sin deadzone fisica, el piloto puede corregir
         # temprano; demasiada memoria retrasa la salida hasta estar cerca del muro.
-        _ALPHA_EMA_CARRIL = 0.45
+        _ALPHA_EMA_CARRIL = 0.72
         desv_ema: float = 0.0
+        frames_velocidad_invalida = 0
+
+        # Alineación de cámara: presiona '8' cada N frames para que ETS2 vuelva
+        # a la vista de cabina por defecto. El velocímetro está siempre en la esquina
+        # inferior izquierda del HUD (no se mueve con la cámara), así que basta con
+        # mantener la vista alineada para no perder visión de la carretera.
+        _FRAMES_RESET_CAMARA = 20       # ~0.67 s a 30 fps
 
         from src.decision.estado import EstadoFSM
         _ESTADOS_CARRIL = (
@@ -323,13 +342,14 @@ def main():
             da_mask = da_mask_cache.copy()
             ll_mask = ll_mask_cache
 
-            # Enmascarar zona superior (60%): espejos virtuales ocupan hasta y≈55%.
-            # Margen extra de 5% evita que variaciones de ángulo/resolución los expongan.
-            # La carretera útil está en el 65-85% de la imagen.
-            _fila_roi = int(da_mask.shape[0] * 0.60)
-            da_mask[:_fila_roi, :] = 0
+            # DA: enmascarar zona superior (60%) — espejos virtuales ocupan hasta y≈55%.
+            # LL: solo enmascarar hasta 30% — las marcas de carril visibles en cámara
+            # aparecen en filas 25–55% del frame; el recorte al 60% las eliminaba todas.
+            _fila_roi_da = int(da_mask.shape[0] * 0.60)
+            da_mask[:_fila_roi_da, :] = 0
+            _fila_roi_ll = int(ll_mask.shape[0] * 0.30)
             ll_mask_roi = ll_mask.copy()
-            ll_mask_roi[:_fila_roi, :] = 0
+            ll_mask_roi[:_fila_roi_ll, :] = 0
             ll_yolop_valida, pixeles_ll_yolop, pixeles_ll_izq, pixeles_ll_der = _ll_yolop_valida(ll_mask_roi)
 
             # Clasificación de carriles (ego / contrario / mismo sentido).
@@ -342,26 +362,37 @@ def main():
             # el offset de cámara (_BIAS_CAM_PX=80), lo que produce un sesgo sistemático a la
             # derecha que hace que el camión se estrelle contra la barrera derecha.
             giro_pure_pursuit, carril_perdido = pure_pursuit.calcular_giro(da_mask, ll_mask_roi)
-            fuente_carril = "ll" if ll_yolop_valida else ("da" if not carril_perdido else "decay")
+            fuente_carril = pure_pursuit.ultima_fuente_debug
             detalle_carril = ""
             comando_carril_directo: float | None = None
+
+            # ── Velocidad propia desde HUD ──────────────────────────────────
+            # Estimado antes de la EMA para poder usarlo en la decimación
+            # con el valor del frame actual (no del anterior).
+            lectura_velocidad = estimador_velocidad.estimar(cuadro.imagen)
+            velocidad_actual_norm = lectura_velocidad.norm
+            velocidad_actual_kmh = lectura_velocidad.kmh
+            if lectura_velocidad.valido:
+                frames_velocidad_invalida = 0
+            else:
+                frames_velocidad_invalida += 1
 
             # EMA de suavizado rapido: PurePursuit ya limita saltos grandes.
             desv_ema = (_ALPHA_EMA_CARRIL * giro_pure_pursuit + (1.0 - _ALPHA_EMA_CARRIL) * desv_ema)
 
             # Cuando el camión está casi parado el volante no produce corrección
             # lateral efectiva y la EMA acumula sesgo que dispara un sobreimpulso
-            # al retomar la marcha. Por debajo de 5 km/h se decae la EMA a la
-            # mitad por frame para mantener la memoria pequeña.
-            if velocidad_actual_kmh is not None and velocidad_actual_kmh <= 5:
+            # al retomar la marcha. Por debajo de 3 km/h (lectura válida) se
+            # decae la EMA a la mitad por frame para mantener la memoria pequeña.
+            # Se exige lectura válida para evitar que lecturas falsas del velocímetro
+            # (p.ej. marcas del cuadrante analógico) provoquen decimación espuria.
+            if lectura_velocidad.valido and velocidad_actual_kmh is not None and velocidad_actual_kmh <= 2:
                 desv_ema *= 0.5
 
-            # ── Velocidad propia desde HUD ──────────────────────────────────
-            lectura_velocidad = estimador_velocidad.estimar(cuadro.imagen)
-            velocidad_actual_norm = lectura_velocidad.norm
-            velocidad_actual_kmh = lectura_velocidad.kmh
-            if isinstance(controlador, ControladorGamepadPID):
-                controlador.actualizar_velocidad_actual(velocidad_actual_norm)
+            # Alineación periódica de cámara: presiona '8' cada _FRAMES_RESET_CAMARA.
+            if _keyboard_ctrl is not None and n_frame > 0 and n_frame % _FRAMES_RESET_CAMARA == 0:
+                _keyboard_ctrl.press('8')
+                _keyboard_ctrl.release('8')
 
             # ── YOLO + FSM (cada YOLO_CADA frames — lenta ~100ms) ───────────
             yolo_contador += 1
@@ -372,6 +403,14 @@ def main():
                 resultado_cache = fsm.decidir(escena)
 
             resultado = resultado_cache
+            velocidad_feedback_norm = velocidad_feedback_para_control(
+                velocidad_norm=velocidad_actual_norm,
+                velocidad_kmh=velocidad_actual_kmh,
+                lectura_valida=lectura_velocidad.valido,
+                estado_fsm=resultado.estado_nuevo,
+            )
+            if isinstance(controlador, ControladorGamepadPID):
+                controlador.actualizar_velocidad_actual(velocidad_feedback_norm)
 
             # ── Setpoint del FSM (mutable) + override de carril ──────────────
             setpoint = SetpointControl(
@@ -389,33 +428,48 @@ def main():
                 if comando_carril_directo is not None:
                     setpoint.desviacion_volante = comando_carril_directo
                 else:
-                    desv_out = 0.0 if abs(desv_ema) < _ZONA_MUERTA_CARRIL_PP else float(
-                        np.clip(desv_ema * _GANANCIA_CARRIL_PP, -1.0, 1.0)
+                    setpoint.desviacion_volante = comando_direccion_por_carril(
+                        desviacion_ema=float(desv_ema),
+                        fuente_carril=fuente_carril,
+                        velocidad_kmh=velocidad_actual_kmh if lectura_velocidad.valido else None,
                     )
-                    if fuente_carril == "da":
-                        desv_out = float(np.clip(desv_out, -_LIMITE_COMANDO_DA, _LIMITE_COMANDO_DA))
-                    # PurePursuit: positivo = objetivo a la izquierda, negativo = derecha.
-                    # SetpointControl/gamepad: negativo = stick izquierda, positivo = derecha.
-                    setpoint.desviacion_volante = -desv_out
 
-            # Reducir velocidad solo cuando todo falla (nivel 3: decay puro).
-            # Braking solo por encima de 15 km/h para que el camión pueda arrancar.
-            _VEL_FRENO_DECAY = 0.17  # ~15 km/h a 90 km/h max
-            if carril_perdido and resultado.estado_nuevo in _ESTADOS_CARRIL:
-                setpoint.velocidad_objetivo_norm *= 0.50
-                if velocidad_actual_norm >= _VEL_FRENO_DECAY:
-                    setpoint.freno_objetivo = max(setpoint.freno_objetivo, 0.10)
+            # Reducir velocidad cuando solo queda el fallback de carril, pero sin
+            # convertir `da` en una frenada automática a ~8-10 km/h. En las
+            # sesiones 1778021426 / 1778021893 esa combinación cortaba RT y metía
+            # LT justo cuando el camión intentaba recuperar velocidad.
+            factor_carril, freno_carril = limites_velocidad_por_carril(
+                fuente_carril=fuente_carril,
+                carril_perdido=carril_perdido,
+                velocidad_actual_norm=velocidad_actual_norm,
+                estado_con_carril=resultado.estado_nuevo in _ESTADOS_CARRIL,
+            )
+            setpoint.velocidad_objetivo_norm *= factor_carril
+            setpoint.freno_objetivo = max(setpoint.freno_objetivo, freno_carril)
 
             if resultado.estado_nuevo in _ESTADOS_CARRIL:
                 curva = max(abs(giro_pure_pursuit), abs(desv_ema), pure_pursuit.ultima_curvatura_debug)
+                _VEL_FRENO_CURVA = 0.17  # ~15 km/h a 90 km/h max
                 setpoint.velocidad_objetivo_norm *= 0.80
                 if curva > 0.06:
                     escala_curva = float(np.interp(curva, [0.06, 0.45], [0.85, 0.35]))
                     setpoint.velocidad_objetivo_norm *= escala_curva
                 if curva > 0.12:
-                    if velocidad_actual_norm >= _VEL_FRENO_DECAY:
+                    # Frenar en curva pronunciada aunque la velocidad no se pueda leer:
+                    # sin lectura el PID cree que el camión está parado y aceleraría
+                    # al máximo, así que se fuerza freno preventivo.
+                    if velocidad_actual_norm >= _VEL_FRENO_CURVA or not lectura_velocidad.valido:
                         freno_curva = 0.06 if curva < 0.25 else 0.10
                         setpoint.freno_objetivo = max(setpoint.freno_objetivo, freno_curva)
+                cap_vel_desc, freno_vel_desc = limites_por_velocidad_desconocida(
+                    frames_sin_lectura=frames_velocidad_invalida,
+                    fuente_carril=fuente_carril,
+                    curva=curva,
+                    estado_con_carril=True,
+                )
+                if cap_vel_desc is not None:
+                    setpoint.velocidad_objetivo_norm = min(setpoint.velocidad_objetivo_norm, cap_vel_desc)
+                setpoint.freno_objetivo = max(setpoint.freno_objetivo, freno_vel_desc)
 
             if args.debug_carril and n_frame % 30 == 0:
                 logger.info(
@@ -493,6 +547,18 @@ def main():
                 ruta_cmp = _Path(cfg["registro"]["ruta_base"]) / f"debug_modelo_{n_frame:06d}.jpg"
                 _cv2.imwrite(str(ruta_cmp), compuesto, [_cv2.IMWRITE_JPEG_QUALITY, 90])
                 logger.info("Debug modelo guardado: %s", ruta_cmp)
+
+                # ROI del velocímetro ampliada 4× para calibración visual
+                roi_vel = estimador_velocidad.roi_debug(cuadro.imagen)
+                roi_vel_big = _cv2.resize(roi_vel, (roi_vel.shape[1] * 4, roi_vel.shape[0] * 4),
+                                          interpolation=_cv2.INTER_NEAREST)
+                _cv2.putText(roi_vel_big, f"VEL ROI kmh={velocidad_actual_kmh if velocidad_actual_kmh is not None else '-'}",
+                             (4, 18), _cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 1)
+                ruta_roi = _Path(cfg["registro"]["ruta_base"]) / f"debug_vel_roi_{n_frame:06d}.jpg"
+                _cv2.imwrite(str(ruta_roi), roi_vel_big, [_cv2.IMWRITE_JPEG_QUALITY, 95])
+                dump_comp_dir = cfg_vel_dash.get("dump_componentes_dir")
+                if dump_comp_dir:
+                    estimador_velocidad.guardar_componentes_debug(cuadro.imagen, dump_comp_dir, n_frame)
 
             if args.debug_clasif_carriles and n_frame % 60 == 0:
                 import cv2 as _cv2

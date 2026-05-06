@@ -217,10 +217,15 @@ class AnalizadorCarriles:
                 h: int, w: int) -> Optional[float]:
         if ego_izq is None or ego_der is None:
             return None
-        y = h - 1
+        # Evaluar en la fila mas baja con pixeles reales en ambas lineas.
+        # Usar h-1 extrapola lejos del rango detectado y produce offsets de >1000px.
+        y = min(ego_izq.y_max, ego_der.y_max)
         xi = float(np.polyval(ego_izq.coefs, y))
         xd = float(np.polyval(ego_der.coefs, y))
-        return ((xi + xd) / 2.0) - (w / 2.0)
+        result = ((xi + xd) / 2.0) - (w / 2.0)
+        if abs(result) > 500:
+            return None
+        return result
 
     @staticmethod
     def _curvatura(linea: Optional[Linea], h: int) -> Optional[float]:

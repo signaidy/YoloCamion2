@@ -43,6 +43,9 @@ _FRENO_EMERGENCIA = 0.9   # umbral del setpoint para bypass total (cancela PID a
 _FRENO_DIRECTO_MIN = 0.05  # cualquier freno_objetivo>=esto se aplica como LT directo
 _VEL_MIN_FRENO_NORM = 0.03  # debajo de esto LT puede meter reversa en ETS2
 _STICK_DEADZONE_IN = 0.0
+_VEL_MAX_LANZAMIENTO_NORM = 0.06  # ~5 km/h: el truck aun necesita empuje para salir
+_OBJETIVO_MIN_LANZAMIENTO = 0.18
+_RT_MIN_LANZAMIENTO = 96
 
 
 class ControladorGamepadPID(Controlador):
@@ -129,8 +132,18 @@ class ControladorGamepadPID(Controlador):
             self._pid_vel.reset()
         else:
             margen = 0.04
-            if self._vel_actual + margen < sp.velocidad_objetivo_norm:
-                rt_aplicado = int(min(1.0, max(0.0, sp.velocidad_objetivo_norm)) * 255)
+            objetivo = min(1.0, max(0.0, sp.velocidad_objetivo_norm))
+            if self._vel_actual + margen < objetivo:
+                rt_aplicado = int(objetivo * 255)
+                # Cuando YOLOP arranca en `decay`, el setpoint reducido cae a
+                # ~0.24 y eso mapea a RT≈61, insuficiente para vencer la inercia
+                # inicial del FH16. Damos un piso moderado solo mientras sigue
+                # casi parado y el objetivo de velocidad es claramente positivo.
+                if (
+                    objetivo >= _OBJETIVO_MIN_LANZAMIENTO
+                    and self._vel_actual < _VEL_MAX_LANZAMIENTO_NORM
+                ):
+                    rt_aplicado = max(rt_aplicado, _RT_MIN_LANZAMIENTO)
             else:
                 rt_aplicado = 0
             lt_aplicado = 0

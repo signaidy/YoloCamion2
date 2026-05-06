@@ -65,6 +65,35 @@ def test_area_solo_derecha_error_negativo():
     assert error < -0.10
 
 
+def test_fuente_debug_reporta_ll_y_decay():
+    pp = PurePursuitVisual()
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[100:480, 0:640] = 1
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    ll[300:480, 215:225] = 1
+    ll[300:480, 415:425] = 1
+
+    _error, perdido = pp.calcular_giro(da, ll)
+    assert not perdido
+    assert pp.ultima_fuente_debug == "ll"
+
+    vacia = np.zeros((480, 640), dtype=np.uint8)
+    _error, perdido = pp.calcular_giro(vacia)
+    assert perdido
+    assert pp.ultima_fuente_debug == "decay"
+
+
+def test_fuente_debug_reporta_da_sin_ll():
+    pp = PurePursuitVisual()
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[160:480, 220:500] = 1
+
+    _error, perdido = pp.calcular_giro(da)
+
+    assert not perdido
+    assert pp.ultima_fuente_debug == "da"
+
+
 def test_error_acotado_entre_menos1_y_1():
     """El error normalizado nunca sale del rango [-1, 1]."""
     pp = PurePursuitVisual()
@@ -159,18 +188,18 @@ def test_ll_mask_multicarril_elige_par_adyacente_central():
     assert abs(error) < 0.05
 
 
-def test_ll_mask_empate_prefiere_par_a_la_derecha():
-    """En empate de carriles visibles, evita elegir el carril pegado a la mediana."""
+def test_ll_mask_pares_usa_el_par_que_encierra_la_referencia():
+    """Con varias líneas, debe elegir el par adyacente que contiene la referencia de búsqueda."""
     pp = PurePursuitVisual()
     da = np.zeros((480, 640), dtype=np.uint8)
     da[100:480, 0:640] = 1
     ll = np.zeros((480, 640), dtype=np.uint8)
-    for x1, x2 in [(95, 105), (295, 305), (335, 345), (535, 545)]:
+    for x1, x2 in [(95, 105), (275, 285), (355, 365), (535, 545)]:
         ll[300:480, x1:x2] = 1
 
     centro = pp._centro_desde_ll_pares(ll, [340, 360, 380], 320, 640)
 
-    assert centro == pytest.approx(439.5)
+    assert centro == pytest.approx(319.5)
 
 
 def test_ll_mask_no_sigue_punto_previo_en_otro_carril():
@@ -207,15 +236,78 @@ def test_ll_mask_rechaza_salto_a_carril_adyacente():
     assert pp._x_ancla_carril == pytest.approx(320.0)
 
 
-def test_validacion_de_carril_satura_salto_sin_mover_ancla():
-    """Un centro de carril muy lejano se limita, pero no arrastra el ancla."""
+def test_validacion_de_carril_descarta_salto_sin_mover_ancla():
+    """Un centro de carril muy lejano se rechaza sin arrastrar el ancla."""
     pp = PurePursuitVisual()
     pp._x_ancla_carril = 320.0
 
     centro = pp._validar_y_actualizar_ancla(120.0, 640)
 
-    assert centro == pytest.approx(320.0 - 640 * pp._MAX_SALTO_CARRIL_FRAC)
+    assert centro is None
     assert pp._x_ancla_carril == pytest.approx(320.0)
+
+
+def test_validacion_de_carril_rechaza_salto_moderado_si_rompe_ancho_historico():
+    """Con ancho histórico conocido, un salto lateral de casi un carril debe rechazarse."""
+    pp = PurePursuitVisual()
+    pp._x_ancla_carril = 220.0
+    pp._ultimo_ancho_carril_px = 120.0
+
+    centro = pp._validar_y_actualizar_ancla(340.0, 640)
+
+    assert centro is None
+    assert pp._x_ancla_carril == pytest.approx(220.0)
+
+
+def test_ll_mask_con_ramal_derecho_mantiene_carril_anclado():
+    """Si aparece un ramal a la derecha, la búsqueda LL debe quedarse en el carril anclado."""
+    pp = PurePursuitVisual()
+    pp._x_ancla_carril = 199.5
+    pp._ultimo_ancho_carril_px = 110.0
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[120:480, 80:520] = 1
+
+    ll_base = np.zeros((480, 640), dtype=np.uint8)
+    ll_base[260:480, 140:150] = 1
+    ll_base[260:480, 250:260] = 1
+
+    error_base, perdido_base = pp.calcular_giro(da, ll_base)
+    assert not perdido_base
+    assert error_base > 0.0
+    assert pp.ultimo_punto_debug is not None
+    assert pp.ultimo_punto_debug[0] == pytest.approx(199.5, abs=3.0)
+
+    ll_ramal = ll_base.copy()
+    ll_ramal[260:480, 370:380] = 1
+
+    error_ramal, perdido_ramal = pp.calcular_giro(da, ll_ramal)
+
+    assert not perdido_ramal
+    assert error_ramal > 0.0
+    assert pp.ultimo_punto_debug is not None
+    assert pp.ultimo_punto_debug[0] == pytest.approx(199.5, abs=3.0)
+
+
+def test_da_fallback_rechaza_hombro_estrecho_tras_historial_ll():
+    """Si ll_mask se pierde y solo queda un hombro estrecho, debe declararse perdido."""
+    pp = PurePursuitVisual()
+    da_ok = np.zeros((480, 640), dtype=np.uint8)
+    da_ok[100:480, 0:640] = 1
+    ll_ok = np.zeros((480, 640), dtype=np.uint8)
+    ll_ok[260:480, 245:255] = 1
+    ll_ok[260:480, 465:475] = 1
+
+    error_prev, perdido_prev = pp.calcular_giro(da_ok, ll_ok)
+    assert not perdido_prev
+
+    da_hombro = np.zeros((480, 640), dtype=np.uint8)
+    da_hombro[260:480, 360:520] = 1
+    ll_vacio = np.zeros((480, 640), dtype=np.uint8)
+
+    error, perdido = pp.calcular_giro(da_hombro, ll_vacio)
+
+    assert perdido
+    assert error == pytest.approx(error_prev * pp._DECAY, rel=0.05)
 
 
 def test_ll_mask_vacio_usa_da_mask():
@@ -232,7 +324,7 @@ def test_ll_mask_vacio_usa_da_mask():
 
 
 def test_ll_mask_pocos_pixeles_no_activa_ll():
-    """Menos de _MIN_LL_PIXELES (15) por lado → cae a da_mask, misma señal."""
+    """Sin segmentos suficientes por lado → cae a da_mask, misma señal."""
     pp_ll = PurePursuitVisual()
     pp_da = PurePursuitVisual()
     da = np.zeros((480, 640), dtype=np.uint8)
@@ -244,3 +336,54 @@ def test_ll_mask_pocos_pixeles_no_activa_ll():
     e_ll, _ = pp_ll.calcular_giro(da, ll)
     e_da, _ = pp_da.calcular_giro(da)
     assert e_ll == pytest.approx(e_da)
+
+
+def test_ll_fallback_por_segmentos_acepta_tres_filas_por_lado():
+    """El fallback L1c debe funcionar con tres filas válidas por lado."""
+    pp = PurePursuitVisual()
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    for y in (320, 340, 360):
+        ll[y, 250:255] = 1
+        ll[y, 385:390] = 1
+
+    centro = pp._centro_desde_ll(ll, [320, 340, 360], 320)
+
+    assert centro == pytest.approx(319.5)
+
+
+def test_ll_pares_acepta_dos_filas_validas_en_reaparicion_corta():
+    """El muestreo por pares no debe caer a DA si solo hay dos filas válidas consecutivas."""
+    pp = PurePursuitVisual()
+    ll = np.zeros((480, 640), dtype=np.uint8)
+    for y in (330, 340):
+        ll[y, 250:255] = 1
+        ll[y, 385:390] = 1
+
+    centro = pp._centro_desde_ll_pares(ll, [320, 330, 340, 350], 320, 640)
+
+    assert centro == pytest.approx(319.5)
+
+
+def test_ll_memoria_recupera_filas_mas_bajas_antes_de_caer_a_decay():
+    """Si la detección cae unas filas más abajo, debe recuperarse con memoria."""
+    pp = PurePursuitVisual()
+    da = np.zeros((480, 640), dtype=np.uint8)
+    da[120:480, 140:520] = 1
+
+    ll_base = np.zeros((480, 640), dtype=np.uint8)
+    ll_base[260:480, 250:260] = 1
+    ll_base[260:480, 380:390] = 1
+
+    error_base, perdido_base = pp.calcular_giro(da, ll_base)
+    assert not perdido_base
+    assert error_base > 0.0
+
+    ll_bajo = np.zeros((480, 640), dtype=np.uint8)
+    ll_bajo[330:351, 250:260] = 1
+    ll_bajo[330:351, 380:390] = 1
+
+    error, perdido = pp.calcular_giro(da, ll_bajo)
+
+    assert not perdido
+    assert pp.ultima_fuente_debug == "ll"
+    assert error > 0.0

@@ -18,6 +18,8 @@ control:
 velocidad_dashboard:
   max_kmh_norm: 90.0              # km/h que equivale a velocidad normalizada 1.0
   retener_frames: 15              # mantener ultima lectura si un frame no se puede leer
+  prototypes_path: "config/velocidad_dashboard_prototypes.json"  # banco JSON de prototipos reales por dígito
+  dump_componentes_dir: "datos/evidencia/velocidad_componentes"  # carpeta para guardar crops de dígitos normalizados
 
 seguridad:
   tecla_paro: "f12"

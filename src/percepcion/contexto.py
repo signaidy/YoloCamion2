@@ -46,6 +46,14 @@ _ROI_DEFAULT: dict[Region, tuple[int, int, int, int]] = {
 _AREA_MIN_FRENTE = 5000   # px² para considerar vehículo relevante en frente cercano
 _AREA_MIN_ESPEJO = 2000
 _AREA_MIN_PEATON = 3000   # peatón muy pequeño = falso positivo (HUD, árbol, poste)
+_CONF_MIN_PEATON_RIESGO = 0.55
+_EDAD_MIN_PEATON_RIESGO = 2
+_ALTURA_MIN_PEATON_PX = 75
+_ASPECTO_MIN_PEATON = 1.35
+_ASPECTO_MAX_PEATON = 4.80
+_BORDE_LATERAL_PEATON_FRAC = 0.28
+_Y_MIN_LATERAL_PEATON_FRAC = 0.35
+_Y_MAX_LATERAL_PEATON_FRAC = 0.82
 
 
 def _intersecta(caja: tuple, roi: tuple) -> bool:
@@ -73,6 +81,52 @@ class AnalizadorContexto:
         self._historial_tracks: deque[int] = deque(maxlen=ventana_confianza)
         self._estimador_fisica = estimador_fisica
 
+    def _dimensiones_referencia(self, imagen: Optional[np.ndarray]) -> tuple[int, int]:
+        if imagen is not None:
+            h, w = imagen.shape[:2]
+            return int(h), int(w)
+        w = max(roi[2] for roi in self._rois.values())
+        h = max(roi[3] for roi in self._rois.values())
+        return int(h), int(w)
+
+    def _peaton_en_zona_riesgo(
+        self,
+        seg: Seguimiento,
+        roi_fc: tuple[int, int, int, int],
+        roi_li: tuple[int, int, int, int],
+        roi_ld: tuple[int, int, int, int],
+        h_img: int,
+        w_img: int,
+    ) -> bool:
+        if seg.area < _AREA_MIN_PEATON or seg.confianza < _CONF_MIN_PEATON_RIESGO:
+            return False
+        if seg.edad < _EDAD_MIN_PEATON_RIESGO:
+            return False
+
+        x1, y1, x2, y2 = seg.caja
+        ancho = max(1, x2 - x1)
+        alto = y2 - y1
+        if alto < _ALTURA_MIN_PEATON_PX:
+            return False
+
+        aspecto = alto / float(ancho)
+        if not (_ASPECTO_MIN_PEATON <= aspecto <= _ASPECTO_MAX_PEATON):
+            return False
+
+        if _intersecta(seg.caja, roi_fc):
+            return True
+
+        cx = (x1 + x2) / 2.0
+        en_borde_izq = _intersecta(seg.caja, roi_li) and cx <= w_img * _BORDE_LATERAL_PEATON_FRAC
+        en_borde_der = _intersecta(seg.caja, roi_ld) and cx >= w_img * (1.0 - _BORDE_LATERAL_PEATON_FRAC)
+        if not (en_borde_izq or en_borde_der):
+            return False
+
+        return (
+            y2 >= h_img * _Y_MIN_LATERAL_PEATON_FRAC
+            and y1 <= h_img * _Y_MAX_LATERAL_PEATON_FRAC
+        )
+
     def analizar(
         self,
         seguimientos: list[Seguimiento],
@@ -97,6 +151,7 @@ class AnalizadorContexto:
         roi_ed = self._rois[Region.ESPEJO_DER]
         roi_li = self._rois[Region.LATERAL_IZQ]
         roi_ld = self._rois[Region.LATERAL_DER]
+        h_img, w_img = self._dimensiones_referencia(imagen)
 
         ttc_min = math.inf
         id_critico: Optional[int] = None
@@ -114,9 +169,7 @@ class AnalizadorContexto:
                     senal_alto = True
 
             elif seg.clase == Clase.PEATON:
-                if seg.area >= _AREA_MIN_PEATON and (
-                    _intersecta(caja, roi_fc) or _intersecta(caja, roi_li) or _intersecta(caja, roi_ld)
-                ):
+                if self._peaton_en_zona_riesgo(seg, roi_fc, roi_li, roi_ld, h_img, w_img):
                     peaton_riesgo = True
 
             elif seg.clase in (Clase.VEHICULO, Clase.MOTOCICLETA):

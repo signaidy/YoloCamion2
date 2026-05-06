@@ -94,6 +94,26 @@ def test_velocidad_objetivo_alta_y_actual_baja_dispara_throttle(mock_gamepad):
     assert rt_max > 0
 
 
+def test_lanzamiento_desde_cero_aplica_piso_minimo_de_rt(mock_gamepad):
+    ctrl, gp = mock_gamepad
+    ctrl.actualizar_velocidad_actual(0.0)
+    ctrl.aplicar(_sp(vel=0.24))
+
+    llamadas_rt = [c.kwargs.get("value", 0) for c in gp.right_trigger.call_args_list]
+    llamadas_lt = [c.kwargs.get("value", 0) for c in gp.left_trigger.call_args_list]
+    assert llamadas_rt[-1] >= 96
+    assert llamadas_lt[-1] == 0
+
+
+def test_lanzamiento_no_aplica_piso_cuando_ya_hay_velocidad(mock_gamepad):
+    ctrl, gp = mock_gamepad
+    ctrl.actualizar_velocidad_actual(0.10)
+    ctrl.aplicar(_sp(vel=0.24))
+
+    llamadas_rt = [c.kwargs.get("value", 0) for c in gp.right_trigger.call_args_list]
+    assert llamadas_rt[-1] == int(0.24 * 255)
+
+
 def test_velocidad_objetivo_cero_y_actual_alta_rueda_sin_reversa(mock_gamepad):
     """Sin freno explicito, exceso de velocidad debe soltar acelerador sin LT."""
     ctrl, gp = mock_gamepad

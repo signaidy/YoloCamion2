@@ -43,6 +43,62 @@ def test_peaton_en_riesgo_cuando_peaton_en_frente():
     assert estado.peaton_en_riesgo is True
 
 
+def test_peaton_no_activa_riesgo_con_confianza_baja():
+    ctx = AnalizadorContexto()
+    roi = _ROI_DEFAULT[Region.FRENTE_CERCANO]
+    cx, cy = (roi[0] + roi[2]) // 2, (roi[1] + roi[3]) // 2
+    seg = _seg(Clase.PEATON, (cx - 20, cy - 45, cx + 20, cy + 45), confianza=0.40)
+
+    estado = ctx.analizar([seg])
+
+    assert estado.peaton_en_riesgo is False
+
+
+def test_peaton_no_activa_riesgo_si_no_tiene_aspecto_humano():
+    ctx = AnalizadorContexto()
+    roi = _ROI_DEFAULT[Region.FRENTE_CERCANO]
+    cx, cy = (roi[0] + roi[2]) // 2, (roi[1] + roi[3]) // 2
+    seg = _seg(Clase.PEATON, (cx - 45, cy - 45, cx + 45, cy + 45), area=8100)
+
+    estado = ctx.analizar([seg])
+
+    assert estado.peaton_en_riesgo is False
+
+
+def test_peaton_lateral_requiere_estar_realmente_en_el_borde():
+    rois = {
+        Region.FRENTE_CERCANO: (412, 502, 1633, 691),
+        Region.FRENTE_LEJANO: (282, 231, 1661, 488),
+        Region.ESPEJO_IZQ: (102, 346, 385, 825),
+        Region.ESPEJO_DER: (1672, 399, 1813, 647),
+        Region.LATERAL_IZQ: (54, 182, 1836, 868),
+        Region.LATERAL_DER: (52, 177, 1838, 869),
+    }
+    ctx = AnalizadorContexto(rois=rois)
+    seg = _seg(Clase.PEATON, (900, 420, 960, 540), area=7200)
+
+    estado = ctx.analizar([seg])
+
+    assert estado.peaton_en_riesgo is False
+
+
+def test_peaton_lateral_en_borde_sigue_activando_riesgo():
+    rois = {
+        Region.FRENTE_CERCANO: (412, 502, 1633, 691),
+        Region.FRENTE_LEJANO: (282, 231, 1661, 488),
+        Region.ESPEJO_IZQ: (102, 346, 385, 825),
+        Region.ESPEJO_DER: (1672, 399, 1813, 647),
+        Region.LATERAL_IZQ: (54, 182, 1836, 868),
+        Region.LATERAL_DER: (52, 177, 1838, 869),
+    }
+    ctx = AnalizadorContexto(rois=rois)
+    seg = _seg(Clase.PEATON, (120, 420, 170, 540), area=6000)
+
+    estado = ctx.analizar([seg])
+
+    assert estado.peaton_en_riesgo is True
+
+
 def test_espejo_izq_requiere_edad_minima():
     ctx = AnalizadorContexto()
     roi = _ROI_DEFAULT[Region.ESPEJO_IZQ]
